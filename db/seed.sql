@@ -11,7 +11,9 @@ CREATE TABLE users (
   pet boolean,
   approved boolean,
   admin boolean,
-  prop_id int
+  prop_id int,
+  resetPasswordToken text,
+  resetPasswordExpires text
 );
 
 CREATE TABLE properties (
