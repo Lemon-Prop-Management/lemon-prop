@@ -21,23 +21,23 @@ const app = express();
 app.use(express.json());
 
 app.use(
- session({
-  resave: false,
-  saveUninitialized: true,
-  secret: SESSION_SECRET,
-  cookie: { maxAge: 1000 * 60 * 60 * 24 },
- })
+    session({
+        resave: false,
+        saveUninitialized: true,
+        secret: SESSION_SECRET,
+        cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    })
 )
 
 
 stripe.refunds.create({
- charge: '',
- reverse_transfer: true,
+    charge: '',
+    reverse_transfer: true,
 })
- .then(function (refund) {
-  // asynchronously called
+    .then(function (refund) {
+        // asynchronously called
 
- });
+    });
 
 
 //Auth Controllers
@@ -60,8 +60,7 @@ app.get('/api/tenant/:user_id/payments', tenantCtrl.getAllPayments)
 
 //----------------MANAGER CONTROLLERS--------------------------------
 // Maintenance Requests - Manager
-app.get('/api/manager/mr', managerCtrl.getOpenMr)
-app.get('/api/manager/mr', managerCtrl.getClosedMr)
+app.get('/api/manager/mr/:is_complete', managerCtrl.getMr)
 app.get('/api/manager/mr/:mr_id', managerCtrl.getOneMr)
 
 // Properties - Manager
@@ -72,7 +71,7 @@ app.post('/api/manager/properties', managerCtrl.addOneProperty)
 app.delete('/api/manager/properties/:prop_id', managerCtrl.deleteOneProperty)
 
 // Tenants - Manager
-app.get('/api/manager/tenants', managerCtrl.getAllTenants)
+app.get('/api/manager/tenants/:is_approved', managerCtrl.getAllTenantsByStatus)
 app.get('/api/manager/tenants/:user_id', managerCtrl.getOneTenant)
 app.put('/api/manager/tenants/:user_id', managerCtrl.editOneTenant)
 app.post('/api/manager/tenants', managerCtrl.addOneTenant)
@@ -82,16 +81,16 @@ app.delete('/api/manager/tenants/:user_id', managerCtrl.deleteOneTenant)
 
 
 massive({
- connectionString: CONNECTION_STRING,
- ssl: {
-  rejectUnauthorized: false,
- },
+    connectionString: CONNECTION_STRING,
+    ssl: {
+        rejectUnauthorized: false,
+    },
 }).then((dbInstance) => {
- app.set('db', dbInstance)
- console.log('db connected')
- app.listen(SERVER_PORT, () => {
-  console.log(`A sour lemonServer is jamming on port ${SERVER_PORT}`)
- })
+    app.set('db', dbInstance)
+    console.log('db connected')
+    app.listen(SERVER_PORT, () => {
+        console.log(`A sour lemonServer is jamming on port ${SERVER_PORT}`)
+    })
 })
 
 

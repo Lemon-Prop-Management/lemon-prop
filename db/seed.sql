@@ -4,7 +4,7 @@ CREATE TABLE "user" (
   "last_name" varchar(50),
   "phone" varchar(10),
   "email" varchar(50),
-  "password" varchar(20),
+  "hash" text,
   "due_date" datetime,
   "pet" boolean,
   "approved" boolean,
