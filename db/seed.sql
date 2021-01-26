@@ -1,7 +1,7 @@
 CREATE TABLE "user" (
   "id" SERIAL PRIMARY KEY,
-  "first_name" charvar,
-  "last_name" charvar,
+  "first_name" varchar(50),
+  "last_name" varchar(50),
   "phone" varchar(10),
   "email" varchar(50),
   "password" varchar(20),
@@ -33,7 +33,7 @@ CREATE TABLE "maint_req" (
   "is_compl" boolean,
   "request" text,
   "user_id" int,
-  "photo" blob,
+  "photo" bytea,
   "prop_id" int
 );
 
