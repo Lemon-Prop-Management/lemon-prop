@@ -27,6 +27,18 @@ module.exports = {
             .catch(err => console.log(err))
     },
 
+    editOneMr: async (req, res) => {
+        const db = await req.app.post('db')
+        const { mr_id } = req.params
+        const { isComplete } = req.body
+
+        await db.mgr.mgr_edit_one_mr([mr_id, isComplete])
+            .then(editedMr => {
+                res.status(200).send(editedMr)
+            })
+            .catch(err => console.log(err))
+
+    },
 
     // Properties - Manager
 
@@ -154,4 +166,16 @@ module.exports = {
             })
             .catch(err => console.log(err))
     },
+
+    // Payments - Manager
+    getAllPayments: async (req, res) => {
+        const db = await req.app.get('db')
+
+        await db.mgr.mgr_get_all_payments()
+            .then(payments => {
+                res.status(200).send(payments)
+            })
+            .catch(err => console.log(err))
+    }
+
 }
