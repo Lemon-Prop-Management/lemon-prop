@@ -65,6 +65,7 @@ app.get('/api/tenant/:user_id/payments', tenantCtrl.getAllPayments)
 // Maintenance Requests - Manager
 app.get('/api/manager/mr/:is_complete', managerCtrl.getMr)
 app.get('/api/manager/mr/:mr_id', managerCtrl.getOneMr)
+app.put('/api/manager/mr/:mr_id', managerCtrl.editOneProperty)
 
 // Properties - Manager
 app.get('/api/manager/properties', managerCtrl.getAllProperties)
@@ -80,6 +81,8 @@ app.put('/api/manager/tenants/:user_id', managerCtrl.editOneTenant)
 app.post('/api/manager/tenants', managerCtrl.addOneTenant)
 app.delete('/api/manager/tenants/:user_id', managerCtrl.deleteOneTenant)
 
+// Payments - Manager
+app.get('/api/manager/payments', managerCtrl.getAllPayments)
 
 
 
