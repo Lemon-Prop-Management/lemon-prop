@@ -1,59 +1,67 @@
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 
 module.exports = ({
   register: async (req, res) => {
-    const db = await req.app.post('db');
-    const { first_name, last_name, phone, email, password } = req.body
 
-    bcrypt.hash(password, saltRounds).then((hashedPassword) => {
-      await db.tenant.tenant_register(first_name, last_name, phone, email, hashedPassword)
-        .then((response) => {
-          res.status(200).send({ email: response[0].email })
-        })
-        .catch(err => {
-          res.status(500).send({
-            errorMessage: "failed to register user."
-          });
-          console.log(err)
-        });
-    }).catch(err => {
-      console.log({ err })
-      res.status(500).json({ errorMessage: 'Failed to hash password' })
-    })
+    const db = await req.app.post('db')
+    const { first_name, last_name, phone, email, pet, is_approved, prop_id, password, due_date } = req.body
+    const isAdmin = false
+    const resetPasswordToken = null
+    const resetPasswordExpires = null
+
+    const [existingUser] = await db.auth.auth_get_user_by_email([email])
+
+    if (existingUser) {
+      return res.status(400).send('User already exists')
+    }
+
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password, salt);
+    const [newUser] = await db.auth.auth_add_one_user([first_name, last_name, phone, email, hash, due_date, pet, is_approved, isAdmin, prop_id, resetPasswordToken, resetPasswordExpires])
+
+    req.session.user = newUser;
+
+    res.status(200).send(newUser)
   },
 
   login: async (req, res) => {
     const db = await req.app.post('db');
     const { email, password } = req.body
+    const [existingUser] = await db.auth.auth_get_user_by_email([email])
 
-    await db.user_login(email)
-      .then((response) => {
-        if (response.length) {
-          bcrypt.compare(password, response[0].password)
-            .then(passwordsMatch => {
-              if (passwordsMatch) {
-                req.session.user = response[0];
-                res.status(200).send({ user: req.session.user });
-              } else {
-                res.status(402).send({ errorMessage: 'Wrong password. Please try again' })
-              }
-            })
-        } else {
-          res.status(403).send({ errorMessage: "That has not been created" })
-        }
-      })
-      .catch(err => {
-        res.status(500).send({ errorMessage: "Failed to login. Please try again." });
-      });
+    if (!existingUser) {
+      return res.status(404).send('No account associated with email.')
+    }
+
+    const isAuthenticated = bcrypt.compareSync(password, existingUser.hash)
+
+    if (!isAuthenticated) {
+        return res.status(403).send('Incorrect password')
+    }
+    
+    delete existingUser.hash
+
+    req.session.user = {
+        email: existingUser.email,
+        password: existingUser.hash,
+        first_name: existingUser.first_name,
+        id: existingUser.id,
+        isAdmin: existingUser.isAdmin,
+        approved: existingUser.is_approved
+    }
+    res.status(200).send(existingUser)
   },
 
   getUserSession: async (req, res) => {
-    const db = await req.app.get('db');
-
+    if (req.session.user) {
+        res.status(200).send(req.session.user)
+    } else {
+        res.status(404).send('No session found')
+    }
   },
 
   logout: async (req, res) => {
-    const db = await req.app.delete('db');
-
+    req.session.destroy()
+    res.status(200).send('ok')
   }
 })
