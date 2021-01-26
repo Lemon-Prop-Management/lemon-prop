@@ -41,7 +41,7 @@ app.use(
 
 
 //Auth Controllers
-app.post('/auth/request', authCtrl.request);
+// app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
 app.get('/auth/user', authCtrl.getUserSession);
 app.delete('/auth/logout', authCtrl.logout);
