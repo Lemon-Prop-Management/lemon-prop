@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
-const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env
+// const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env
 
 // IMPORTED CONTROLLER FILES
 const authCtrl = require('./controllers/authController.js');
@@ -30,14 +30,14 @@ app.use(
 )
 
 
-stripe.refunds.create({
-    charge: '',
-    reverse_transfer: true,
-})
-    .then(function (refund) {
-        // asynchronously called
+// stripe.refunds.create({
+//     charge: '',
+//     reverse_transfer: true,
+// })
+//     .then(function (refund) {
+//         // asynchronously called
 
-    });
+//     });
 
 
 //Auth Controllers
@@ -47,8 +47,11 @@ app.get('/auth/user', authCtrl.getUserSession);
 app.delete('/auth/logout', authCtrl.logout);
 
 //nodeMailer Controllers
-app.post('/send', nodeMailerCtrl.resetPasswordEmail);
+app.post('/forgotPassword', nodeMailerCtrl.resetPasswordEmail);
 app.post('/send', nodeMailerCtrl.autoApprovedEmail);
+app.get('/reset', nodeMailerCtrl.resetPass);
+app.put('/updatePasswordViaEmail', nodeMailerCtrl.updatePassword)
+
 
 //----------------TENANT CONTROLLERS--------------------------------
 app.put('/api/tenant/:user_id', tenantCtrl.editUser)
