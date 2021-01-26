@@ -27,7 +27,7 @@ module.exports = {
         const { user_id } = params.user
 
         await db.tnt.tnt_get_all_mrs([user_id])
-            .then(allMaintReqs => {
+            .then(allMaintReqs => {-
                 res.status(200).send(allMaintReqs)
             })
             .catch(err => console.log(err))
