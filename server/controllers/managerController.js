@@ -140,8 +140,8 @@ module.exports = {
         const db = req.app.get('db')
         const { first_name, last_name, phone, email, pet, is_approved, prop_id, password, due_date } = req.body
         const isAdmin = false
-        // const reset_password_token = null
-        // const reset_password_expires = null
+        const reset_password_token = null
+        const reset_password_expires = null
 
         const [existingUser] = await db.mgr.mgr_get_one_tenant_by_email([email])
 
@@ -151,7 +151,7 @@ module.exports = {
 
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
-        const [newUser] = await db.mgr.mgr_add_one_tenant([first_name, last_name, phone, email, hash, due_date, pet, is_approved, isAdmin, prop_id]).catch(err => console.log(err))
+        const [newUser] = await db.mgr.mgr_add_one_tenant([first_name, last_name, phone, email, hash, due_date, pet, is_approved, isAdmin, prop_id, reset_password_token, reset_password_expires]).catch(err => console.log(err))
 
         req.session.user = newUser;
 
