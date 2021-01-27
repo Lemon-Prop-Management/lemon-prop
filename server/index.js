@@ -41,7 +41,7 @@ app.use(
 
 
 //Auth Controllers
-app.post('/auth/request', authCtrl.request);
+app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
 app.get('/auth/user', authCtrl.getUserSession);
 app.delete('/auth/logout', authCtrl.logout);
@@ -76,7 +76,7 @@ app.delete('/api/manager/properties/:prop_id', managerCtrl.deleteOneProperty)
 
 // Tenants - Manager
 app.get('/api/manager/tenants/:is_approved', managerCtrl.getAllTenantsByStatus)
-app.get('/api/manager/tenants/:user_id', managerCtrl.getOneTenant)
+app.get('/api/manager/tenants/one/:user_id', managerCtrl.getOneTenant)
 app.put('/api/manager/tenants/:user_id', managerCtrl.editOneTenant)
 app.post('/api/manager/tenants', managerCtrl.addOneTenant)
 app.delete('/api/manager/tenants/:user_id', managerCtrl.deleteOneTenant)
@@ -98,11 +98,3 @@ massive({
         console.log(`A sour lemonServer is jamming on port ${SERVER_PORT}`)
     })
 })
-
-
-
-
-
-
-
-
