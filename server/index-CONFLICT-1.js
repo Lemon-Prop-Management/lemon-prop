@@ -50,7 +50,7 @@ app.delete('/auth/logout', authCtrl.logout);
 //nodeMailer Controllers
 app.post('/forgotPassword', nodeMailerCtrl.resetPasswordEmail);
 app.post('/send', nodeMailerCtrl.autoApprovedEmail);
-app.get('/reset', nodeMailerCtrl.resetPass);
+app.get('/reset/:token', nodeMailerCtrl.resetPass);
 app.put('/updatePasswordViaEmail', nodeMailerCtrl.updatePassword)
 
 
@@ -61,7 +61,6 @@ app.get('/api/tenant/:user_id/mr', tenantCtrl.getAllMr)
 app.get('/api/tenant/:user_id/mr/:mr_id', tenantCtrl.getOneMr)
 app.get('/api/tenant/:user_id/payments', tenantCtrl.getAllPayments)
 app.get('/api/tenant/:user_id/due', tenantCtrl.getNextDueDate)
-
 
 
 //----------------MANAGER CONTROLLERS--------------------------------
