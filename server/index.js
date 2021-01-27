@@ -41,7 +41,7 @@ app.use(
 
 
 //Auth Controllers
-app.post('/auth/request', authCtrl.request);
+app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
 app.get('/auth/user', authCtrl.getUserSession);
 app.delete('/auth/logout', authCtrl.logout);
@@ -57,8 +57,10 @@ app.put('/updatePasswordViaEmail', nodeMailerCtrl.updatePassword)
 app.put('/api/tenant/:user_id', tenantCtrl.editUser)
 app.post('/api/tenant/:user_id/mr', tenantCtrl.addMr)
 app.get('/api/tenant/:user_id/mr', tenantCtrl.getAllMr)
-app.get('/api/tenant/mr/:mr_id', tenantCtrl.getOneMr)
+app.get('/api/tenant/:user_id/mr/:mr_id', tenantCtrl.getOneMr)
 app.get('/api/tenant/:user_id/payments', tenantCtrl.getAllPayments)
+app.get('/api/tenant/:user_id/due', tenantCtrl.getNextDueDate)
+
 
 
 //----------------MANAGER CONTROLLERS--------------------------------
