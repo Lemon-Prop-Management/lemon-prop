@@ -103,7 +103,7 @@ module.exports = {
     // Tenants - Manager
 
     getAllTenantsByStatus: async (req, res) => {
-        const db = await req.app.post('db')
+        const db = req.app.get('db')
         const { is_approved } = req.params
 
         await db.mgr.mgr_get_all_tenants_by_type([is_approved])
@@ -114,7 +114,7 @@ module.exports = {
     },
 
     getOneTenant: async (req, res) => {
-        const db = await req.app.post('db')
+        const db = req.app.get('db')
         const { user_id } = req.params
 
         await db.mgr.mgr_get_one_tenant_by_id([user_id])
@@ -125,7 +125,7 @@ module.exports = {
     },
 
     editOneTenant: async (req, res) => {
-        const db = await req.app.post('db')
+        const db = req.app.get('db')
         const { user_id } = req.params
         const { first_name, last_name, phone, email, pet, is_approved, prop_id } = req.body
 
@@ -137,11 +137,11 @@ module.exports = {
     },
 
     addOneTenant: async (req, res) => {
-        const db = await req.app.post('db')
+        const db = req.app.get('db')
         const { first_name, last_name, phone, email, pet, is_approved, prop_id, password, due_date } = req.body
         const isAdmin = false
-        const resetPasswordToken = null
-        const resetPasswordExpires = null
+        const reset_password_token = null
+        const reset_password_expires = null
 
         const [existingUser] = await db.mgr.mgr_get_one_tenant_by_email([email])
 
@@ -151,7 +151,7 @@ module.exports = {
 
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
-        const [newUser] = await db.mgr.mgr_add_one_tenant([first_name, last_name, phone, email, hash, due_date, pet, is_approved, isAdmin, prop_id, resetPasswordToken, resetPasswordExpires])
+        const [newUser] = await db.mgr.mgr_add_one_tenant([first_name, last_name, phone, email, hash, due_date, pet, is_approved, isAdmin, prop_id, reset_password_token, reset_password_expires]).catch(err => console.log(err))
 
         req.session.user = newUser;
 
@@ -159,11 +159,11 @@ module.exports = {
     },
 
     deleteOneTenant: async (req, res) => {
-        const db = await req.app.post('db')
+        const db = req.app.get('db')
         const { user_id } = req.params
 
-        await db.mgr.mgr_delete_one_tenant({ user_id })
-            .then(res => {
+        await db.mgr.mgr_delete_one_tenant([ user_id ])
+            .then(() => {
                 res.sendStatus(200)
             })
             .catch(err => console.log(err))
@@ -171,7 +171,7 @@ module.exports = {
 
     // Payments - Manager
     getAllPayments: async (req, res) => {
-        const db = await req.app.get('db')
+        const db = req.app.get('db')
 
         await db.mgr.mgr_get_all_payments()
             .then(payments => {
