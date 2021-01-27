@@ -162,7 +162,7 @@ module.exports = {
         const db = req.app.get('db')
         const { user_id } = req.params
 
-        await db.mgr.mgr_delete_one_tenant([ user_id ])
+        await db.mgr.mgr_delete_one_tenant([user_id])
             .then(() => {
                 res.sendStatus(200)
             })
