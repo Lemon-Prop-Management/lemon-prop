@@ -140,8 +140,8 @@ module.exports = {
         const db = req.app.get('db')
         const { first_name, last_name, phone, email, pet, is_approved, prop_id, password, due_date } = req.body
         const isAdmin = false
-        // const resetPasswordToken = null
-        // const resetPasswordExpires = null
+        // const reset_password_token = null
+        // const reset_password_expires = null
 
         const [existingUser] = await db.mgr.mgr_get_one_tenant_by_email([email])
 

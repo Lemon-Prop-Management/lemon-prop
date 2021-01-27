@@ -6,8 +6,8 @@ module.exports = ({
     const db = await req.app.post('db')
     const { first_name, last_name, phone, email, pet, is_approved, prop_id, password, due_date } = req.body
     const isAdmin = false
-    const resetPasswordToken = null
-    const resetPasswordExpires = null
+    const reset_password_token = null
+    const reset_password_expires = null
 
     const [existingUser] = await db.auth.auth_get_user_by_email([email])
 
@@ -17,7 +17,7 @@ module.exports = ({
 
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
-    const [newUser] = await db.auth.auth_add_one_user([first_name, last_name, phone, email, hash, due_date, pet, is_approved, isAdmin, prop_id, resetPasswordToken, resetPasswordExpires])
+    const [newUser] = await db.auth.auth_add_one_user([first_name, last_name, phone, email, hash, due_date, pet, is_approved, isAdmin, prop_id, reset_password_token, reset_password_expires])
 
     req.session.user = newUser;
 

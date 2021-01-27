@@ -15,8 +15,8 @@ module.exports = ({
 
     //DB QUERY POSSIBLY NEEDED ON THIS STEP:
     existingUser.update({
-      resetPasswordToken: token,
-      resetPasswordExpires: Date.now() + 360000
+      reset_password_token: token,
+      reset_password_expires: Date.now() + 360000
     })
 
     //step 1
@@ -58,8 +58,8 @@ module.exports = ({
         //DB QUERY POSSIBLY NEEDED ON THIS STEP:
         existingUser.update({
             hash: hashedPass,
-            resetPasswordToken: null,
-            resetPasswordExpires: null
+            reset_password_token: null,
+            reset_password_expires: null
         })
     })
     .then(() => {
