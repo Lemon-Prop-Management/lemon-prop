@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
+const authenticateUser = require('./middlewares/authenticateUser.js');
 // const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env
 
 // IMPORTED CONTROLLER FILES
@@ -65,26 +66,26 @@ app.get('/api/tenant/:user_id/due', tenantCtrl.getNextDueDate)
 
 //----------------MANAGER CONTROLLERS--------------------------------
 // Maintenance Requests - Manager
-app.get('/api/manager/mr/:is_complete', managerCtrl.getMr)
-app.get('/api/manager/mr/one/:mr_id', managerCtrl.getOneMr)
-app.put('/api/manager/mr/:mr_id', managerCtrl.editOneMr)
+app.get('/api/manager/mr/:is_complete', authenticateUser, managerCtrl.getMr)
+app.get('/api/manager/mr/one/:mr_id', authenticateUser, managerCtrl.getOneMr)
+app.put('/api/manager/mr/:mr_id', authenticateUser, managerCtrl.editOneMr)
 
 // Properties - Manager
-app.get('/api/manager/properties', managerCtrl.getAllProperties)
-app.get('/api/manager/properties/:prop_id', managerCtrl.getOneProperty)
-app.put('/api/manager/properties/:prop_id', managerCtrl.editOneProperty)
-app.post('/api/manager/properties', managerCtrl.addOneProperty)
-app.delete('/api/manager/properties/:prop_id', managerCtrl.deleteOneProperty)
+app.get('/api/manager/properties', authenticateUser, managerCtrl.getAllProperties)
+app.get('/api/manager/properties/:prop_id', authenticateUser, managerCtrl.getOneProperty)
+app.put('/api/manager/properties/:prop_id', authenticateUser, managerCtrl.editOneProperty)
+app.post('/api/manager/properties', authenticateUser, managerCtrl.addOneProperty)
+app.delete('/api/manager/properties/:prop_id', authenticateUser, managerCtrl.deleteOneProperty)
 
 // Tenants - Manager
-app.get('/api/manager/tenants/:is_approved', managerCtrl.getAllTenantsByStatus)
-app.get('/api/manager/tenants/one/:user_id', managerCtrl.getOneTenant)
-app.put('/api/manager/tenants/:user_id', managerCtrl.editOneTenant)
-app.post('/api/manager/tenants', managerCtrl.addOneTenant)
-app.delete('/api/manager/tenants/:user_id', managerCtrl.deleteOneTenant)
+app.get('/api/manager/tenants/:is_approved', authenticateUser, managerCtrl.getAllTenantsByStatus)
+app.get('/api/manager/tenants/one/:user_id', authenticateUser, managerCtrl.getOneTenant)
+app.put('/api/manager/tenants/:user_id', authenticateUser, managerCtrl.editOneTenant)
+app.post('/api/manager/tenants', authenticateUser, managerCtrl.addOneTenant)
+app.delete('/api/manager/tenants/:user_id', authenticateUser, managerCtrl.deleteOneTenant)
 
 // Payments - Manager
-app.get('/api/manager/payments', managerCtrl.getAllPayments)
+app.get('/api/manager/payments', authenticateUser, managerCtrl.getAllPayments)
 
 
 
