@@ -8,7 +8,6 @@ module.exports = {
     getMr: async (req, res) => {
         const db = req.app.get('db')
         const { is_complete } = req.params
-        console.log(is_complete)
         await db.mgr.mgr_get_mr_by_type([is_complete])
             .then(maintReqs => {
                 res.status(200).send(maintReqs)
@@ -17,10 +16,10 @@ module.exports = {
     },
 
     getOneMr: async (req, res) => {
-        const db = await req.app.get('db')
+        const db = req.app.get('db')
         const { mr_id } = req.params
 
-        await db.mgr.mgr_get_mr_by_type([mr_id])
+        await db.mgr.mgr_get_one_mr([mr_id])
             .then(maintReq => {
                 res.status(200).send(maintReq)
             })
@@ -28,12 +27,13 @@ module.exports = {
     },
 
     editOneMr: async (req, res) => {
-        const db = await req.app.post('db')
+        const db = req.app.get('db')
         const { mr_id } = req.params
         const { isComplete } = req.body
 
         await db.mgr.mgr_edit_one_mr([mr_id, isComplete])
             .then(editedMr => {
+                console.log(editedMr) // this is showing up as an empty array; however, it does update properly in the DB
                 res.status(200).send(editedMr)
             })
             .catch(err => console.log(err))
@@ -70,7 +70,7 @@ module.exports = {
         const { address, leaseAmt, status } = req.body
 
         await db.mgr.mgr_edit_one_property([prop_id, address, leaseAmt, status])
-            .then(editedProp => {
+            .then(editedProp => { // this is showing up as an empty array; however, it does update properly in the DB
                 res.status(200).send(editedProp)
             })
             .catch(err => console.log(err))
@@ -81,7 +81,7 @@ module.exports = {
         const { address, leaseAmt, status } = req.body
 
         await db.mgr.mgr_add_one_property([address, leaseAmt, status])
-            .then(newProp => {
+            .then(newProp => { // this is showing up as an empty array; however, it does add properly in the DB
                 res.status(200).send(newProp)
             })
             .catch(err => console.log(err))
@@ -91,9 +91,9 @@ module.exports = {
         const db = await req.app.get('db')
         const { prop_id } = req.params
 
-        await db.mgr.delete_one_property([prop_id])
-            .then(res => {
-                res.sendStatus(200)
+        await db.mgr.mgr_delete_one_property([prop_id])
+            .then(e => {
+                res.status(200).send('ok')
             })
             .catch(err => console.log(err))
     },
