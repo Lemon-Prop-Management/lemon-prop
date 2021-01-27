@@ -55,7 +55,7 @@ app.delete('/auth/logout', authCtrl.logout);
 //nodeMailer Controllers
 app.post('/forgotPassword', nodeMailerCtrl.resetPasswordEmail);
 app.post('/send', nodeMailerCtrl.autoApprovedEmail);
-app.get('/reset', nodeMailerCtrl.resetPass);
+app.get('/reset/:token', nodeMailerCtrl.resetPass);
 app.put('/updatePasswordViaEmail', nodeMailerCtrl.updatePassword)
 
 
