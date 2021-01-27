@@ -1,2 +1,2 @@
 SELECT * FROM properties
-WHERE id = $1;
+WHERE prop_id = $1;
