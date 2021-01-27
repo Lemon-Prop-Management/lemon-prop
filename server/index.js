@@ -64,8 +64,8 @@ app.get('/api/tenant/:user_id/payments', tenantCtrl.getAllPayments)
 //----------------MANAGER CONTROLLERS--------------------------------
 // Maintenance Requests - Manager
 app.get('/api/manager/mr/:is_complete', managerCtrl.getMr)
-app.get('/api/manager/mr/:mr_id', managerCtrl.getOneMr)
-app.put('/api/manager/mr/:mr_id', managerCtrl.editOneProperty)
+app.get('/api/manager/mr/one/:mr_id', managerCtrl.getOneMr)
+app.put('/api/manager/mr/:mr_id', managerCtrl.editOneMr)
 
 // Properties - Manager
 app.get('/api/manager/properties', managerCtrl.getAllProperties)
