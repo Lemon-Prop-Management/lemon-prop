@@ -6,9 +6,9 @@ module.exports = {
     //Maintenance Requests - Manager
 
     getMr: async (req, res) => {
-        const db = await req.app.post('db')
+        const db = req.app.get('db')
         const { is_complete } = req.params
-
+        console.log(is_complete)
         await db.mgr.mgr_get_mr_by_type([is_complete])
             .then(maintReqs => {
                 res.status(200).send(maintReqs)
@@ -17,7 +17,7 @@ module.exports = {
     },
 
     getOneMr: async (req, res) => {
-        const db = await req.app.post('db')
+        const db = await req.app.get('db')
         const { mr_id } = req.params
 
         await db.mgr.mgr_get_mr_by_type([mr_id])
@@ -43,7 +43,7 @@ module.exports = {
     // Properties - Manager
 
     getAllProperties: async (req, res) => {
-        const db = await req.app.post('db')
+        const db = await req.app.get('db')
 
         await db.mgr.mgr_get_all_properties()
             .then(properties => {
@@ -53,7 +53,7 @@ module.exports = {
     },
 
     getOneProperty: async (req, res) => {
-        const db = await req.app.post('db')
+        const db = await req.app.get('db')
         const { prop_id } = req.params
 
         await db.mgr.mgr_get_one_property([prop_id])
@@ -65,7 +65,7 @@ module.exports = {
     },
 
     editOneProperty: async (req, res) => {
-        const db = await req.app.post('db')
+        const db = await req.app.get('db')
         const { prop_id } = req.params
         const { address, leaseAmt, status } = req.body
 
@@ -77,7 +77,7 @@ module.exports = {
 
     },
     addOneProperty: async (req, res) => {
-        const db = await req.app.post('db')
+        const db = await req.app.get('db')
         const { address, leaseAmt, status } = req.body
 
         await db.mgr.mgr_add_one_property([address, leaseAmt, status])
@@ -88,7 +88,7 @@ module.exports = {
     },
 
     deleteOneProperty: async (req, res) => {
-        const db = await req.app.post('db')
+        const db = await req.app.get('db')
         const { prop_id } = req.params
 
         await db.mgr.delete_one_property([prop_id])

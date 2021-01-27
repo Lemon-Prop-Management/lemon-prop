@@ -1,6 +1,7 @@
-UPDATE user
-SET first_name = $2
-AND last_name = $3
-AND phone = $4
-AND email = $5
-WHERE user_id = $1;
+UPDATE users
+SET first_name = $2,
+last_name = $3,
+phone = $4,
+email = $5
+WHERE user_id = $1
+RETURNING *;
