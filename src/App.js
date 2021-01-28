@@ -1,8 +1,8 @@
 import routes from './Routes'
-import AccNav from './Components/AccNav'
+import AccountNavigation from './components/AccountNavigation'
 import './App.css';
-import {Provider} from 'react-redux'
-import {BrowserRouter, HashRouter} from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { BrowserRouter, HashRouter } from 'react-router-dom'
 import store from './redux/store'
 const Router = process.env.NODE_ENV === 'development' ? HashRouter : BrowserRouter
 
@@ -11,7 +11,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App">
-          <AccNav />
+          <AccountNavigation />
           {routes}
         </div>
       </Router>
