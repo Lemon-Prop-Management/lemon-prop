@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
-
+const nodemailer = require('nodemailer');
+const { PASSWORD } = process.env
 
 module.exports = {
 
@@ -153,8 +154,37 @@ module.exports = {
         const hash = bcrypt.hashSync(password, salt);
         const [newUser] = await db.mgr.mgr_add_one_tenant([first_name, last_name, phone, email, hash, due_date, pet, is_approved, isAdmin, prop_id, reset_password_token, reset_password_expires]).catch(err => console.log(err))
 
-        req.session.user = newUser;
-
+        //step 1
+        let transporter = await nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'lemonpropmgmt@gmail.com',
+                pass: PASSWORD
+            }
+        })
+    
+        //step 2
+        let mailOPtions = {
+            from: 'lemonpropmgmt@gmail.com',
+            to: `${newUser.email}`,
+            subject: 'Welcome to Lemon Prop!',
+            html: `Welcome to Lemon Prop Management, ${newUser.first_name}.<br><br>
+            Your Lemon Prop account has been created. Please click <a href="http://www.lemonprop.com">here</a> to login.<br><br>
+            Username: ${newUser.email}<br>
+            Password: abc123<br><br>
+            If you have any suggestions for improvements, please email lemonpropmgmt@gmail.com.<br><br>
+            Best,<br>
+            Lemon Prop Management`
+        }
+    
+        //step 3
+        await transporter.sendMail(mailOPtions, function (err, data) {
+            if (err) {
+            console.log('Error occurred', err)
+            } else {
+            console.log('sent successfully')
+            }
+        })
         res.status(200).send(newUser)
     },
 
