@@ -7,22 +7,23 @@ import { connect } from 'react-redux'
 
 
 const MaintReqList = props => {
-  //const counter = useSelector((state) => state.counter)
+  //const reducer = useSelector((state) => state.reducer
 
-  const didMount = useDidMount()
-  const [myList, setMyList] = useState()
-  const [openList, setOpenList] = useState()
+//   const didMount = useDidMount()
+  const [myList, setMyList] = useState([])
+  const [openList, setOpenList] = useState([])
   const [closedList, setClosedList] = useState([])
   //   const [email, setEmail] = useState(props.email.email)
   const [admin, setAdmin] = useState(props.admin)
   const [user_id, setUserId] = useState(props.user_id)
 
-  function useDidMount() {
-    console.log('i am trying to mount here')
-    const didMountRef = useRef(true)
-    didMountRef.current = false
-    return didMountRef.current
-  }
+
+//   function useDidMount() {
+//     console.log('i am trying to mount here')
+//     const didMountRef = useRef(true)
+//     didMountRef.current = false
+//     return didMountRef.current
+//   }
 
   useEffect(() => {
     if (admin === false) {
@@ -49,7 +50,7 @@ const MaintReqList = props => {
 
   function mapIt(array) {
     console.log('i am inside the mapIt function')
-    array.map((element) => {
+    return array.map((element) => {
       console.log('i am inside the maptrix')
       return (
         <div key={element.maint_req_id}>
@@ -65,7 +66,7 @@ const MaintReqList = props => {
 
   return (
     <div className='maint-req'>
-      {useDidMount()}
+      {/* {useDidMount()} */}
       <h1>Maintenance Request History</h1>
       {admin === false ? mapIt(myList) : null}
       {admin === true ? mapIt(openList) : null}

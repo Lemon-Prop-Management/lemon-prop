@@ -9,18 +9,14 @@ const Login = props => {
   const [password, setPassword] = useState('')
 
   function submit() {
-    setEmail(email)
-    setPassword(password)
+    // setEmail(email)
+    // setPassword(password)
     axios.post('/auth/login', { email, password })
       .then((res) => {
         console.log('login successful - 1')
-        props.loginUser({
-          email: res.data.email,
-          user_id: res.data.user_id,
-          admin: res.data.admin,
-          approved: res.data.approved
-        })
+        props.loginUser(res.data.email, res.data.user_id, res.data.admin, res.data.approved)
         console.log('login successful - 2')
+        props.history.push('/dashboard')
       })
       .catch(err => console.log(err))
   }
@@ -39,9 +35,9 @@ const Login = props => {
         value={password}
         onChange={e => setPassword(e.target.value)}>
       </input>
-      <Link to='/dashboard'>
+      {/* <Link to='/dashboard'> */}
         <button onClick={e => submit()}>Login</button>
-      </Link>
+      {/* </Link> */}
       <button>I need access</button>
     </div>
   )
