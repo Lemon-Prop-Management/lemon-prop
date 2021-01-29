@@ -13,17 +13,17 @@ const AccNav = props => {
       .catch(err => console.log(err))
   }
 
-  console.log(props.email.email)
-  console.log(props.email.admin)
-  console.log(props.email.approved)
+  console.log(props.email)
+  console.log(props.admin)
+  console.log(props.approved)
 
   return (
     <div>
       {
-        !props.email.email && !props.email.approved ? (
+        !props.email && !props.approved ? (
           <nav></nav>
         ) : (
-            props.email.admin === true ? (
+            props.admin === true ? (
               <nav>
                 <h1>LemonProp</h1>
                 <div>
