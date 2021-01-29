@@ -1,8 +1,7 @@
 import React from 'react'
 
 const RequestAccess = props => {
-
-      fu
+     
 
       return (
             <div className="popup">
