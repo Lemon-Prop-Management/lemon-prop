@@ -1,16 +1,29 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loginUser } from '../redux/reducer'
+import { loginUser, logout } from '../redux/reducer'
+import axios from 'axios'
 
 const AccNav = props => {
+  function logoutUser() {
+    axios.delete('/auth/logout')
+      .then((res) => {
+        props.logout()
+      })
+      .catch(err => console.log(err))
+  }
+
+  console.log(props.email.email)
+  console.log(props.email.admin)
+  console.log(props.email.approved)
+
   return (
     <div>
       {
-        !props.email ? (
-          <nav className='display-none'></nav>
+        !props.email.email && !props.email.approved ? (
+          <nav></nav>
         ) : (
-            props.admin ? (
+            props.email.admin === true ? (
               <nav>
                 <h1>LemonProp</h1>
                 <div>
@@ -20,7 +33,7 @@ const AccNav = props => {
                   <Link to='/properties'>Properties</Link>
                   <Link to='/tenants'>Tenants</Link>
                 </div>
-                <Link to='/'>Logout</Link>
+                <button><Link to='/' onClick={logoutUser}>Logout</Link></button>
               </nav>
             ) : (
                 <nav>
@@ -29,7 +42,7 @@ const AccNav = props => {
                     <Link to='/payments'>Payments</Link>
                     <Link to='/maintreq'>Requests</Link>
                   </div>
-                  <Link to='/'>Logout</Link>
+                  <button><Link to='/' onClick={logoutUser}>Logout</Link></button>
                 </nav>
               )
           )
@@ -45,4 +58,4 @@ function mapStateToProps(reduxState) {
   }
 }
 
-export default withRouter((connect(mapStateToProps, { loginUser })(AccNav)))
+export default withRouter((connect(mapStateToProps, { loginUser, logout })(AccNav)))
