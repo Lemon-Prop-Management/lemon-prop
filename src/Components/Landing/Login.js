@@ -1,13 +1,50 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
+import {connect} from 'react-redux'
+import {loginUser} from '../../redux/reducer'
+import {Link} from 'react-router-dom'
 
 const Login = props => {
- return (
+const [email, setEmail] = useState('')
+const [password, setPassword] = useState('')
+
+function submit() {
+    setEmail(email)
+    setPassword(password)
+    axios.post('/auth/login', {email, password})
+    .then((res) => {
+        console.log('login successful - 1')
+        props.loginUser({
+            email: email,
+            admin: res.data.admin,
+            approved: res.data.approved
+        })
+        console.log('login successful - 2')
+    })
+    .catch(err => console.log(err))
+}
+
+return (
   <div>
-   <p>Login</p>
-   <button onClick="render-Request-Access">I need access</button>
-
-
+      <input 
+        placeholder='Email'
+        type="text"
+        value={email}
+        onChange={e =>setEmail(e.target.value)}>
+      </input>
+      <input 
+        placeholder='Password'
+        type="text"
+        value={password}
+        onChange={e =>setPassword(e.target.value)}>
+      </input>
+   <Link to='/dashboard'>
+       <button onClick={e => submit()}>Login</button>
+   </Link>
+   <button>I need access</button>
   </div>
  )
 }
-export default Login
+
+
+export default connect(null, {loginUser}) (Login)

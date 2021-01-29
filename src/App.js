@@ -1,5 +1,5 @@
 import routes from './Routes'
-import AccountNavigation from './components/AccountNavigation'
+import AccountNavigation from './Components/AccountNavigation'
 import './App.css';
 import { Provider } from 'react-redux'
 import { BrowserRouter, HashRouter } from 'react-router-dom'

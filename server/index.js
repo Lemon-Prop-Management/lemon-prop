@@ -35,7 +35,6 @@ app.use(
     })
 )
 
-
 // stripe.refunds.create({
 //     charge: '',
 //     reverse_transfer: true,
@@ -44,7 +43,6 @@ app.use(
 //         // asynchronously called
 
 //     });
-
 
 //Auth Controllers
 app.post('/auth/register', authCtrl.register);
