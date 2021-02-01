@@ -3,10 +3,16 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { loginUser } from '../../redux/reducer'
 import { Link } from 'react-router-dom'
+import Popup from '../Popup'
 
 const Login = props => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [isOpen, setIsOpen] = useState(false)
+
+  const togglePopup = () => {
+    setIsOpen(!isOpen)
+  }
 
   function submit() {
     // setEmail(email)
@@ -36,9 +42,31 @@ const Login = props => {
         onChange={e => setPassword(e.target.value)}>
       </input>
       {/* <Link to='/dashboard'> */}
-        <button onClick={e => submit()}>Login</button>
+      <button onClick={e => submit()}>Login</button>
       {/* </Link> */}
       <button>I need access</button>
+      <input type="button"
+        value="Login (popup)"
+        onClick={togglePopup} />
+      <p>Just a placeholder for any extra text we may need here</p>
+      {isOpen && <Popup content={<>
+        <b>Lemon Prop Mgmt</b>
+        <input
+          placeholder='Email'
+          type="text"
+          value={email}
+          onChange={e => setEmail(e.target.value)}>
+        </input>
+        <input
+          placeholder='Password'
+          type="text"
+          value={password}
+          onChange={e => setPassword(e.target.value)}>
+        </input>
+        <button onClick={e => submit()}>Log in</button>
+      </>}
+        handleClose={togglePopup} />
+      }
     </div>
   )
 }
