@@ -1,6 +1,7 @@
 //initial State
 const initialState = {
   email: '',
+  user_id: '',
   admin: null,
   approved: false
 }

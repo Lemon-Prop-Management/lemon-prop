@@ -10,6 +10,7 @@ const MaintReqList = props => {
   const [admin, setAdmin] = useState(props.admin)
   const [user_id, setUserId] = useState(props.user_id)
 
+
   useEffect(() => {
     if (admin === false) {
       axios.get(`/api/tenant/${user_id}/mr`)

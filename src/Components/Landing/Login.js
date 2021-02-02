@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { loginUser } from '../../redux/reducer'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import Popup from '../Popup'
 import { useForm } from 'react-hook-form'
 
@@ -25,9 +25,9 @@ const Login = props => {
     // setPassword(password)
     axios.post('/auth/login', { email, password })
       .then((res) => {
-        console.log('login successful - 1')
+        // console.log('login successful - 1')
         props.loginUser(res.data.email, res.data.user_id, res.data.admin, res.data.approved)
-        console.log('login successful - 2')
+        // console.log('login successful - 2')
         props.history.push('/dashboard')
       })
       .catch(err => console.log(err))
