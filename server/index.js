@@ -13,12 +13,12 @@ const nodeMailerCtrl = require('./controllers/nodeMailerController.js');
 const tenantCtrl = require('./controllers/tenantController.js');
 
 // IMPORTED VARIABLES
-const { STRIPE_SECRET_KEY, SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
+const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 
 //Stripe
 //const { default: StripeCheckout } = require('react-stripe-checkout');
-const stripe = require('stripe')(STRIPE_SECRET_KEY);
-const uuid = require('uuid').v4;
+// const stripe = require('stripe')(STRIPE_SECRET_KEY);
+// const uuid = require('uuid').v4;
 
 // ACTIVATIONS
 const app = express();
