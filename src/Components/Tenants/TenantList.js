@@ -13,21 +13,17 @@ const TenantList = props => {
     const [phone, setPhone] = useState('')
     const [propId, setPropId] = useState()
     const [buttonId, setButtonId] = useState()
-    const [petBool, setPetBool] = useState()
+    const [petBool, setPetBool] = useState(null)
 
     useEffect(() => {
       setAdmin(props.admin)
     }, [])
   
     useEffect(() => {
-        console.log(admin)
-    //   if (admin === false) {
-    //     return ('You do not have access to this data.')
-    //   } else
+        console.log(props.pet)
        if (admin === true) {
         axios.get('/api/manager/tenants/true')
           .then(res => {
-            console.log(res.data)
             setCurrentTenants(res.data)
           })
           .catch(err => console.log(err))
@@ -44,21 +40,37 @@ const TenantList = props => {
         setButtonId(id)
     }
 
+    function checkbox(checkbox) {
+        if (checkbox.checked == true) {
+            setPetBool(true)
+        } else if (checkbox.checked == false){
+            setPetBool(false)
+        }
+    }
+
     function submit(element) {
         axios.put(`/api/manager/tenants/${element.user_id}`, {
             first_name: firstName !== '' ? firstName : element.first_name,
             last_name: lastName !== '' ? lastName : element.last_name,
             phone: phone !== '' ? phone : element.phone,
             email: email !== '' ? email : element.email,
-            pet: petBool ? petBool : element.pet,
-            approved: true,
-            prop_id: propId !== '' ? propId : element.prop_id
+            pet: petBool !== null ? petBool : element.pet,
+            is_approved: true,
+            prop_id: propId ? propId : element.prop_id
         })
         .then(res => {
+            console.log(petBool)
+            console.log(element.pet)
+              setEditBool(false)
+              setFirstName('')
+              setLastName('')
+              setPhone('')
+              setEmail('')
+              setPetBool(null)
+              setPropId()
             axios.get('/api/manager/tenants/true')
             .then(res => {
-              setCurrentTenants(res.data)
-              setEditBool(false)
+                setCurrentTenants(res.data)
             })
             .catch(err => console.log(err))
         })
@@ -73,7 +85,6 @@ const TenantList = props => {
                 currentAddress = addresses[i].address
             }  
         }
-           
           return (
             <div key={element.user_id}>
             <button onClick={() => clickEdit(element.user_id)}>Edit</button>
@@ -84,7 +95,7 @@ const TenantList = props => {
                     <div>{currentAddress}</div>
                     <div>{element.email}</div>
                     <div>{element.phone}</div>
-                    {element.pets === true ? <div>Yes</div> : <div>No</div>}
+                    {element.pet === true ? <div>Yes</div> : <div>No</div>}
                     <div>{element.due_date}</div>
                 </div>
                 ) : (
@@ -96,7 +107,8 @@ const TenantList = props => {
                         <input defaultValue={element.prop_id} onChange={e => setPropId(e.target.value)}></input>
                         <input defaultValue={element.email} onChange={e => setEmail(e.target.value)}></input>
                         <input defaultValue={element.phone} onChange={e => setPhone(e.target.value)}></input>
-                        <input type='radio' defaultValue={element.pet} onClick={petBool === true ? () => setPetBool(false) : () => setPetBool(true)}></input>
+                        <input type='checkbox' name='pets' id='pets' defaultChecked={element.pet} onClick={() => checkbox(document.getElementById('pets'))}></input>
+                        <label for={'pets'}>Pets?</label>
                         {/* <input defaultValue={element.approved} onchange={e => setApproved(e.targetValue)}></input> */}
                         <button className='submit' onClick={() => submit(element)}>Save</button>
                      </div>

@@ -104,13 +104,11 @@ module.exports = {
     // Tenants - Manager
 
     getAllTenantsByStatus: async (req, res) => {
-        console.log('req: ' + req.params)
         const db = req.app.get('db')
         const { is_approved } = req.params
 
         await db.mgr.mgr_get_all_tenants_by_type([is_approved])
             .then(tenants => {
-                console.log(is_approved + ':  ' + tenants)
                 res.status(200).send(tenants)
             })
             .catch(err => console.log(err))
@@ -132,7 +130,6 @@ module.exports = {
         const db = req.app.get('db')
         const { user_id } = req.params
         const { first_name, last_name, phone, email, pet, is_approved, prop_id } = req.body
-
         await db.mgr.mgr_edit_one_tenant([user_id, first_name, last_name, phone, email, pet, is_approved, prop_id])
             .then(updatedTenant => {
                 res.status(200).send(updatedTenant)
