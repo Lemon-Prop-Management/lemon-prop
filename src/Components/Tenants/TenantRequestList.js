@@ -7,6 +7,13 @@ const TenantRequestList = props => {
     const [tenantRequests, setTenantRequests] = useState([])
     const [addresses, setAddresses] = useState([])
     const [admin, setAdmin] = useState(props.admin)
+    // const [firstName, setFirstName] = useState('')
+    // const [lastName, setLastName] = useState('')
+    // const [email, setEmail] = useState('')
+    // const [phone, setPhone] = useState('')
+    // const [propId, setPropId] = useState()
+    // const [buttonId, setButtonId] = useState()
+    // const [petBool, setPetBool] = useState(null)
   
     useEffect(() => {
       if (admin === false) {

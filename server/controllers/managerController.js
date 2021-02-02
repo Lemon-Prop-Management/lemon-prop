@@ -171,7 +171,7 @@ module.exports = {
             html: `Welcome to Lemon Prop Management, ${newUser.first_name}.<br><br>
             Your Lemon Prop account has been created. Please click <a href="http://www.lemonprop.com">here</a> to login.<br><br>
             Username: ${newUser.email}<br>
-            Password: abc123<br><br>
+            Password: ${password}<br><br>
             If you have any suggestions for improvements, please email lemonpropmgmt@gmail.com.<br><br>
             Best,<br>
             Lemon Prop Management`

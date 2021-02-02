@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
 const TenantList = props => {
@@ -41,9 +41,9 @@ const TenantList = props => {
     }
 
     function checkbox(checkbox) {
-        if (checkbox.checked == true) {
+        if (checkbox.checked === true) {
             setPetBool(true)
-        } else if (checkbox.checked == false){
+        } else if (checkbox.checked === false){
             setPetBool(false)
         }
     }
@@ -108,7 +108,7 @@ const TenantList = props => {
                         <input defaultValue={element.email} onChange={e => setEmail(e.target.value)}></input>
                         <input defaultValue={element.phone} onChange={e => setPhone(e.target.value)}></input>
                         <input type='checkbox' name='pets' id='pets' defaultChecked={element.pet} onClick={() => checkbox(document.getElementById('pets'))}></input>
-                        <label for={'pets'}>Pets?</label>
+                        <label htmlFor={'pets'}>Pets?</label>
                         {/* <input defaultValue={element.approved} onchange={e => setApproved(e.targetValue)}></input> */}
                         <button className='submit' onClick={() => submit(element)}>Save</button>
                      </div>
