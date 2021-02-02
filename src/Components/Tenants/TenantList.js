@@ -1,9 +1,10 @@
 import axios from 'axios'
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
 const TenantList = props => {
-    const [currentTenants, setCurrentTenants] = useState([])
+    // const [currentTenants, setCurrentTenants] = useState([])
+    const {setCurrentTenants, currentTenants} = props
     const [addresses, setAddresses] = useState([])
     const [admin, setAdmin] = useState(true)
     const [editBool, setEditBool] = useState(false)
@@ -20,7 +21,7 @@ const TenantList = props => {
     }, [])
   
     useEffect(() => {
-        console.log(props.pet)
+
        if (admin === true) {
         axios.get('/api/manager/tenants/true')
           .then(res => {
@@ -41,9 +42,9 @@ const TenantList = props => {
     }
 
     function checkbox(checkbox) {
-        if (checkbox.checked == true) {
+        if (checkbox.checked === true) {
             setPetBool(true)
-        } else if (checkbox.checked == false){
+        } else if (checkbox.checked === false){
             setPetBool(false)
         }
     }
@@ -92,7 +93,7 @@ const TenantList = props => {
                 <div>
                     <div>{element.user_id}</div>
                     <div>{`${element.first_name} ${element.last_name}`}</div>
-                    <div>{currentAddress}</div>
+                    <div>{element.prop_id && currentAddress}</div>
                     <div>{element.email}</div>
                     <div>{element.phone}</div>
                     {element.pet === true ? <div>Yes</div> : <div>No</div>}
@@ -108,7 +109,7 @@ const TenantList = props => {
                         <input defaultValue={element.email} onChange={e => setEmail(e.target.value)}></input>
                         <input defaultValue={element.phone} onChange={e => setPhone(e.target.value)}></input>
                         <input type='checkbox' name='pets' id='pets' defaultChecked={element.pet} onClick={() => checkbox(document.getElementById('pets'))}></input>
-                        <label for={'pets'}>Pets?</label>
+                        <label htmlFor={'pets'}>Pets?</label>
                         {/* <input defaultValue={element.approved} onchange={e => setApproved(e.targetValue)}></input> */}
                         <button className='submit' onClick={() => submit(element)}>Save</button>
                      </div>
