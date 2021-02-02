@@ -45,20 +45,29 @@ const TenantList = props => {
     }
 
     function submit(element) {
+        console.log('approval' + element.approved)
         axios.put(`/api/manager/tenants/${element.user_id}`, {
             first_name: firstName !== '' ? firstName : element.first_name,
             last_name: lastName !== '' ? lastName : element.last_name,
             phone: phone !== '' ? phone : element.phone,
             email: email !== '' ? email : element.email,
-            pet: petBool ? petBool : element.pet,
-            approved: true,
+            pet: petBool === true ? petBool : element.pet,
+            approved: element.approved,
             prop_id: propId !== '' ? propId : element.prop_id
         })
         .then(res => {
+            setCurrentTenants(res.data)
+              setEditBool(false)
+              setFirstName('')
+              setLastName('')
+              setPhone('')
+              setEmail('')
+              setPetBool()
+              setPropId()
+              console.log(firstName, phone)
             axios.get('/api/manager/tenants/true')
             .then(res => {
-              setCurrentTenants(res.data)
-              setEditBool(false)
+              
             })
             .catch(err => console.log(err))
         })
