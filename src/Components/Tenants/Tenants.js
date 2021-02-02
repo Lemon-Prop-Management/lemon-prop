@@ -5,6 +5,7 @@ import TenantRequestList from '../Tenants/TenantRequestList'
 
 const Tenants = props => {
     const [newTenantDisplay, setNewTenantDisplay] = useState(false)
+    const [currentTenants, setCurrentTenants] = useState([])
     const [submitTenant, setSubmitTenant] = useState(false)
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -46,6 +47,11 @@ const Tenants = props => {
             setPropId()
             setPassword('')
             setDueDate('')
+            axios.get('/api/manager/tenants/true')
+            .then(res => {
+                setCurrentTenants(res.data)
+            })
+            .catch(err => console.log(err))
         })
     }
 
@@ -62,11 +68,11 @@ const Tenants = props => {
       <div>
           <div>
             <h1>Current Tenants</h1>
-            <TenantList />
+            <TenantList setCurrentTenants={setCurrentTenants} currentTenants={currentTenants}/>
           </div>
           <div>
             <h1>Tenant Requests</h1>
-            <TenantRequestList />
+            <TenantRequestList setCurrentTenants={setCurrentTenants} />
           </div>
           <button className="submit" onClick={newTenant}>New Tenant</button>
       </div>
