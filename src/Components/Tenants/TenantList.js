@@ -21,13 +21,9 @@ const TenantList = props => {
   
     useEffect(() => {
         console.log(props.pet)
-    //   if (admin === false) {
-    //     return ('You do not have access to this data.')
-    //   } else
        if (admin === true) {
         axios.get('/api/manager/tenants/true')
           .then(res => {
-            console.log(res.data)
             setCurrentTenants(res.data)
           })
           .catch(err => console.log(err))
@@ -53,7 +49,6 @@ const TenantList = props => {
     }
 
     function submit(element) {
-        console.log('petBool: ' + petBool)
         axios.put(`/api/manager/tenants/${element.user_id}`, {
             first_name: firstName !== '' ? firstName : element.first_name,
             last_name: lastName !== '' ? lastName : element.last_name,
