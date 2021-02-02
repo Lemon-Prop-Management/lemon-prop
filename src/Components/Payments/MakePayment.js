@@ -15,15 +15,15 @@ const MakePayment = props => {
 
 
     async function handleToken(token) {
-        console.log('Frontend line 12:', { token, rentAmount })
-        await axios.post('/donate', {
+        console.log(token, rentAmount)
+        await axios.post('/pay_rent', {
             token,
             rentAmount
         }).then(res => {
             console.log(res.data.status);
             if (res.data.status === 'success') {
                 console.log('status = success')
-                toast('Success! Thank you for your donation!',
+                toast('Success! Your rent has been paid!',
                     { type: 'success' })
             } else {
                 console.log('status = error')
@@ -32,8 +32,6 @@ const MakePayment = props => {
             }
             setRentAmount('')
         }).catch(err => console.log(err))
-
-
     }
 
     return (
@@ -42,7 +40,7 @@ const MakePayment = props => {
                 <div>MakePayment.js</div>
                 <div> Your rent amount due: {rentAmount} </div>
                 <StripeCheckout
-                    stripeKey='pk_live_51IAKa4GUHQ1yJgjQ6P0nPicBE51uc23f34KwVYl3K3DqfejUdGW8tj2UF8rLWN989GYY1XS5V7q5d7Lwd1UVvSRb00exfqliHK'
+                    stripeKey='pk_test_51IEMDRHaijm3D4Gz5082wV01blikaeeyYMcLRDpCWBUPTHQSOhYA5t5lRF7VfAmzitNMVR1JIxYSuKwOPYPAmfY700a2qf4x3J'
                     token={handleToken}
                     billingAddress
                     amount={rentAmount * 100}

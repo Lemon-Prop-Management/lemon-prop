@@ -4,21 +4,18 @@ const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
 const authenticateUser = require('./middlewares/authenticateUser.js');
-// const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env
+
 
 // IMPORTED CONTROLLER FILES
 const authCtrl = require('./controllers/authController.js');
 const managerCtrl = require('./controllers/managerController.js');
 const nodeMailerCtrl = require('./controllers/nodeMailerController.js');
 const tenantCtrl = require('./controllers/tenantController.js');
+const stripeCtrl = require('./controllers/stripeController')
 
 // IMPORTED VARIABLES
-const { STRIPE_SECRET_KEY, SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
+const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 
-//Stripe
-//const { default: StripeCheckout } = require('react-stripe-checkout');
-const stripe = require('stripe')(STRIPE_SECRET_KEY);
-const uuid = require('uuid').v4;
 
 // ACTIVATIONS
 const app = express();
@@ -35,14 +32,7 @@ app.use(
     })
 )
 
-// stripe.refunds.create({
-//     charge: '',
-//     reverse_transfer: true,
-// })
-//     .then(function (refund) {
-//         // asynchronously called
 
-//     });
 
 //Auth Controllers
 app.post('/auth/register', authCtrl.register);
@@ -92,38 +82,7 @@ app.get('/api/manager/payments', authenticateUser, managerCtrl.getAllPayments)
 
 
 //STRIPE Endpoint
-app.post('/payment', async (req, res) => {
-    console.log(req.body);
-
-    let error;
-    let status;
-    try {
-        const { rentAmount, token } = req.body;
-
-        const customer = await
-            stripe.customers.create({
-                email: token.email,
-                source: token.id
-            });
-
-        const idempotencyKey = uuid();
-        const charge = await stripe.charges.create(
-            {
-                amount: rentAmount * 100,
-                currency: 'usd',
-                customer: customer.id,
-                receipt_email: token.email,
-                description: `Pay your rent`
-            },
-            { idempotencyKey }
-        );
-        status = 'success';
-    } catch (err) {
-        console.error('Error: ', err);
-        status = 'failure'
-    }
-    res.json({ error, status })
-})
+app.post('/pay_rent', stripeCtrl.payRent)
 
 massive({
     connectionString: CONNECTION_STRING,
