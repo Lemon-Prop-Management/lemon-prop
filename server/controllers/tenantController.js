@@ -90,5 +90,19 @@ module.exports = {
                 res.status(200).send(leaseAmount)
             })
             .catch(err => console.log(err))
+    },
+
+    addPayment: async (req, res) => {
+        const db = await req.app.get('db')
+        const { user_id } = req.params
+        const { rentAmount } = req.body
+        const date_paid = new Date();
+
+        db.tnt.tnt_add_payment([user_id, rentAmount, date_paid])
+            .then(newPayment => {
+                res.status(200).send(newPayment)
+            })
+            .catch(err => console.log(err))
     }
+
 }
