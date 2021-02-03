@@ -8,11 +8,10 @@ import { connect } from 'react-redux';
 toast.configure();
 
 const MakePayment = props => {
-    const [rentAmount, setRentAmount] = useState(1500);
+    const [rentAmount, setRentAmount] = useState();
 
     const { user_id } = props;
 
-    // http://localhost:5555/api/tenant/36/rent
 
     useEffect(() => {
         axios.get(`/api/tenant/${user_id}/rent`)
