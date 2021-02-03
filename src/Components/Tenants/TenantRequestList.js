@@ -43,7 +43,7 @@ const TenantRequestList = props => {
                 .then(res => {
                     setCurrentTenants(res.data)
                 })
-                .catach(err => console.log(err))
+                .catch(err => console.log(err))
             })
             .catch(err => console.log(err))
         })

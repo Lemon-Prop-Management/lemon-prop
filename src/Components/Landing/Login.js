@@ -77,8 +77,8 @@ const Login = props => {
           <h2>Request access to the portal</h2>
           <p>Need access? Fill out your information below and we'll send you an activation link via email. To best match your account, please use the same information provided to your Property Manager.</p>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <input type="text" name="firstname" placeholder="First Name" ref={register({ required: true })} />
-            <input type="text" name="lastname" placeholder="Last Name" ref={register({ required: true })} />
+            <input type="text" name="first name" placeholder="First Name" ref={register({ required: true })} />
+            <input type="text" name="last name" placeholder="Last Name" ref={register({ required: true })} />
             <input type="tel" name="phone" placeholder="Phone number" ref={register({ required: true, minLength: 6, maxLength: 12 })} />
             <input type="text" name="email" placeholder="Email address" ref={register({ required: true, pattern: /^\S+@\S+$/i })} />
             <input type="radio" name="pets" placeholder="Pets" ref={register} />Pets
