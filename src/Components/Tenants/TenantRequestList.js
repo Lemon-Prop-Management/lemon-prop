@@ -8,13 +8,11 @@ const TenantRequestList = props => {
     const {setCurrentTenants} = props
      // const [addresses, setAddresses] = useState([])
     const [admin, setAdmin] = useState(props.admin)
-    // const [firstName, setFirstName] = useState('')
-    // const [lastName, setLastName] = useState('')
-    // const [email, setEmail] = useState('')
-    // const [phone, setPhone] = useState('')
-    // const [propId, setPropId] = useState()
-    // const [petBool, setPetBool] = useState(null)
   
+    useEffect(() => {
+        setAdmin(props.admin)
+      }, [])
+      
     useEffect(() => {
       if (admin === false) {
         return ('You do not have access to this data.')
@@ -25,7 +23,7 @@ const TenantRequestList = props => {
           })
           .catch(err => console.log(err))
       }
-    }, [])
+    }, [props])
 
     function approve(element) {
         axios.put(`/api/manager/tenants/${element.user_id}`, {

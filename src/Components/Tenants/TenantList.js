@@ -34,7 +34,7 @@ const TenantList = props => {
         })
         .catch(err => console.log(err))
       }
-    }, [])
+    }, [props])
 
     function clickEdit(id) {
         setEditBool(true)
