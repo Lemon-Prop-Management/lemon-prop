@@ -30,7 +30,7 @@ const MaintReqList = props => {
         })
         .catch(err => console.log(err))
     }
-  }, [])
+  })
 
   function mapIt(array) {
     return array.map((element) => {
@@ -89,7 +89,6 @@ const MaintReqList = props => {
 }
 
 function mapStateToProps(state) {
-  console.log('state:', state)
   return {
     email: state.email,
     user_id: state.user_id,

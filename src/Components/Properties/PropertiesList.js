@@ -104,7 +104,6 @@ const PropertiesList = props => {
   }
   
   function mapStateToProps(state) {
-      console.log('state:', state)
       return {
         email: state.email,
         user_id: state.user_id,
