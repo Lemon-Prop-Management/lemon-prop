@@ -54,6 +54,7 @@ app.get('/api/tenant/:user_id/mr', tenantCtrl.getAllMr)
 app.get('/api/tenant/:user_id/mr/:mr_id', tenantCtrl.getOneMr)
 app.get('/api/tenant/:user_id/payments', tenantCtrl.getAllPayments)
 app.get('/api/tenant/:user_id/due', tenantCtrl.getNextDueDate)
+app.get('/api/tenant/:user_id/rent', tenantCtrl.getRentAmount)
 
 
 
