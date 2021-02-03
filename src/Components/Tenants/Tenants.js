@@ -17,14 +17,11 @@ const Tenants = props => {
     const [petBool, setPetBool] = useState(null)
 
     function newTenant() {
-        console.log('clicked')
         setSubmitTenant(false)
         setNewTenantDisplay(true)          
     }
 
     function submit() {
-        console.log('submitted')
-        
         axios.post('/api/manager/tenants', {
             first_name: firstName,
             last_name: lastName,

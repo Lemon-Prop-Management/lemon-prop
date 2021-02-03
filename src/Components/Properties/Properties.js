@@ -12,13 +12,11 @@ const Properties = props => {
     const [leaseStatus, setLeaseStatus] = useState(null)
 
     function newProperty() {
-        console.log('clicked')
         setSubmitProperty(false)
         setNewPropertyDisplay(true)          
     }
 
     function submit() {
-        console.log('submitted')
         axios.post('/api/manager/properties', {
             address: address,
             leaseAmt: leaseAmt,

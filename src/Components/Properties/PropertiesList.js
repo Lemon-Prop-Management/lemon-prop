@@ -33,10 +33,8 @@ const PropertiesList = props => {
   
       function checkbox(checkbox) {
           if (checkbox.checked === true) {
-              console.log('i am checked')
               setLeaseStatus(true)
           } else if (checkbox.checked === false){
-              console.log('i am not checked')
               setLeaseStatus(false)
           }
       }

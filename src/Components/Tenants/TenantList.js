@@ -60,8 +60,6 @@ const TenantList = props => {
             prop_id: propId ? propId : element.prop_id
         })
         .then(res => {
-            console.log(petBool)
-            console.log(element.pet)
               setEditBool(false)
               setFirstName('')
               setLastName('')

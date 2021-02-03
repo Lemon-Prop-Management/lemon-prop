@@ -51,9 +51,7 @@ const TenantRequestList = props => {
     }
 
     function mapIt(array) {
-        // let currentAddress
         return array.map((element) => {
-           
           return (
             <div key={element.user_id}>
               <div>{element.user_id}</div>
