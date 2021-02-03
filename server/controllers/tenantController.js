@@ -62,5 +62,23 @@ module.exports = {
                 res.status(200).send(date)
             })
             .catch(err => console.log(err))
+    },
+
+    getRentAmount: async (req, res) => {
+        const db = await req.app.get('db')
+        const { user_id } = req.params
+        console.log('controller: ', user_id)
+
+        const [response] = await db.tnt.tnt_get_one_tenant_by_id([user_id])
+            .catch(err => console.log(err))
+
+        console.log('console.logging in controller:   ', response.prop_id)
+        const { prop_id } = response
+
+        db.tnt.tnt_get_rent_amount([prop_id])
+            .then(leaseAmount => {
+                res.status(200).send(leaseAmount)
+            })
+            .catch(err => console.log(err))
     }
 }

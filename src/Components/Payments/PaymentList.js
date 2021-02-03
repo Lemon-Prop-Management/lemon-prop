@@ -24,7 +24,7 @@ const PaymentList = props => {
                 })
                 .catch(err => console.log(err))
         }
-    }, [])
+    }, [props])
 
 
     let mappedList = paymentsList.map((el) => {
