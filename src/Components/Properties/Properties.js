@@ -19,7 +19,6 @@ const Properties = props => {
 
     function submit() {
         console.log('submitted')
-        
         axios.post('/api/manager/properties', {
             address: address,
             leaseAmt: leaseAmt,

@@ -44,8 +44,8 @@ const PropertiesList = props => {
       function submit(element) {
           axios.put(`/api/manager/properties/${element.prop_id}`, {
               address: address !== '' ? address : element.address,
-              leaseAmt: leaseAmt ? leaseAmt : element.lease_amt,
-              leaseStatus: leaseStatus !== null ? leaseStatus : element.lease_status
+              leaseAmt: leaseAmt !== undefined ? leaseAmt : element.lease_amt,
+              status: leaseStatus !== null ? leaseStatus : element.lease_status
           })
           .then(res => {
                 setEditBool(false)
