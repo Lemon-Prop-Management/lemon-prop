@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import MakePayment from '../Payments/MakePayment'
 import axios from 'axios'
 import { connect } from 'react-redux'
+import MaintReqList from '../MaintReq/MaintReqList'
 
 
 const TheDashboard = props => {
@@ -97,8 +98,15 @@ const TheDashboard = props => {
   return (
     <div>
       <p>TheDashboard</p>
-      <div className="edit-tenant">
-        {mappedTenant(tenantInfo)}
+      <div>
+        {/* <h2>Open Maintenance Requests:</h2> */}
+        <MaintReqList open={true}/>
+      </div>
+      <div>
+        <h2>My Info:</h2>
+        <div className="edit-tenant">
+          {mappedTenant(tenantInfo)}
+        </div>
       </div>
     </div>
     
