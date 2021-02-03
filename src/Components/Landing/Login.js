@@ -47,12 +47,10 @@ const Login = props => {
         value={password}
         onChange={e => setPassword(e.target.value)}>
       </input>
-      {/* <Link to='/dashboard'> */}
       <button onClick={e => submit()}>Login</button>
-      {/* </Link> */}
       <button>I need access</button>
       <input type="button"
-        value="Login (popup)"
+        value="Login"
         onClick={togglePopup} />
       {isOpen && <Popup content={<>
         <div className="member-login">
