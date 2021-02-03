@@ -10,6 +10,16 @@ module.exports = {
             })
             .catch(err => console.log(err))
     },
+    getUser: async (req, res) => {
+        const db = req.app.get('db')
+        const { user_id } = req.params
+
+        await db.mgr.mgr_get_one_tenant_by_id([user_id])
+            .then(tenant => {
+                res.status(200).send(tenant)
+            })
+            .catch(err => console.log(err))
+    },
     addMr: async (req, res) => {
         const db = await req.app.get('db')
         const { user_id } = req.params

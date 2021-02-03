@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import MakePayment from '../Payments/MakePayment'
 import axios from 'axios'
 import { connect } from 'react-redux'
+import MaintReqList from '../MaintReq/MaintReqList'
 
 
 const TheDashboard = props => {
@@ -19,18 +20,19 @@ const TheDashboard = props => {
 
   useEffect(() => {
     if (admin === false) {
-      axios.put(`/api/tenant/:${user_id}`)
+      axios.get(`/api/tenant/${user_id}`)
         .then(res => {
-          setTenantOpenMr(res.data)
-        })
-        .catch(err => console.log(err))
-    } else if (admin === true) {
-      axios.get('/api/manager/manager/mr/false')
-        .then(res => {
-          setManagerOpenMr(res.data)
+          setTenantInfo(res.data)
         })
         .catch(err => console.log(err))
     }
+    // else if (admin === true) {
+    //   axios.get('/api/manager/manager/mr/false')
+    //     .then(res => {
+    //       setManagerOpenMr(res.data)
+    //     })
+    //     .catch(err => console.log(err))
+    // }
   }, [])
 
   function clickEdit(id) {
@@ -97,21 +99,39 @@ const TheDashboard = props => {
   return (
     <div>
       <p>TheDashboard</p>
-      <div className="edit-tenant">
-        {mappedTenant(tenantInfo)}
+      <div>
+        {/* <h2>Open Maintenance Requests:</h2> */}
+        <MaintReqList open={true}/>
+      </div>
+      <div>
+        <h2>My Info:</h2>
+        <div className="edit-tenant">
+          {mappedTenant(tenantInfo)}
+        </div>
       </div>
     </div>
     
   )
 }
-export default TheDashboard
+
+function mapStateToProps(state) {
+  console.log('state:', state)
+  return {
+    email: state.email,
+    user_id: state.user_id,
+    admin: state.admin,
+    approved: state.approved
+  }
+}
+
+export default connect(mapStateToProps)(TheDashboard)
 
 //Tenant: 
-// Display make payment
-// get open Maintenance requests or show some "error if you should have a request still open email manager..."
-// Edit user app.put('/api/tenant/:user_id', tenantCtrl.editUser)
+// [ ] Display make payment
+// [X] get open Maintenance requests or show some "error if you should have a request still open email manager..."
+// [ ] Edit user app.put('/api/tenant/:user_id', tenantCtrl.editUser)
 
 //Manager: 
-//Total Income this month (maybe add, outstanding balance -- can add the past due amounts below and display it)
-//all open mrs
-//past due payments
+// [ ] Total Income this month (maybe add, outstanding balance -- can add the past due amounts below and display it)
+// [X]all open mrs
+// [ ]past due payments

@@ -33,10 +33,8 @@ const PropertiesList = props => {
   
       function checkbox(checkbox) {
           if (checkbox.checked === true) {
-              console.log('i am checked')
               setLeaseStatus(true)
           } else if (checkbox.checked === false){
-              console.log('i am not checked')
               setLeaseStatus(false)
           }
       }
@@ -44,8 +42,8 @@ const PropertiesList = props => {
       function submit(element) {
           axios.put(`/api/manager/properties/${element.prop_id}`, {
               address: address !== '' ? address : element.address,
-              leaseAmt: leaseAmt ? leaseAmt : element.lease_amt,
-              leaseStatus: leaseStatus !== null ? leaseStatus : element.lease_status
+              leaseAmt: leaseAmt !== undefined ? leaseAmt : element.lease_amt,
+              status: leaseStatus !== null ? leaseStatus : element.lease_status
           })
           .then(res => {
                 setEditBool(false)
