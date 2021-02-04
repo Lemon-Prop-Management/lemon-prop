@@ -1,0 +1,25 @@
+//_config.scss is used to keep variables and mixins. To help keep it organized. 
+//Variables are great for properties that you will use over and over again.
+
+$font-stack: 'Roboto', sans-serif;
+$light-color: #f4f4f4;
+$blue-color: #0D0630;
+$orange-color: #E4572E;
+$light-blue-color: #D7FDEC;
+$yellow-color: #FFD333;
+$grey-color: #605F5E;
+
+//Set text color based on background
+@function set-text-color($color) {
+  @if(lightness($color) > 70) {
+    @return #333;
+  } @else {
+    @return #fff;
+  }
+}
+
+// Set background & text color
+@mixin set-background($color) {
+  background-color: $color;
+  color: set-text-color($color);
+}

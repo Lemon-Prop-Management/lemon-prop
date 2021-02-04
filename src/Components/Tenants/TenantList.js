@@ -131,7 +131,6 @@ const TenantList = props => {
 }
 
 function mapStateToProps(state) {
-  console.log('state:', state)
   return {
     email: state.user.email,
     user_id: state.user.user_id,

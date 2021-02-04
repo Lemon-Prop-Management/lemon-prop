@@ -9,8 +9,8 @@ const PaymentList = props => {
 
     useEffect(() => {
         if (admin === false) {
-            props.updatePaymentsTnt(user_id).then(res => console.log(res)
-            )
+            props.updatePaymentsTnt(user_id)
+            // .then(res => console.log(res))
         } else if (admin === true) {
             props.updatePaymentsMgr()
         }

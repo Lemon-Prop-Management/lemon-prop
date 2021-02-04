@@ -16,18 +16,20 @@ const MaintReqList = props => {
         })
         .catch(err => console.log(err))
     } else if (admin === true) {
-      axios.get('/api/manager/mr/false')
+      axios.get(`/api/manager/mr/admin/false`)
         .then(res => {
           setOpenList(res.data)
         })
         .catch(err => console.log(err))
-      axios.get('/api/manager/mr/true')
+      axios.get('/api/manager/mr/admin/true')
         .then(res => {
           setClosedList(res.data)
         })
         .catch(err => console.log(err))
     }
   }, [user_id])
+
+
 
   function mapIt(array) {
     return array.map((element) => {
@@ -53,6 +55,16 @@ const MaintReqList = props => {
                   {admin === true && element.status === 'open' ? <button>Complete</button> : null}
                 </div>
               ) : null)}
+          {(admin === true && element.is_compl === true && !props.open) ? (
+            <div key={element.maint_req_id}>
+              <h2>{ }</h2>
+              <div>{element.date_sub}</div>
+              <div>{element.subject}</div>
+              {admin === false ? null : <div>{element.prop_id}</div>}
+              <div>{element.status}</div>
+              {admin === true && element.status === 'open' ? <button>Complete</button> : null}
+            </div>
+          ) : null}
         </div>
       )
     })
@@ -92,7 +104,8 @@ function mapStateToProps(state) {
     email: state.user.email,
     user_id: state.user.user_id,
     admin: state.user.admin,
-    approved: state.user.approved
+    approved: state.user.approved,
+    prop_id: state.user.prop_id
   }
 }
 

@@ -22,7 +22,8 @@ const Login = props => {
   function submit() {
     axios.post('/auth/login', { email, password })
       .then((res) => {
-        props.loginUser(res.data.email, res.data.user_id, res.data.admin, res.data.approved)
+        // console.log('login successful - 1')
+        props.loginUser(res.data.email, res.data.user_id, res.data.admin, res.data.approved, res.data.prop_id)
         props.history.push('/dashboard')
       })
       .catch(err => console.log(err))
@@ -45,7 +46,7 @@ const Login = props => {
       <button onClick={e => submit()}>Login</button>
       <button>I need access</button>
       <input type="button"
-        value="Login (popup)"
+        value="Login"
         onClick={togglePopup} />
       {isOpen && <Popup content={<>
         <div className="member-login">

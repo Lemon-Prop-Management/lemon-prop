@@ -1,0 +1,67 @@
+@import './config';
+@import './buttons';
+@import './utilities';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $light-color;
+  font-family: $font-stack;
+  line-height: 1.6;
+
+  h1 {
+    font-size: 50px;
+    line-height: 1.4;
+  }
+}
+
+img  {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.navigation {
+  @include set-background($light-blue-color);
+  height: 100%;
+
+  nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 15px;
+  }
+
+  a {
+    color: set-text-color($blue-color);
+    background-color: set-background($orange-color);
+  }
+
+  a:hover {
+    color: $grey-color;
+    background-color: $light-blue-color;
+  }
+}
+
+.input {
+  border: 1px solid $grey-color;
+  border-radius: 4px;
+  background-color: $light-blue-color;
+  color: $blue-color;
+
+  //input for login
+
+  //input for request access
+
+  //input for edit tenant(tenant)
+
+  //input for adding new tenant(manager)
+}

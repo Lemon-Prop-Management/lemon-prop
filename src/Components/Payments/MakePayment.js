@@ -15,11 +15,9 @@ const MakePayment = props => {
 
 
     useEffect(() => {
-        console.log(user_id)
         if (user_id) {
             axios.get(`/api/tenant/${user_id}/rent`)
                 .then(res => {
-                    console.log(res.data)
                     setRentAmount(+res.data[0].lease_amt)
                 })
                 .catch(err => console.log(err))

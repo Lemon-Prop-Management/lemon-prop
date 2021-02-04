@@ -33,7 +33,7 @@ CREATE TABLE payments (
 CREATE TABLE maint_req (
   maint_req_id SERIAL PRIMARY KEY,
   subject text,
-  date_sub date,
+  date_sub text,
   is_compl boolean,
   request text,
   user_id int,

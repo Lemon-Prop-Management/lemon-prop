@@ -31,7 +31,6 @@ export function updatePaymentsMgr() {
 export default function paymentReducer(state = initialState, action) {
     switch (action.type) {
         case UPDATE_PAYMENTS_TNT + '_FULFILLED':
-            console.log(action.payload)
             return { ...state, tnt_payments_list: action.payload.data }
         case UPDATE_PAYMENTS_MGR + '_FULFILLED':
             return { ...state, mgr_payments_list: action.payload.data }

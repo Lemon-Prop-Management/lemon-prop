@@ -21,7 +21,6 @@ function App(props) {
   );
 }
 function mapStateToProps(reduxState) {
-  console.log(reduxState);
   return reduxState
 }
 export default connect(mapStateToProps, { loginUser })(App)
