@@ -1,55 +1,49 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-// List of tenants past payments
-// Study maintReqList Component
+import { updatePaymentsTnt, updatePaymentsMgr } from '../../redux/paymentReducer';
 
+// List of tenants' past payments
 const PaymentList = props => {
-    console.log('PAYMENT LIST PROPS:   ', props)
-
-    const [paymentsList, setPaymentsList] = useState([])
+    let { properties, changeProperties } = useState([])
     const { admin, user_id } = props
 
     useEffect(() => {
         if (admin === false) {
-            axios.get(`/api/tenant/${user_id}/payments`)
-                .then(res => {
-                    setPaymentsList(res.data)
-                })
-                .catch(err => console.log(err))
+            props.updatePaymentsTnt(user_id)
+            // .then(res => console.log(res))
         } else if (admin === true) {
-            axios.get('/api/manager/payments')
-                .then(res => {
-                    setPaymentsList(res.data)
-                })
-                .catch(err => console.log(err))
+            props.updatePaymentsMgr()
         }
-    }, [props])
+    }, [user_id])
 
-
-    let mappedList = paymentsList.map((el) => {
-        return (
-            <div key={el.invoice_id}>
-                <div> {el.date_paid} </div>
-                <div> {el.amt_paid} </div>
-            </div>
-        )
-    })
+    function mappedList(array) {
+        return array.map((el) => {
+            return (
+                <div key={el.invoice_id}>
+                    <div> {el.invoice_id} </div>
+                    <div> {el.date_paid} </div>
+                    <div> {el.amt_paid} </div>
+                    {admin === true ? <div> {el.user_id} </div> : null}
+                </div>
+            )
+        })
+    }
 
     return (
         <div>
             <p>PaymentList</p>
-            <div> {mappedList} </div>
+            {admin === false ? mappedList(props.tnt_payments_list) : mappedList(props.mgr_payments_list)}
         </div>
     )
 }
 
 function mapStateToProps(state) {
-    console.log("state:", state);
     return {
-        user_id: state.user_id,
-        admin: state.admin
+        user_id: state.user.user_id,
+        admin: state.user.admin,
+        mgr_payments_list: state.payments.mgr_payments_list,
+        tnt_payments_list: state.payments.tnt_payments_list
     }
 }
 
-export default connect(mapStateToProps)(PaymentList)
+export default connect(mapStateToProps, { updatePaymentsTnt, updatePaymentsMgr })(PaymentList)

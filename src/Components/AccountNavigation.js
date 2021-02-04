@@ -48,9 +48,9 @@ const AccNav = props => {
 }
 function mapStateToProps(reduxState) {
   return {
-    email: reduxState.email,
-    admin: reduxState.admin,
-    approved: reduxState.approved
+    email: reduxState.user.email,
+    admin: reduxState.user.admin,
+    approved: reduxState.user.approved
   }
 }
 

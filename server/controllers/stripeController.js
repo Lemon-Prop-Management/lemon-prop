@@ -6,7 +6,6 @@ const uuid = require('uuid').v4;
 
 module.exports = {
     payRent: async (req, res) => {
-        console.log(req.body);
         let error;
         let status;
         try {
@@ -35,5 +34,5 @@ module.exports = {
             status = 'failure'
         }
         res.json({ error, status })
-    },
+    }
 }

@@ -3,20 +3,10 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
 const MaintReqList = props => {
-
   const [myList, setMyList] = useState([])
   const [openList, setOpenList] = useState([])
   const [closedList, setClosedList] = useState([])
-  const [admin] = useState(props.admin)
-  const [user_id] = useState(props.user_id)
-
-  // useEffect(() => {
-  //   myList.forEach( => {
-  //     let humanReadableDate = date_sub.split('T').slice(1, 1)
-  //     return humanReadableDate
-  //   })
-  // }, [])
-  // console.log(myList.date_sub)
+  const { user_id, admin } = props
 
   useEffect(() => {
     if (admin === false) {
@@ -28,9 +18,7 @@ const MaintReqList = props => {
     } else if (admin === true) {
       axios.get(`/api/manager/mr/admin/false`)
         .then(res => {
-          console.log(res.data)
           setOpenList(res.data)
-          // console.log(openList)
         })
         .catch(err => console.log(err))
       axios.get('/api/manager/mr/admin/true')
@@ -39,16 +27,16 @@ const MaintReqList = props => {
         })
         .catch(err => console.log(err))
     }
-  }, [])
+  }, [user_id])
 
 
 
   function mapIt(array) {
     return array.map((element) => {
       return (
-        <div>
+        <div key={element.maint_req_id}>
           {(admin === false && !props.open) ? (
-            <div key={element.maint_req_id}>
+            <div >
               <h2>{ }</h2>
               <div>{element.date_sub}</div>
               <div>{element.subject}</div>
@@ -58,9 +46,9 @@ const MaintReqList = props => {
             </div>
           ) : (
               element.is_compl === false ? (
-                <div key={element.maint_req_id}>
+                <div>
                   <h2>{ }</h2>
-                  <div>{element.date_sub} {console.log(element)}</div>
+                  <div>{element.date_sub}</div>
                   <div>{element.subject}</div>
                   {admin === false ? null : <div>{element.prop_id}</div>}
                   <div>{element.status}</div>
@@ -113,10 +101,11 @@ const MaintReqList = props => {
 
 function mapStateToProps(state) {
   return {
-    email: state.email,
-    user_id: state.user_id,
-    admin: state.admin,
-    approved: state.approved
+    email: state.user.email,
+    user_id: state.user.user_id,
+    admin: state.user.admin,
+    approved: state.user.approved,
+    prop_id: state.user.prop_id
   }
 }
 

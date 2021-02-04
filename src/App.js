@@ -8,9 +8,7 @@ import { loginUser } from './redux/reducer'
 
 function App(props) {
   useEffect(() => {
-    console.log(props)
     axios.get(`/auth/user`).then((res) => {
-      console.log(res.data)
       props.loginUser(res.data.email, res.data.user_id, res.data.admin, res.data.approved);
     }).catch(err => console.log(err))
   }, [])
@@ -22,5 +20,7 @@ function App(props) {
     </div>
   );
 }
-function mapStateToProps(reduxState) { return reduxState }
+function mapStateToProps(reduxState) {
+  return reduxState
+}
 export default connect(mapStateToProps, { loginUser })(App)

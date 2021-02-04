@@ -6,27 +6,25 @@ import MaintReqList from '../MaintReq/MaintReqList'
 
 
 const TheDashboard = props => {
-  const [admin] = useState(props.admin)
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
-  const [user_id] = useState(props.user_id)
   const [tenantInfo, setTenantInfo] = useState([])
   const [editBool, setEditBool] = useState(false)
   const [buttonId, setButtonId] = useState()
+  const { user_id, admin } = props
 
   useEffect(() => {
     if (admin === false) {
-      axios.get(`/api/tenant/${user_id}`)
+      axios.get(`/api/tenant/get/${user_id}`)
         .then(res => {
-          console.log(res.data)
           setTenantInfo(res.data)
 
         })
         .catch(err => console.log(err))
     }
-  })
+  }, [user_id])
 
   function clickEdit(id) {
     setEditBool(true)
@@ -106,25 +104,27 @@ const TheDashboard = props => {
         <MaintReqList open={true} />
       </div>
 
-      {admin === false ? (
-        <div>
-          <h2>My Info:</h2>
-          <div className="edit-tenant">
-            {mappedTenant(tenantInfo)}
+      {
+        admin === false ? (
+          <div>
+            <h2>My Info:</h2>
+            <div className="edit-tenant">
+              {mappedTenant(tenantInfo)}
+            </div>
           </div>
-        </div>
-      ) : null}
-    </div>
+        ) : null
+      }
+    </div >
 
   )
 }
 
 function mapStateToProps(state) {
   return {
-    email: state.email,
-    user_id: state.user_id,
-    admin: state.admin,
-    approved: state.approved
+    email: state.user.email,
+    user_id: state.user.user_id,
+    admin: state.user.admin,
+    approved: state.user.approved
   }
 }
 

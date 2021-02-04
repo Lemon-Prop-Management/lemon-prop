@@ -12,4 +12,5 @@ an email within the next 48 hours.</p>
       </div>
    )
 }
+
 export default RequestSubmitted
