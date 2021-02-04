@@ -3,13 +3,10 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
 const MaintReqList = props => {
-
   const [myList, setMyList] = useState([])
   const [openList, setOpenList] = useState([])
   const [closedList, setClosedList] = useState([])
-  const [admin, setAdmin] = useState(props.admin)
-  const [user_id, setUserId] = useState(props.user_id)
-
+  const { user_id, admin } = props
 
   useEffect(() => {
     if (admin === false) {
@@ -30,34 +27,36 @@ const MaintReqList = props => {
         })
         .catch(err => console.log(err))
     }
-  }, [])
+  }, [user_id])
 
   function mapIt(array) {
     return array.map((element) => {
       return (
-        <div>
-      {(admin === false && !props.open) ? (
-          <div key={element.maint_req_id}>
-            <h2>{}</h2>
-            <div>{element.date_sub}</div>
-            <div>{element.subject}</div>
-            {admin === false ? null : <div>{element.prop_id}</div>}
-            <div>{element.status}</div>
-            {admin === true && element.status === 'open' ? <button>Complete</button> : null}
-          </div>
-        ) : (
-            element.is_compl === false ? (
-            <div key={element.maint_req_id}>
-              <h2>{}</h2>
+        <div key={element.maint_req_id}>
+          {(admin === false && !props.open) ? (
+            <div >
+              <h2>{ }</h2>
               <div>{element.date_sub}</div>
               <div>{element.subject}</div>
               {admin === false ? null : <div>{element.prop_id}</div>}
               <div>{element.status}</div>
               {admin === true && element.status === 'open' ? <button>Complete</button> : null}
             </div>
-          ) : null)}
-    </div>
-  )})}
+          ) : (
+              element.is_compl === false ? (
+                <div>
+                  <h2>{ }</h2>
+                  <div>{element.date_sub}</div>
+                  <div>{element.subject}</div>
+                  {admin === false ? null : <div>{element.prop_id}</div>}
+                  <div>{element.status}</div>
+                  {admin === true && element.status === 'open' ? <button>Complete</button> : null}
+                </div>
+              ) : null)}
+        </div>
+      )
+    })
+  }
 
   return (
     <div className='maint-req'>
@@ -70,31 +69,30 @@ const MaintReqList = props => {
         </div>
       ) : null}
       {(admin === true && !props.open) ? (
-      <div>
-        <h2>Open Requests:</h2>
-        {mapIt(openList)}
-      </div>) : null}
+        <div>
+          <h2>Open Requests:</h2>
+          {mapIt(openList)}
+        </div>) : null}
       {(admin === true && !props.open) ? (
-      <div>
-        <h2>Closed Requests:</h2>
-        {mapIt(closedList)}
-      </div>) : null}
+        <div>
+          <h2>Closed Requests:</h2>
+          {mapIt(closedList)}
+        </div>) : null}
       {(admin === true && props.open) ? (
-      <div>
-        <h2>Open Requests:</h2>
-        {mapIt(openList)}
-      </div>) : null}
+        <div>
+          <h2>Open Requests:</h2>
+          {mapIt(openList)}
+        </div>) : null}
     </div>
   )
 }
 
 function mapStateToProps(state) {
-  console.log('state:', state)
   return {
-    email: state.email,
-    user_id: state.user_id,
-    admin: state.admin,
-    approved: state.approved
+    email: state.user.email,
+    user_id: state.user.user_id,
+    admin: state.user.admin,
+    approved: state.user.approved
   }
 }
 

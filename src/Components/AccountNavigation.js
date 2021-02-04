@@ -13,10 +13,6 @@ const AccNav = props => {
       .catch(err => console.log(err))
   }
 
-  console.log(props.email)
-  console.log(props.admin)
-  console.log(props.approved)
-
   return (
     <div>
       {
@@ -52,9 +48,9 @@ const AccNav = props => {
 }
 function mapStateToProps(reduxState) {
   return {
-    email: reduxState.email,
-    admin: reduxState.admin,
-    approved: reduxState.approved
+    email: reduxState.user.email,
+    admin: reduxState.user.admin,
+    approved: reduxState.user.approved
   }
 }
 

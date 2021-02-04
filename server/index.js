@@ -49,7 +49,7 @@ app.put('/updatePasswordViaEmail', nodeMailerCtrl.updatePassword)
 
 //----------------TENANT CONTROLLERS--------------------------------
 app.put('/api/tenant/:user_id', tenantCtrl.editUser)
-app.get('/api/tenant/:user_id', tenantCtrl.getUser)
+app.get('/api/tenant/get/:user_id', tenantCtrl.getUser)
 
 app.post('/api/tenant/:user_id/mr', tenantCtrl.addMr)
 app.get('/api/tenant/:user_id/mr', tenantCtrl.getAllMr)

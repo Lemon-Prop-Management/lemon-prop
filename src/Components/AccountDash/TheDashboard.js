@@ -8,32 +8,24 @@ import MaintReqList from '../MaintReq/MaintReqList'
 const TheDashboard = props => {
   const [tenantOpenMr, setTenantOpenMr] = useState([])
   const [managerOpenMr, setManagerOpenMr] = useState([])
-  const [admin, setAdmin] = useState(props.admin)
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
-  const [user_id, setUserId] = useState(props.user_id)
   const [tenantInfo, setTenantInfo] = useState([])
   const [editBool, setEditBool] = useState(false)
   const [buttonId, setButtonId] = useState()
+  const { user_id, admin } = props
 
   useEffect(() => {
     if (admin === false) {
-      axios.get(`/api/tenant/${user_id}`)
+      axios.get(`/api/tenant/get/${user_id}`)
         .then(res => {
           setTenantInfo(res.data)
         })
         .catch(err => console.log(err))
     }
-    // else if (admin === true) {
-    //   axios.get('/api/manager/manager/mr/false')
-    //     .then(res => {
-    //       setManagerOpenMr(res.data)
-    //     })
-    //     .catch(err => console.log(err))
-    // }
-  }, [])
+  }, [user_id])
 
   function clickEdit(id) {
     setEditBool(true)
@@ -101,26 +93,25 @@ const TheDashboard = props => {
       <p>TheDashboard</p>
       <div>
         {/* <h2>Open Maintenance Requests:</h2> */}
-        <MaintReqList open={true}/>
+        <MaintReqList open={true} />
       </div>
       <div>
-        <h2>My Info:</h2>
+        {admin === false ? <h2>My Info:</h2> : null}
         <div className="edit-tenant">
           {mappedTenant(tenantInfo)}
         </div>
       </div>
     </div>
-    
+
   )
 }
 
 function mapStateToProps(state) {
-  console.log('state:', state)
   return {
-    email: state.email,
-    user_id: state.user_id,
-    admin: state.admin,
-    approved: state.approved
+    email: state.user.email,
+    user_id: state.user.user_id,
+    admin: state.user.admin,
+    approved: state.user.approved
   }
 }
 
