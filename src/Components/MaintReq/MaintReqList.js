@@ -7,8 +7,16 @@ const MaintReqList = props => {
   const [myList, setMyList] = useState([])
   const [openList, setOpenList] = useState([])
   const [closedList, setClosedList] = useState([])
-  const [admin, setAdmin] = useState(props.admin)
-  const [user_id, setUserId] = useState(props.user_id)
+  const [admin] = useState(props.admin)
+  const [user_id] = useState(props.user_id)
+
+  // useEffect(() => {
+  //   myList.forEach( => {
+  //     let humanReadableDate = date_sub.split('T').slice(1, 1)
+  //     return humanReadableDate
+  //   })
+  // }, [])
+  // console.log(myList.date_sub)
 
   useEffect(() => {
     if (admin === false) {
@@ -33,6 +41,8 @@ const MaintReqList = props => {
     }
   }, [])
 
+
+
   function mapIt(array) {
     return array.map((element) => {
       return (
@@ -50,7 +60,7 @@ const MaintReqList = props => {
               element.is_compl === false ? (
                 <div key={element.maint_req_id}>
                   <h2>{ }</h2>
-                  <div>{element.date_sub}</div>
+                  <div>{element.date_sub} {console.log(element)}</div>
                   <div>{element.subject}</div>
                   {admin === false ? null : <div>{element.prop_id}</div>}
                   <div>{element.status}</div>
