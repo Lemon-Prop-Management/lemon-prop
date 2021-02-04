@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { loginUser } from '../../redux/reducer'
 import Popup from '../Popup'
 import { useForm } from 'react-hook-form'
+import '../../scss/main.scss'
 
 const Login = props => {
   const [email, setEmail] = useState('')
@@ -31,7 +32,7 @@ const Login = props => {
 
   return (
     <div>
-      <input
+      {/* <input
         placeholder='Email'
         type="text"
         value={email}
@@ -44,8 +45,8 @@ const Login = props => {
         onChange={e => setPassword(e.target.value)}>
       </input>
       <button onClick={e => submit()}>Login</button>
-      <button>I need access</button>
-      <input type="button"
+      <button>I need access</button> */}
+      <input  className="btn-1" type="button"
         value="Login"
         onClick={togglePopup} />
       {isOpen && <Popup content={<>

@@ -1,0 +1,70 @@
+.landing {
+  height: 100%;
+  padding-top: 3vh;
+  overflow: hidden;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+  
+  .header {
+    background-color: none;
+    
+    img {
+      width: 20%;
+    }
+  }
+
+  .container {
+    max-width: 1070px;
+    padding: 0 30px;
+    margin: 0 auto;
+    z-index: 0;
+  }
+  
+  .diamond-big {
+    width: 25%;
+    // height: 25%;
+    padding-bottom: 25%;
+    background-color: rgba(13, 6, 48, 0.4);
+    display: inline-block;
+  }
+  .diamond-med {
+    width: 15%;
+    height: 0px;
+    padding-bottom: 15%;
+    background-color: rgba(255, 211, 51, 0.4);
+    display: inline-block;
+  }
+  .diamond-sm {
+    width: 20%;
+    padding-bottom: 20%;
+    background-color: rgba(228, 87, 46, 0.4);
+    display: inline-block;
+  }
+  .grid {
+    position: relative;
+    padding-bottom: 100%;
+    transform: rotate(45deg);
+    transform-origin: 99%;
+  }
+  .grid-section {
+    // overflow: hidden;
+    padding-bottom: 200px;
+  }
+  #diamond1 {
+    position: absolute;
+    top: 26.5%;
+    left: 21%;
+    cursor: pointer;
+  }
+  #diamond2 {
+    position: absolute;
+    top: 4%;
+    left: 15%;
+  }
+  #diamond3 {
+    position: absolute;
+    top: 10%;
+    left: 37.5%;
+  }
+}
