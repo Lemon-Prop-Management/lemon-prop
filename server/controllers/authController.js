@@ -41,7 +41,7 @@ module.exports = {
         delete existingUser.hash
 
         req.session.user = existingUser
-
+        console.log(existingUser.prop_id)
         res.status(200).send(existingUser)
     },
 

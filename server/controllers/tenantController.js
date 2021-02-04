@@ -23,10 +23,12 @@ module.exports = {
     addMr: async (req, res) => {
         const db = await req.app.get('db')
         const { user_id } = req.params
-        const { prop_id, subject, date_sub, request, photo } = req.body //coming from Redux
+        const { prop_id, subject, request } = req.body //coming from Redux
         let is_compl = false;
+        let date_sub = new Date();
 
-        db.tnt.tnt_add_mr([user_id, prop_id, subject, date_sub, request, photo, is_compl])
+
+        db.tnt.tnt_add_mr([user_id, prop_id, subject, date_sub, request, is_compl])
             .then(newMaintReq => {
                 res.status(200).send(newMaintReq)
             })
