@@ -4,6 +4,7 @@ const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
 const authenticateUser = require('./middlewares/authenticateUser.js');
+const path = require('path')
 
 
 // IMPORTED CONTROLLER FILES
@@ -31,7 +32,7 @@ app.use(
         cookie: { maxAge: 1000 * 60 * 60 * 24 },
     })
 )
-
+app.use(express.static(`${__dirname}/../build`)) //serving our build folder
 
 
 //Auth Controllers
@@ -85,6 +86,11 @@ app.get('/api/manager/payments', authenticateUser, managerCtrl.getAllPayments)
 
 //STRIPE Endpoint
 app.post('/pay_rent', stripeCtrl.payRent)
+
+
+app.get('*', (req, res) => { //Its essentially a catchall. 
+    res.sendFile(path.join(__dirname, '../build/index.html'))
+})
 
 massive({
     connectionString: CONNECTION_STRING,
