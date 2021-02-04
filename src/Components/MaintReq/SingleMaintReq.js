@@ -46,11 +46,11 @@ const SingleMaintReq = props => {
 function mapStateToProps(state) {
   console.log('state:', state)
   return {
-    email: state.email,
-    user_id: state.user_id,
-    admin: state.admin,
-    approved: state.approved,
-    prop_id: state.prop_id
+    email: state.user.email,
+    user_id: state.user.user_id,
+    admin: state.user.admin,
+    approved: state.user.approved,
+    prop_id: state.user.prop_id
   }
 }
 

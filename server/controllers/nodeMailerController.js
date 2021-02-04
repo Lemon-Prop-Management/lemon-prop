@@ -16,7 +16,7 @@ module.exports = {
     let reset_password_token = token
     let reset_password_expires = Date.now() + 86400000 //link will be active for 24 hours
     const [resetPass] = await db.nodemailer.update_user_token([email, reset_password_token, reset_password_expires])
-   
+
     //step 1
     let transporter = await nodemailer.createTransport({
       service: 'gmail',
@@ -51,12 +51,12 @@ module.exports = {
     const db = await req.app.get('db');
     const { email, password } = req.body
     const [existingUser] = await db.auth.auth_get_user_by_email([email])
-    
+
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
 
     const reset_password_token = null
-    const reset_password_expires = null 
+    const reset_password_expires = null
 
     const [updatedPass] = await db.nodemailer.update_user_password_and_token([email, hash, reset_password_token, reset_password_expires])
       .then(async (e) => {
@@ -90,13 +90,13 @@ module.exports = {
             res.status(200).send('gtg')
           }
         })
-        res.status(200).send({ message: 'password updated'})
+        res.status(200).send({ message: 'password updated' })
       })
       .catch(err => console.log(err))
   },
   resetPass: async (req, res, next) => {
     const db = await req.app.get('db');
-    const {token} = req.params
+    const { token } = req.params
     const [existingUser] = await db.nodemailer.get_user_with_token([token])
     if (!existingUser) {
       console.log('1 - password reset link is invalid or has expired')

@@ -13,7 +13,6 @@ const LOGOUT = 'LOGOUT'
 
 //action creators
 export function loginUser(email, user_id, admin, approved, prop_id) {
-  console.log(email, user_id, admin, approved, prop_id)
   return {
     type: LOGIN_USER,
     payload: { email, user_id, admin, approved, prop_id }

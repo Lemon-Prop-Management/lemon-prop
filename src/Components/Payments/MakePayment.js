@@ -4,36 +4,38 @@ import StripeCheckout from 'react-stripe-checkout';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { connect } from 'react-redux';
+import { updatePaymentsMgr, updatePaymentsTnt } from '../../redux/paymentReducer'
 
 toast.configure();
 
 const MakePayment = props => {
     const [rentAmount, setRentAmount] = useState();
 
-    const { user_id } = props;
+    const { user_id, admin } = props;
 
 
     useEffect(() => {
-        axios.get(`/api/tenant/${user_id}/rent`)
-            .then(res => {
-                console.log(res.data)
-                setRentAmount(res.data[0].lease_amt)
-            })
-            .catch(err => console.log(err))
-    }, [props]);
-
+        if (user_id) {
+            axios.get(`/api/tenant/${user_id}/rent`)
+                .then(res => {
+                    setRentAmount(+res.data[0].lease_amt)
+                })
+                .catch(err => console.log(err))
+        }
+    }, [user_id]);
 
     async function handleToken(token) {
-        console.log(token, rentAmount)
         await axios.post('/pay_rent', {
             token,
             rentAmount
         }).then(res => {
-            console.log(res.data.status);
             if (res.data.status === 'success') {
-                console.log('status = success')
-                toast('Success! Your rent has been paid!',
-                    { type: 'success' })
+                axios.post(`/api/tenant/${user_id}/payments`, { rentAmount }).then(res => {
+                    toast('Success! Your rent has been paid!',
+                        { type: 'success' });
+                    admin === false ? props.updatePaymentsTnt(user_id) : props.updatePaymentsMgr()
+                    setRentAmount(rentAmount)
+                }).catch(err => console.log(err))
             } else {
                 console.log('status = error')
                 toast('Something went wrong',
@@ -44,10 +46,9 @@ const MakePayment = props => {
     }
 
     return (
-        <div className='donate'>
-            <div className='container'>
-                <div>MakePayment.js</div>
-                <div> Your rent amount due:
+        <div>{!props.admin ? (
+            <div>
+                <div> Your rent amount due: $
                     {rentAmount}
                 </div>
                 <StripeCheckout
@@ -56,19 +57,18 @@ const MakePayment = props => {
                     billingAddress
                     amount={rentAmount * 100}
                     label='Pay Rent'
-
                 />
             </div>
+        ) : null}
         </div>
     )
 }
 
 function mapStateToProps(state) {
-    console.log("state:", state);
     return {
-        user_id: state.user_id,
-        admin: state.admin
+        user_id: state.user.user_id,
+        admin: state.user.admin
     }
 }
 
-export default connect(mapStateToProps)(MakePayment)
+export default connect(mapStateToProps, { updatePaymentsMgr, updatePaymentsTnt })(MakePayment)

@@ -1,8 +1,6 @@
 import React from 'react'
 
 const RequestAccess = props => {
-     
-
       return (
             <div className="popup">
                   <p>Fill out your information below and we'll
@@ -23,4 +21,5 @@ const RequestAccess = props => {
             </div>
       )
 }
+
 export default RequestAccess
