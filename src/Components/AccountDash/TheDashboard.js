@@ -2,36 +2,31 @@ import React, { useEffect, useState } from 'react'
 import MakePayment from '../Payments/MakePayment'
 import axios from 'axios'
 import { connect } from 'react-redux'
+import MaintReqList from '../MaintReq/MaintReqList'
 
 
 const TheDashboard = props => {
-  const [tenantOpenMr, setTenantOpenMr] = useState([])
-  const [managerOpenMr, setManagerOpenMr] = useState([])
-  const [admin, setAdmin] = useState(props.admin)
+  const [admin] = useState(props.admin)
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
-  const [user_id, setUserId] = useState(props.user_id)
+  const [user_id] = useState(props.user_id)
   const [tenantInfo, setTenantInfo] = useState([])
   const [editBool, setEditBool] = useState(false)
   const [buttonId, setButtonId] = useState()
 
   useEffect(() => {
     if (admin === false) {
-      axios.put(`/api/tenant/:${user_id}`)
+      axios.get(`/api/tenant/${user_id}`)
         .then(res => {
-          setTenantOpenMr(res.data)
-        })
-        .catch(err => console.log(err))
-    } else if (admin === true) {
-      axios.get('/api/manager/manager/mr/false')
-        .then(res => {
-          setManagerOpenMr(res.data)
+          console.log(res.data)
+          setTenantInfo(res.data)
+
         })
         .catch(err => console.log(err))
     }
-  }, [])
+  })
 
   function clickEdit(id) {
     setEditBool(true)
@@ -39,7 +34,7 @@ const TheDashboard = props => {
   }
 
   function editTenant(element) {
-    axios.put(`/api/tenant/:${element.user_id}`, {
+    axios.put(`/api/tenant/${element.user_id}`, {
       first_name: firstName !== '' ? firstName : element.first_name,
       last_name: lastName !== '' ? lastName : element.last_name,
       phone: phone !== '' ? phone : element.phone,
@@ -50,6 +45,12 @@ const TheDashboard = props => {
         setLastName('')
         setPhone('')
         setEmail('')
+        setEditBool(false)
+        axios.get(`/api/tenant/${user_id}`)
+          .then(res => {
+            setTenantInfo(res.data)
+          })
+          .catch(err => console.log(err))
       })
       .catch(err => console.log(err))
   }
@@ -62,7 +63,6 @@ const TheDashboard = props => {
           <button onClick={() => clickEdit(element.user_id)}>Edit</button>
           {editBool === false ? (
             <div>
-              <div>{element.user_id}</div>
               <div>{element.first_name}</div>
               <div>{element.last_name}</div>
               <div>{element.phone}</div>
@@ -97,21 +97,45 @@ const TheDashboard = props => {
   return (
     <div>
       <p>TheDashboard</p>
-      <div className="edit-tenant">
-        {mappedTenant(tenantInfo)}
+      <div>
+        {admin === false ? (
+          <MakePayment />
+        ) : null}
       </div>
+      <div>
+        <MaintReqList open={true} />
+      </div>
+
+      {admin === false ? (
+        <div>
+          <h2>My Info:</h2>
+          <div className="edit-tenant">
+            {mappedTenant(tenantInfo)}
+          </div>
+        </div>
+      ) : null}
     </div>
-    
+
   )
 }
-export default TheDashboard
+
+function mapStateToProps(state) {
+  return {
+    email: state.email,
+    user_id: state.user_id,
+    admin: state.admin,
+    approved: state.approved
+  }
+}
+
+export default connect(mapStateToProps)(TheDashboard)
 
 //Tenant: 
-// Display make payment
-// get open Maintenance requests or show some "error if you should have a request still open email manager..."
-// Edit user app.put('/api/tenant/:user_id', tenantCtrl.editUser)
+// [X] Display make payment
+// [X] get open Maintenance requests or show some "error if you should have a request still open email manager..."
+// [X] Edit user app.put('/api/tenant/:user_id', tenantCtrl.editUser)
 
 //Manager: 
-//Total Income this month (maybe add, outstanding balance -- can add the past due amounts below and display it)
-//all open mrs
-//past due payments
+// [ ] Total Income this month (maybe add, outstanding balance -- can add the past due amounts below and display it)
+// [X]all open mrs
+// [ ]past due payments

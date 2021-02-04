@@ -1,1 +1,2 @@
-SELECT * FROM properties;
+SELECT * FROM properties
+ORDER BY prop_id;

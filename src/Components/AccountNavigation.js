@@ -13,10 +13,6 @@ const AccNav = props => {
       .catch(err => console.log(err))
   }
 
-  console.log(props.email)
-  console.log(props.admin)
-  console.log(props.approved)
-
   return (
     <div>
       {

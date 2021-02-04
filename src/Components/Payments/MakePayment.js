@@ -1,17 +1,26 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
-import PaymentList from './PaymentList';
+import 'react-toastify/dist/ReactToastify.css';
+import { connect } from 'react-redux';
 
 toast.configure();
 
-
-// Reuseable component that just displays the ability to make a payment. I believe this would just be the StripeCheckout button
-
 const MakePayment = props => {
-    const [rentAmount, setRentAmount] = useState(1500.55)
+    const [rentAmount, setRentAmount] = useState();
+
+    const { user_id } = props;
+
+
+    useEffect(() => {
+        axios.get(`/api/tenant/${user_id}/rent`)
+            .then(res => {
+                console.log(res.data)
+                setRentAmount(res.data[0].lease_amt)
+            })
+            .catch(err => console.log(err))
+    }, [props]);
 
 
     async function handleToken(token) {
@@ -38,7 +47,9 @@ const MakePayment = props => {
         <div className='donate'>
             <div className='container'>
                 <div>MakePayment.js</div>
-                <div> Your rent amount due: {rentAmount} </div>
+                <div> Your rent amount due:
+                    {rentAmount}
+                </div>
                 <StripeCheckout
                     stripeKey='pk_test_51IEMDRHaijm3D4Gz5082wV01blikaeeyYMcLRDpCWBUPTHQSOhYA5t5lRF7VfAmzitNMVR1JIxYSuKwOPYPAmfY700a2qf4x3J'
                     token={handleToken}
@@ -52,4 +63,12 @@ const MakePayment = props => {
     )
 }
 
-export default MakePayment
+function mapStateToProps(state) {
+    console.log("state:", state);
+    return {
+        user_id: state.user_id,
+        admin: state.admin
+    }
+}
+
+export default connect(mapStateToProps)(MakePayment)

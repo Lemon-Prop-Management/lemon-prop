@@ -10,13 +10,25 @@ module.exports = {
             })
             .catch(err => console.log(err))
     },
+    getUser: async (req, res) => {
+        const db = req.app.get('db')
+        const { user_id } = req.params
+
+        await db.mgr.mgr_get_one_tenant_by_id([user_id])
+            .then(tenant => {
+                res.status(200).send(tenant)
+            })
+            .catch(err => console.log(err))
+    },
     addMr: async (req, res) => {
         const db = await req.app.get('db')
         const { user_id } = req.params
-        const { prop_id, subject, date_sub, request, photo } = req.body //coming from Redux
+        const { prop_id, subject, request } = req.body //coming from Redux
         let is_compl = false;
+        let date_sub = new Date();
 
-        db.tnt.tnt_add_mr([user_id, prop_id, subject, date_sub, request, photo, is_compl])
+
+        db.tnt.tnt_add_mr([user_id, prop_id, subject, date_sub, request, is_compl])
             .then(newMaintReq => {
                 res.status(200).send(newMaintReq)
             })
@@ -60,6 +72,24 @@ module.exports = {
         db.tnt.tnt_get_next_due_date([user_id])
             .then(date => {
                 res.status(200).send(date)
+            })
+            .catch(err => console.log(err))
+    },
+
+    getRentAmount: async (req, res) => {
+        const db = await req.app.get('db')
+        const { user_id } = req.params
+        console.log('controller: ', user_id)
+
+        const [response] = await db.tnt.tnt_get_one_tenant_by_id([user_id])
+            .catch(err => console.log(err))
+
+        console.log('console.logging in controller:   ', response.prop_id)
+        const { prop_id } = response
+
+        db.tnt.tnt_get_rent_amount([prop_id])
+            .then(leaseAmount => {
+                res.status(200).send(leaseAmount)
             })
             .catch(err => console.log(err))
     }

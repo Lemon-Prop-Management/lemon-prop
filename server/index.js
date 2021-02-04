@@ -4,6 +4,7 @@ const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
 const authenticateUser = require('./middlewares/authenticateUser.js');
+const path = require('path')
 
 
 // IMPORTED CONTROLLER FILES
@@ -31,7 +32,7 @@ app.use(
         cookie: { maxAge: 1000 * 60 * 60 * 24 },
     })
 )
-
+app.use(express.static(`${__dirname}/../build`)) //serving our build folder
 
 
 //Auth Controllers
@@ -49,17 +50,19 @@ app.put('/updatePasswordViaEmail', nodeMailerCtrl.updatePassword)
 
 //----------------TENANT CONTROLLERS--------------------------------
 app.put('/api/tenant/:user_id', tenantCtrl.editUser)
+app.get('/api/tenant/:user_id', tenantCtrl.getUser)
 app.post('/api/tenant/:user_id/mr', tenantCtrl.addMr)
 app.get('/api/tenant/:user_id/mr', tenantCtrl.getAllMr)
 app.get('/api/tenant/:user_id/mr/:mr_id', tenantCtrl.getOneMr)
 app.get('/api/tenant/:user_id/payments', tenantCtrl.getAllPayments)
 app.get('/api/tenant/:user_id/due', tenantCtrl.getNextDueDate)
+app.get('/api/tenant/:user_id/rent', tenantCtrl.getRentAmount)
 
 
 
 //----------------MANAGER CONTROLLERS--------------------------------
 // Maintenance Requests - Manager
-app.get('/api/manager/mr/:is_complete', authenticateUser, managerCtrl.getMr)
+app.get('/api/manager/mr/admin/:is_complete', authenticateUser, managerCtrl.getMr)
 app.get('/api/manager/mr/one/:mr_id', authenticateUser, managerCtrl.getOneMr)
 app.put('/api/manager/mr/:mr_id', authenticateUser, managerCtrl.editOneMr)
 
@@ -83,6 +86,11 @@ app.get('/api/manager/payments', authenticateUser, managerCtrl.getAllPayments)
 
 //STRIPE Endpoint
 app.post('/pay_rent', stripeCtrl.payRent)
+
+
+app.get('*', (req, res) => { //Its essentially a catchall. 
+    res.sendFile(path.join(__dirname, '../build/index.html'))
+})
 
 massive({
     connectionString: CONNECTION_STRING,
