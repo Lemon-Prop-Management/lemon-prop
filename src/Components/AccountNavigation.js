@@ -24,7 +24,7 @@ const AccNav = props => {
           <nav></nav>
         ) : (
             props.admin === true ? (
-              <nav>
+              <nav className="navigation">
                 <h1>LemonProp</h1>
                 <div>
                   <Link to='/dashboard'>Home</Link>

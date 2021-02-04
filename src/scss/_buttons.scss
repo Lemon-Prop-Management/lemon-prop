@@ -1,0 +1,22 @@
+%btn {
+  display: inline-block;
+  border-radius: 5px;
+  padding: 8px 20px;
+  margin: 3px;
+
+  &:hover{
+    transform: scale(.98);
+    @include set-background(lighten($grey-color, 30%))
+  }
+}
+
+//Blue button
+.btn-1 {
+  @extend %btn;
+  @include set-background(lighten($blue-color, 10%));
+}
+//Orange button
+.btn-2 {
+  @extend %btn;
+  @include set-background(lighten($orange-color, 10%));
+}
