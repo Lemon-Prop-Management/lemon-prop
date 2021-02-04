@@ -1,7 +1,7 @@
-@import 'config';
-@import 'buttons';
-@import 'utilities';
-@import 'landing';
+@import './config.scss';
+@import './buttons.scss';
+@import './utilities.scss';
+@import './landing.scss';
 
 * {
   box-sizing: border-box;
