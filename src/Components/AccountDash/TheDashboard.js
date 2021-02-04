@@ -20,7 +20,9 @@ const TheDashboard = props => {
     if (admin === false) {
       axios.get(`/api/tenant/${user_id}`)
         .then(res => {
+          console.log(res.data)
           setTenantInfo(res.data)
+
         })
         .catch(err => console.log(err))
     }
@@ -45,10 +47,10 @@ const TheDashboard = props => {
         setEmail('')
         setEditBool(false)
         axios.get(`/api/tenant/${user_id}`)
-        .then(res => {
-          setTenantInfo(res.data)
-        })
-        .catch(err => console.log(err))
+          .then(res => {
+            setTenantInfo(res.data)
+          })
+          .catch(err => console.log(err))
       })
       .catch(err => console.log(err))
   }
@@ -101,19 +103,19 @@ const TheDashboard = props => {
         ) : null}
       </div>
       <div>
-        <MaintReqList open={true}/>
+        <MaintReqList open={true} />
       </div>
-      
-        {admin === false ? (
+
+      {admin === false ? (
         <div>
           <h2>My Info:</h2>
           <div className="edit-tenant">
             {mappedTenant(tenantInfo)}
           </div>
-         </div>
-        ) : null}
+        </div>
+      ) : null}
     </div>
-    
+
   )
 }
 

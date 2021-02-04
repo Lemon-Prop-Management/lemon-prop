@@ -26,8 +26,8 @@ const Login = props => {
     axios.post('/auth/login', { email, password })
       .then((res) => {
         // console.log('login successful - 1')
-        props.loginUser(res.data.email, res.data.user_id, res.data.admin, res.data.approved)
-        // console.log('login successful - 2')
+        props.loginUser(res.data.email, res.data.user_id, res.data.admin, res.data.approved, res.data.prop_id)
+        console.log(res.data.prop_id)
         props.history.push('/dashboard')
       })
       .catch(err => console.log(err))
