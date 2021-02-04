@@ -35,21 +35,15 @@
   align-items: center;
   text-align: center;
   z-index: 1;
+  background-color: transparent;
 }
 
-.landing .header {
-  background-color: none;
+.landing.header {
+  background-color: transparent;
 }
 
-.landing .header img {
-  width: 20%;
-}
-
-.landing .container {
-  max-width: 1070px;
-  padding: 0 30px;
-  margin: 0 auto;
-  z-index: 0;
+.landing .logo {
+  width: 25vw;
 }
 
 .landing .diamond-big {
@@ -63,26 +57,25 @@
   width: 15%;
   height: 0px;
   padding-bottom: 15%;
-  background-color: rgba(255, 211, 51, 0.4);
+  background-color: rgba(228, 87, 46, 0.4);
   display: inline-block;
 }
 
 .landing .diamond-sm {
   width: 20%;
   padding-bottom: 20%;
-  background-color: rgba(228, 87, 46, 0.4);
+  background-color: rgba(255, 211, 51, 0.4);
   display: inline-block;
 }
 
 .landing .grid {
   position: relative;
-  padding-bottom: 100%;
   transform: rotate(45deg);
-  transform-origin: 99%;
-}
-
-.landing .grid-section {
-  padding-bottom: 200px;
+  transform-origin: 100%;
+  padding-bottom: 30%;
+  top: 190px;
+  left: 270px;
+  z-index: -1;
 }
 
 .landing #diamond1 {
@@ -94,13 +87,12 @@
 
 .landing #diamond2 {
   position: absolute;
-  top: 4%;
+  top: -46.5%;
   left: 15%;
 }
 
 .landing #diamond3 {
   position: absolute;
-  top: 10%;
   left: 37.5%;
 }
 
@@ -111,7 +103,7 @@
 }
 
 body {
-  background-color: #f4f4f4;
+  background-color: #fff;
   font-family: "Roboto", sans-serif;
   line-height: 1.6;
 }
@@ -133,6 +125,7 @@ a {
   background-color: #D7FDEC;
   color: #333;
   height: 100%;
+  color: #0D0630;
 }
 
 .navigation nav {

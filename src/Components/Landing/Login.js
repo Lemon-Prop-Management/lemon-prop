@@ -31,7 +31,7 @@ const Login = props => {
   }
 
   return (
-    <div>
+    <div className='login-page'>
       {/* <input
         placeholder='Email'
         type="text"
