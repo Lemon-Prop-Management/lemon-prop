@@ -1,0 +1,163 @@
+.btn-1, .btn-2 {
+  display: inline-block;
+  border-radius: 5px;
+  padding: 8px 20px;
+  margin: 3px;
+}
+
+.btn-1:hover, .btn-2:hover {
+  transform: scale(0.98);
+  background-color: #acacab;
+  color: #fff;
+}
+
+.btn-1 {
+  background-color: #190c5d;
+  color: #fff;
+}
+
+.btn-2 {
+  background-color: #ea7b5b;
+  color: #fff;
+}
+
+.container {
+  max-width: 1000px;
+  padding: 0 30px;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+.landing {
+  height: 100%;
+  padding-top: 3vh;
+  overflow: hidden;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+}
+
+.landing .header {
+  background-color: none;
+}
+
+.landing .header img {
+  width: 20%;
+}
+
+.landing .container {
+  max-width: 1070px;
+  padding: 0 30px;
+  margin: 0 auto;
+  z-index: 0;
+}
+
+.landing .diamond-big {
+  width: 25%;
+  padding-bottom: 25%;
+  background-color: rgba(13, 6, 48, 0.4);
+  display: inline-block;
+}
+
+.landing .diamond-med {
+  width: 15%;
+  height: 0px;
+  padding-bottom: 15%;
+  background-color: rgba(255, 211, 51, 0.4);
+  display: inline-block;
+}
+
+.landing .diamond-sm {
+  width: 20%;
+  padding-bottom: 20%;
+  background-color: rgba(228, 87, 46, 0.4);
+  display: inline-block;
+}
+
+.landing .grid {
+  position: relative;
+  padding-bottom: 100%;
+  transform: rotate(45deg);
+  transform-origin: 59%;
+}
+
+.landing .grid-section {
+  padding-bottom: 200px;
+}
+
+.landing #diamond1 {
+  position: absolute;
+  top: 26.5%;
+  left: 21%;
+  cursor: pointer;
+}
+
+.landing #diamond2 {
+  position: absolute;
+  top: 4%;
+  left: 15%;
+}
+
+.landing #diamond3 {
+  position: absolute;
+  top: 10%;
+  left: 37.5%;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #D7FDEC;
+  font-family: "Roboto", sans-serif;
+  line-height: 1.6;
+}
+
+body h1 {
+  font-size: 50px;
+  line-height: 1.4;
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.navigation {
+  background-color: #D7FDEC;
+  color: #333;
+  height: 100%;
+}
+
+.navigation nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 15px;
+}
+
+.navigation a {
+  color: #fff;
+  background-color: set-background(#E4572E);
+}
+
+.navigation a:hover {
+  color: #605F5E;
+  background-color: #D7FDEC;
+}
+
+.input {
+  border: 1px solid #605F5E;
+  border-radius: 4px;
+  background-color: #D7FDEC;
+  color: #0D0630;
+}
+/*# sourceMappingURL=main.css.map */
