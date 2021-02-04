@@ -2,6 +2,7 @@
 @import './buttons.scss';
 @import './utilities.scss';
 @import './landing.scss';
+@import './nav.scss';
 
 * {
   box-sizing: border-box;
@@ -10,7 +11,7 @@
 }
 
 body {
-  background-color: $light-color;
+  background-color: #fff;
   font-family: $font-stack;
   line-height: 1.6;
 
@@ -31,6 +32,7 @@ a {
 .navigation {
   @include set-background($light-blue-color);
   height: 100%;
+  color: $blue-color;
 
   nav {
   display: flex;
