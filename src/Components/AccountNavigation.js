@@ -17,33 +17,49 @@ const AccNav = props => {
     <div>
       {
         !props.email && !props.approved ? (
-          <nav></nav>
+          null
         ) : (
             props.admin === true ? (
-              <nav className="navigation">
+              <nav>
                 <h1>LemonProp</h1>
-                <div>
+                <div className='links'>
                   <Link to='/dashboard'>Home</Link>
                   <Link to='/payments'>Payments</Link>
                   <Link to='/maintreq'>Requests</Link>
                   <Link to='/properties'>Properties</Link>
                   <Link to='/tenants'>Tenants</Link>
                 </div>
-                <button><Link to='/' onClick={logoutUser}>Logout</Link></button>
+
+
+                <Link
+                  to='/'
+                  className='btn-1'
+                  onClick={logoutUser}>
+                  Logout
+                </Link>
+
+
               </nav>
             ) : (
                 <nav>
-                  <div>
+                  <h1>LemonProp</h1>
+                  <div className='links'>
                     <Link to='/dashboard'>Home</Link>
                     <Link to='/payments'>Payments</Link>
                     <Link to='/maintreq'>Requests</Link>
                   </div>
-                  <button><Link to='/' onClick={logoutUser}>Logout</Link></button>
+                  <Link
+                    to='/'
+                    className='btn-1'
+                    onClick={logoutUser}>
+                    Logout
+                  </Link>
+
                 </nav>
               )
           )
       }
-    </div>
+    </div >
   )
 }
 function mapStateToProps(reduxState) {
