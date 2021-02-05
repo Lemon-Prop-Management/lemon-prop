@@ -1,19 +1,23 @@
-.btn-1, .btn-2 {
+.btn-1, nav .btn-1, .btn-2 {
   display: inline-block;
   border-radius: 5px;
   padding: 8px 20px;
   margin: 3px;
+  color: white;
+  text-align: center;
 }
 
 .btn-1:hover, .btn-2:hover {
   transform: scale(0.98);
   background-color: #acacab;
   color: #fff;
+  color: #0D0630;
 }
 
-.btn-1 {
+.btn-1, nav .btn-1 {
   background-color: #190c5d;
   color: #fff;
+  color: white;
 }
 
 .btn-2 {
@@ -29,21 +33,28 @@
 }
 
 .landing {
-  height: 100%;
-  padding-top: 3vh;
+  height: 100vh;
+  width: 100vw;
+  padding-top: 0 auto;
   overflow: hidden;
   align-items: center;
   text-align: center;
   z-index: 1;
-  background-color: transparent;
+  background-color: white;
 }
 
-.landing.header {
+.landing .header {
   background-color: transparent;
+  display: flex;
+  align-items: center;
 }
 
 .landing .logo {
   width: 25vw;
+}
+
+.landing .landing-page-adjust {
+  margin-left: 5vw;
 }
 
 .landing .diamond-big {
@@ -72,28 +83,70 @@
   position: relative;
   transform: rotate(45deg);
   transform-origin: 100%;
-  padding-bottom: 30%;
-  top: 190px;
-  left: 270px;
+  padding-bottom: 45%;
+  top: 400px;
+  left: 580px;
   z-index: -1;
 }
 
 .landing #diamond1 {
   position: absolute;
-  top: 26.5%;
+  top: 47%;
   left: 21%;
-  cursor: pointer;
 }
 
 .landing #diamond2 {
   position: absolute;
-  top: -46.5%;
+  top: 0%;
   left: 15%;
 }
 
 .landing #diamond3 {
   position: absolute;
+  top: 20%;
   left: 37.5%;
+}
+
+.member-login {
+  padding: 5px 0 5px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.member-login input {
+  margin: 10px 0;
+  width: 200px;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.member-login p {
+  padding: 0 20px;
+}
+
+.login-request {
+  padding-top: 65px 0 5px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-request input {
+  margin: 10px 0;
+  padding: 5px;
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+}
+
+.login-request h2 {
+  padding-top: 10px;
+}
+
+.login-request p {
+  padding: 0 20px;
 }
 
 * {
@@ -102,13 +155,20 @@
   padding: 0;
 }
 
+.App {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
 body {
   background-color: #fff;
   font-family: "Roboto", sans-serif;
   line-height: 1.6;
 }
 
-body h1 {
+h1 {
   font-size: 50px;
   line-height: 1.4;
 }
@@ -121,30 +181,40 @@ a {
   text-decoration: none;
 }
 
-.navigation {
+nav {
   background-color: #D7FDEC;
   color: #333;
-  height: 100%;
+  height: 100vh;
   color: #0D0630;
-}
-
-.navigation nav {
+  border-right: 2px solid #0D0630;
+  position: sticky;
+  top: 0;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   flex-direction: column;
+  justify-content: space-between;
   list-style-type: none;
   padding: 15px;
+  align-content: center;
 }
 
-.navigation a {
-  color: #fff;
+nav a {
+  color: #0D0630;
   background-color: set-background(#E4572E);
 }
 
-.navigation a:hover {
+nav a:hover {
   color: #605F5E;
   background-color: #D7FDEC;
+}
+
+nav .links {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 20px;
+  min-height: 40vh;
+  position: relative;
+  bottom: 130px;
 }
 
 .input {

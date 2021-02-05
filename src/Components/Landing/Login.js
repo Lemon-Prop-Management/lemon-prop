@@ -5,6 +5,7 @@ import { loginUser } from '../../redux/reducer'
 import Popup from '../Popup'
 import { useForm } from 'react-hook-form'
 import '../../scss/main.scss'
+import logo from '../../img/lemon_prop.png'
 
 const Login = props => {
   const [email, setEmail] = useState('')
@@ -50,22 +51,28 @@ const Login = props => {
         value="Login"
         onClick={togglePopup} />
       {isOpen && <Popup content={<>
-        <div className="member-login">
+        <div className="popup-header">
+          {/* <img className="logo" src={logo} ></img> */}
           <h2>Lemon Prop Mgmt</h2>
-          <p>Just a placeholder for any extra text we may need here</p>
-          <input
-            placeholder='Email'
-            type="text"
-            value={email}
-            onChange={e => setEmail(e.target.value)}>
-          </input>
-          <input
-            placeholder='Password'
-            type="text"
-            value={password}
-            onChange={e => setPassword(e.target.value)}>
-          </input>
-          <button onClick={e => submit()}>Log in</button>
+        </div>
+        <div className="member-login">
+          <p>Please login with your email and password</p>
+          <div>
+
+            <input
+              placeholder='Email'
+              type="text"
+              value={email}
+              onChange={e => setEmail(e.target.value)}>
+            </input>
+            <input
+              placeholder='Password'
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}>
+            </input>
+          </div>
+          <button className="btn-1" type="button" onClick={e => submit()}>Log in</button>
         </div>
         {/* Request access */}
         <div className="login-request">
@@ -76,8 +83,8 @@ const Login = props => {
             <input type="text" name="last name" placeholder="Last Name" ref={register({ required: true })} />
             <input type="tel" name="phone" placeholder="Phone number" ref={register({ required: true, minLength: 6, maxLength: 12 })} />
             <input type="text" name="email" placeholder="Email address" ref={register({ required: true, pattern: /^\S+@\S+$/i })} />
-            <input type="radio" name="pets" placeholder="Pets" ref={register} />Pets
-            <input type="submit" />
+            {/* <input type="radio" name="pets" placeholder="Pets" ref={register} />Pets */}
+            <button className="btn-1" type="button">Submit</button>
           </form>
         </div>
       </>}
