@@ -26,3 +26,21 @@
   @extend %btn;
   @include set-background(lighten($orange-color, 10%));
 }
+
+//Edit buttons for Properties
+.btn-edit {
+  @extend %btn;
+  @include set-background(lighten($blue-color, 10%));
+  height: 40px;
+  align-self: center;
+  margin: 20px;
+}
+
+//Save & submit button for properties
+.btn-save {
+  @extend %btn;
+  @include set-background(lighten($light-yellow-color, 10%));
+  height: 40px;
+  align-self: center;
+  margin: 20px;
+}

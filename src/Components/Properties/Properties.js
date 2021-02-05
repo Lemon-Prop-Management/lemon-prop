@@ -51,7 +51,7 @@ const Properties = props => {
                     <h1>Current Properties</h1>
                     <PropertiesList setCurrentProperties={setCurrentProperties} currentProperties={currentProperties} />
                 </div>
-                <button className="submit" onClick={() => newProperty()}>New Property</button>
+                <button className="submit btn-1" onClick={() => newProperty()}>New Property</button>
             </div>
             {newPropertyDisplay === true ? (
                 <div>
@@ -68,7 +68,7 @@ const Properties = props => {
                         <label htmlFor={'leaseStatus'}>Active Lease?</label>
                     </div>
                     <div>
-                        <button className='Submit' onClick={() => submit()}>Submit</button>
+                        <button className='Submit btn-save' onClick={() => submit()}>Submit</button>
                     </div>
                 </div>) : null}
         </div>
