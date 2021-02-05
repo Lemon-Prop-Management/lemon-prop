@@ -46,17 +46,18 @@ const MakePayment = props => {
     }
 
     return (
-        <div>{!props.admin ? (
-            <div>
-                <div> Your rent amount due: $
+        <div >{!props.admin ? (
+            <div className='title-container secondary-container'>
+                <h2> Your rent amount due:    $
                     {rentAmount}
-                </div>
+                </h2>
                 <StripeCheckout
                     stripeKey='pk_test_51IEMDRHaijm3D4Gz5082wV01blikaeeyYMcLRDpCWBUPTHQSOhYA5t5lRF7VfAmzitNMVR1JIxYSuKwOPYPAmfY700a2qf4x3J'
                     token={handleToken}
                     billingAddress
                     amount={rentAmount * 100}
                     label='Pay Rent'
+                    className='btn-1'
                 />
             </div>
         ) : null}

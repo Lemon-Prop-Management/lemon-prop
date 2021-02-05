@@ -22,18 +22,25 @@ const PaymentList = props => {
             let date = el.date_paid.slice(0, 10)
             return (
                 <div key={el.invoice_id} className='row'>
-                    <div> {el.invoice_id} </div>
-                    <div> {date} </div>
-                    <div> {el.amt_paid} </div>
-                    {admin === true ? <div> {el.user_id} </div> : null}
+                    <div className='list-item'> {el.invoice_id} </div>
+                    {admin === true ? <div className='list-item'> {el.user_id} </div> : null}
+                    <div className='list-item'> ${el.amt_paid} </div>
+                    <div className='list-item'> {date} </div>
                 </div>
             )
         })
     }
 
     return (
-        <div>
-            <p>Payment History</p>
+        <div className='sub-page'>
+            <h2>Payment History</h2>
+            <div className='row'>
+                <div className='list-item list-title'>Invoice ID</div>
+                {admin === true ? <div className='list-item list-title'>Property ID</div> : null}
+                <div className='list-item list-title'>Amount Paid</div>
+                <div className='list-item list-title'>Date Paid</div>
+            </div>
+
             {admin === false ? mappedList(props.tnt_payments_list) : mappedList(props.mgr_payments_list)}
         </div>
     )

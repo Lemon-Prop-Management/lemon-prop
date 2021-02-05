@@ -35,34 +35,34 @@ const MaintReqList = props => {
     return array.map((element) => {
       let date = element.date_sub.slice(0, 10)
       return (
-        <div key={element.maint_req_id}>
+        <div className='sub-page maint-req' key={element.maint_req_id}>
           {(admin === false && !props.open) ? (
             <div className='row'>
               <h2>{ }</h2>
-              <div>{date}</div>
-              <div>{element.subject}</div>
-              {admin === false ? null : <div>{element.prop_id}</div>}
-              <div>{element.status}</div>
+              <div className='list-item' >{date}</div>
+              <div className='list-item'>{element.subject}</div>
+              {admin === false ? null : <div className='list-item'>{element.prop_id}</div>}
+              <div className='list-item'>{element.status}</div>
               {admin === true && element.status === 'open' ? <button>Complete</button> : null}
             </div>
           ) : (
               element.is_compl === false ? (
                 <div className='row'>
                   <h2>{ }</h2>
-                  <div>{date}</div>
-                  <div>{element.subject}</div>
-                  {admin === false ? null : <div>{element.prop_id}</div>}
-                  <div>{element.status}</div>
+                  <div className='list-item'>{date}</div>
+                  <div className='list-item'>{element.subject}</div>
+                  {admin === false ? null : <div className='list-item'>{element.prop_id}</div>}
+                  <div className='list-item'>{element.status}</div>
                   {admin === true && element.status === 'open' ? <button>Complete</button> : null}
                 </div>
               ) : null)}
           {(admin === true && element.is_compl === true && !props.open) ? (
             <div key={element.maint_req_id} className='row'>
               <h2>{ }</h2>
-              <div>{date}</div>
-              <div>{element.subject}</div>
-              {admin === false ? null : <div>{element.prop_id}</div>}
-              <div>{element.status}</div>
+              <div className='list-item'>{date}</div>
+              <div className='list-item'>{element.subject}</div>
+              {admin === false ? null : <div className='list-item'>{element.prop_id}</div>}
+              <div className='list-item'>{element.status}</div>
               {admin === true && element.status === 'open' ? <button>Complete</button> : null}
             </div>
           ) : null}
@@ -72,31 +72,42 @@ const MaintReqList = props => {
   }
 
   return (
-    <div className='maint-req'>
-      <h1>{!props.open ? 'Maintenance Request History' : null}</h1>
-      {(admin === false && !props.open) ? mapIt(myList) : null}
-      {(admin === false && props.open) ? (
-        <div>
-          <h2>Open Requests</h2>
-          {mapIt(myList)}
-        </div>
-      ) : null}
-      {(admin === true && !props.open) ? (
-        <div>
-          <h2>Open Requests:</h2>
-          {mapIt(openList)}
-        </div>) : null}
-      {(admin === true && !props.open) ? (
-        <div>
-          <h2>Closed Requests:</h2>
-          {mapIt(closedList)}
-        </div>) : null}
-      {(admin === true && props.open) ? (
-        <div>
-          <h2>Open Requests:</h2>
-          {mapIt(openList)}
-        </div>) : null}
-    </div>
+    <div >
+      <div className='row'>
+        <div className='list-item list-title'>Date Submitted</div>
+        <div className='list-item list-title'>Subject</div>
+      </div>
+      { (admin === false && !props.open) ? mapIt(myList) : null}
+      {
+        (admin === false && props.open) ? (
+          <div>
+            <h2>Open Requests</h2>
+            {mapIt(myList)}
+          </div>
+        ) : null
+      }
+      {
+        (admin === true && !props.open) ? (
+          <div>
+            <h2>Open Requests:</h2>
+            {mapIt(openList)}
+          </div>) : null
+      }
+      {
+        (admin === true && !props.open) ? (
+          <div>
+            <h2>Closed Requests:</h2>
+            {mapIt(closedList)}
+          </div>) : null
+      }
+      {
+        (admin === true && props.open) ? (
+          <div>
+            <h2>Open Requests:</h2>
+            {mapIt(openList)}
+          </div>) : null
+      }
+    </div >
   )
 }
 
