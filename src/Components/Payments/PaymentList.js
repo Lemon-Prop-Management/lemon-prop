@@ -17,11 +17,13 @@ const PaymentList = props => {
     }, [user_id])
 
     function mappedList(array) {
-        return array.map((el) => {
+        return array.map((el, i, arr) => {
+            console.log(el.date_paid)
+            let date = el.date_paid.slice(0, 10)
             return (
-                <div key={el.invoice_id}>
+                <div key={el.invoice_id} className='row'>
                     <div> {el.invoice_id} </div>
-                    <div> {el.date_paid} </div>
+                    <div> {date} </div>
                     <div> {el.amt_paid} </div>
                     {admin === true ? <div> {el.user_id} </div> : null}
                 </div>

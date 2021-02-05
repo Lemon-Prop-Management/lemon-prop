@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const MaintReq = props => {
     return (
-        <div>
+        <div className='page'>
             <MaintReqList />
             <Link to='/maintreq/request'>
                 <button className="submit">New Request</button>

@@ -1,0 +1,80 @@
+.navigation-comp{
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    nav {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        width: 200px;
+        color: $blue-color;
+    border-right: 2px solid $blue-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 15px;
+    margin-right: 70px;
+    align-content: center;
+
+    .nav-header{
+        display: flex;
+        flex-direction: row;
+        height: 40px;
+        align-items: center;
+        background-color: white;
+        border-radius: 10px;
+        padding-right:10px;
+
+        .logo{
+            height: 30px;
+            width: auto;
+        }
+        h1{
+            font-size: 20px;
+        }
+    }
+  
+    a {
+      color: $blue-color;
+      background-color: set-background($orange-color);
+    }
+    
+    a:hover {
+      color: $grey-color;
+      background-color: $light-blue-color;
+    }
+    
+    .links {
+      display: flex;
+      flex-direction: column;
+      font-size: 20px;
+      min-height: 40vh;
+      position: relative;
+      bottom: 130px;
+  
+      .nav-link{
+        height: 60px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid $blue-color;
+    }
+    .nav-link:hover {
+        color: $blue-color;
+        background-color: $light-yellow-color;
+        border-radius: 5px;
+        padding: 20px;
+
+      }
+      
+    #home {
+        border-top: 1px solid $blue-color;
+    }
+      
+    }
+  
+    .btn-1{
+      @extend .btn-1
+    }
+  }
+}
