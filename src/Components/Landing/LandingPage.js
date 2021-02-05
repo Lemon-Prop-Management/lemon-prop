@@ -16,8 +16,8 @@ const LandingPage = props => {
         <Login {...props} />
       </div>
       <div className="landing-middle">
-        <h2>We make finding a new home</h2>
-        <h1>EASY!</h1>
+        <h2>Finding a home?</h2>
+        <h1>EASY.</h1>
         <hr />
         <h3>This could be your next rental!</h3>
       </div>

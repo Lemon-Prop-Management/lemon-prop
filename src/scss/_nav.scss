@@ -19,7 +19,7 @@
 
     .nav-header{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         height: 40px;
         align-items: center;
         background-color: white;
@@ -27,11 +27,12 @@
         padding-right:10px;
 
         .logo{
-            height: 30px;
+            height: 50px;
             width: auto;
         }
         h1{
             font-size: 20px;
+            align-items: flex-start;
         }
     }
   
