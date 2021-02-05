@@ -47,7 +47,7 @@ const Login = props => {
       </input>
       <button onClick={e => submit()}>Login</button>
       <button>I need access</button> */}
-      <input className="btn-1" type="button"
+      <input className="btn-1 landing-page-adjust" type="button"
         value="Login"
         onClick={togglePopup} />
       {isOpen && <Popup content={<>

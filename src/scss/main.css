@@ -8,7 +8,8 @@
 }
 
 .btn-1:hover, .btn-2:hover {
-  transform: scale(0.98);
+  -webkit-transform: scale(0.98);
+          transform: scale(0.98);
   background-color: #acacab;
   color: #fff;
   color: #0D0630;
@@ -37,7 +38,9 @@
   width: 100vw;
   padding-top: 0 auto;
   overflow: hidden;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   text-align: center;
   z-index: 1;
   background-color: white;
@@ -45,15 +48,23 @@
 
 .landing .header {
   background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .landing .logo {
   width: 25vw;
 }
 
-.landing .landing-page-adjust {
+.landing .landing-page-h1-adjust {
+  margin-left: 5vw;
+}
+
+.landing .landing-page-button-adjust {
   margin-left: 5vw;
 }
 
@@ -81,8 +92,10 @@
 
 .landing .grid {
   position: relative;
-  transform: rotate(45deg);
-  transform-origin: 100%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  -webkit-transform-origin: 100%;
+          transform-origin: 100%;
   padding-bottom: 45%;
   top: 400px;
   left: 580px;
@@ -107,55 +120,16 @@
   left: 37.5%;
 }
 
-.member-login {
-  padding: 5px 0 5px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.member-login input {
-  margin: 10px 0;
-  width: 200px;
-  padding: 5px;
-  display: flex;
-  flex-direction: row;
-}
-
-.member-login p {
-  padding: 0 20px;
-}
-
-.login-request {
-  padding-top: 65px 0 5px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.login-request input {
-  margin: 10px 0;
-  padding: 5px;
-  width: 200px;
-  display: flex;
-  flex-direction: row;
-}
-
-.login-request h2 {
-  padding-top: 10px;
-}
-
-.login-request p {
-  padding: 0 20px;
-}
-
 * {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 .App {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 100vw;
   height: 100vh;
@@ -187,14 +161,23 @@ nav {
   height: 100vh;
   color: #0D0630;
   border-right: 2px solid #0D0630;
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   list-style-type: none;
   padding: 15px;
-  align-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 
 nav a {
@@ -208,9 +191,16 @@ nav a:hover {
 }
 
 nav .links {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   font-size: 20px;
   min-height: 40vh;
   position: relative;
