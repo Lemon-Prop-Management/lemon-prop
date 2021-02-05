@@ -11,7 +11,7 @@ const LandingPage = props => {
     <div className="landing">
       <div className="header">
         <img className="logo" src={logo} ></img>
-        <h1>Lemon Prop Management</h1>
+        <h1>LemonProp Management</h1>
         {/* The Login that is rendered below will eventually be moved to an onClick function for a popover. We are displaying it now to test further functionality while we are still getting the popover up and running */}
         <Login {...props} />
       </div>

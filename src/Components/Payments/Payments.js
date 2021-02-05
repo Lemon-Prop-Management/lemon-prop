@@ -5,7 +5,7 @@ import MakePayment from './MakePayment';
 // Overall View when they click on payments ta
 const Payments = props => {
     return (
-        <div>
+        <div className='page'>
             <PaymentsList />
             <MakePayment />
         </div>

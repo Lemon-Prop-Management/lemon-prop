@@ -45,7 +45,7 @@ const Properties = props => {
     }
 
     return (
-        <div>
+        <div className='page'>
             <div>
                 <div>
                     <h1>Current Properties</h1>

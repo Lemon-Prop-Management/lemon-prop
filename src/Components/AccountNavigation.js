@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginUser, logout } from '../redux/reducer'
 import axios from 'axios'
+import lemon from '../img/lemon_prop.png'
 
 const AccNav = props => {
   function logoutUser() {
@@ -14,22 +15,24 @@ const AccNav = props => {
   }
 
   return (
-    <div>
+    <div className="navigation-comp">
       {
         !props.email && !props.approved ? (
           null
         ) : (
             props.admin === true ? (
               <nav>
-                <h1>LemonProp</h1>
-                <div className='links'>
-                  <Link to='/dashboard'>Home</Link>
-                  <Link to='/payments'>Payments</Link>
-                  <Link to='/maintreq'>Requests</Link>
-                  <Link to='/properties'>Properties</Link>
-                  <Link to='/tenants'>Tenants</Link>
+                <div className='nav-header'>
+                  <img className='logo' src={lemon} />
+                  <h1>LemonProp</h1>
                 </div>
-
+                <div className='links'>
+                  <Link className='nav-link' id='home' to='/dashboard'>Home</Link>
+                  <Link className='nav-link' to='/payments'>Payments</Link>
+                  <Link className='nav-link' to='/maintreq'>Requests</Link>
+                  <Link className='nav-link' to='/properties'>Properties</Link>
+                  <Link className='nav-link' to='/tenants'>Tenants</Link>
+                </div>
 
                 <Link
                   to='/'
@@ -38,15 +41,17 @@ const AccNav = props => {
                   Logout
                 </Link>
 
-
               </nav>
             ) : (
                 <nav>
-                  <h1>LemonProp</h1>
+                  <div className='nav-header'>
+                    <img className='logo' src={lemon} />
+                    <h1>LemonProp</h1>
+                  </div>
                   <div className='links'>
-                    <Link to='/dashboard'>Home</Link>
-                    <Link to='/payments'>Payments</Link>
-                    <Link to='/maintreq'>Requests</Link>
+                    <Link className='nav-link' id='home' to='/dashboard'>Home</Link>
+                    <Link className='nav-link' to='/payments'>Payments</Link>
+                    <Link className='nav-link' to='/maintreq'>Requests</Link>
                   </div>
                   <Link
                     to='/'
