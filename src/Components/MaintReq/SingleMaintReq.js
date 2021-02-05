@@ -38,7 +38,7 @@ const SingleMaintReq = props => {
         type="text"
       >
       </input>
-      <button onClick={submitMaintReq}>Submit</button>
+      <button className="btn-save" onClick={submitMaintReq}>Submit</button>
     </div>
   )
 }

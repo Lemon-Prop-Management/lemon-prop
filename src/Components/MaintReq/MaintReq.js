@@ -7,7 +7,7 @@ const MaintReq = props => {
         <div className='page'>
             <MaintReqList />
             <Link to='/maintreq/request'>
-                <button className="submit">New Request</button>
+                <button className="submit btn-edit">New Request</button>
             </Link>
         </div>
     )

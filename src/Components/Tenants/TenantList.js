@@ -80,7 +80,7 @@ const TenantList = props => {
       }
       return (
         <div key={element.user_id}>
-          <button onClick={() => clickEdit(element.user_id)}>Edit</button>
+          <button className="btn-edit" onClick={() => clickEdit(element.user_id)}>Edit</button>
           {editBool === false ? (
             <div>
               <div>{element.user_id}</div>
@@ -102,7 +102,7 @@ const TenantList = props => {
                   <input defaultValue={element.phone} onChange={e => setPhone(e.target.value)}></input>
                   <input type='checkbox' name='pets' id='pets' defaultChecked={element.pet} onClick={() => checkbox(document.getElementById('pets'))}></input>
                   <label htmlFor={'pets'}>Pets?</label>
-                  <button className='submit' onClick={() => submit(element)}>Save</button>
+                  <button className='submit btn-save' onClick={() => submit(element)}>Save</button>
                 </div>
               ) : (
                   <div>
