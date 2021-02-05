@@ -19,7 +19,7 @@ const LandingPage = props => {
         <h2>Finding a home?</h2>
         <h1>EASY.</h1>
         <hr />
-        <h3>This could be your next rental!</h3>
+        <h3>Checkout some of our properties:</h3>
       </div>
       <div className="rental-row">
         <div className="rental-container">

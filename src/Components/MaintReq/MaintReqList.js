@@ -35,34 +35,33 @@ const MaintReqList = props => {
     return array.map((element) => {
       let date = element.date_sub.slice(0, 10)
       return (
-        <div className='sub-page maint-req' key={element.maint_req_id}>
+        <div className='maint-req' key={element.maint_req_id}>
           {(admin === false && !props.open) ? (
             <div className='row'>
-              <h2>{ }</h2>
+              
               <div className='list-item' >{date}</div>
               <div className='list-item'>{element.subject}</div>
               {admin === false ? null : <div className='list-item'>{element.prop_id}</div>}
-              <div className='list-item'>{element.status}</div>
+
               {admin === true && element.status === 'open' ? <button className="btn-save">Complete</button> : null}
             </div>
           ) : (
               element.is_compl === false ? (
                 <div className='row'>
-                  <h2>{ }</h2>
+                
                   <div className='list-item'>{date}</div>
                   <div className='list-item'>{element.subject}</div>
                   {admin === false ? null : <div className='list-item'>{element.prop_id}</div>}
-                  <div className='list-item'>{element.status}</div>
+
                   {admin === true && element.status === 'open' ? <button className="btn-save">Complete</button> : null}
                 </div>
               ) : null)}
           {(admin === true && element.is_compl === true && !props.open) ? (
             <div key={element.maint_req_id} className='row'>
-              <h2>{ }</h2>
+            
               <div className='list-item'>{date}</div>
               <div className='list-item'>{element.subject}</div>
               {admin === false ? null : <div className='list-item'>{element.prop_id}</div>}
-              <div className='list-item'>{element.status}</div>
               {admin === true && element.status === 'open' ? <button className="btn-save">Complete</button> : null}
             </div>
           ) : null}
@@ -72,16 +71,26 @@ const MaintReqList = props => {
   }
 
   return (
-    <div >
-      <div className='row'>
-        <div className='list-item list-title'>Date Submitted</div>
-        <div className='list-item list-title'>Subject</div>
-      </div>
-      { (admin === false && !props.open) ? mapIt(myList) : null}
+    <div className='sub-page '>
+      
+      { (admin === false && !props.open) ? (
+        <div>
+          <div className='row'>
+            <div className='list-item list-title'>Date Submitted</div>
+            <div className='list-item list-title'>Subject</div>
+            {admin === true ? <div className='list-item list-title'>Property ID</div> : null}
+          </div>
+          {mapIt(myList)}
+        </div>) : null}
       {
         (admin === false && props.open) ? (
           <div>
             <h2>Open Requests</h2>
+            <div className='row'>
+              <div className='list-item list-title'>Date Submitted</div>
+              <div className='list-item list-title'>Subject</div>
+              {admin === true ? <div className='list-item list-title'>Property ID</div> : null}
+            </div>
             {mapIt(myList)}
           </div>
         ) : null
@@ -90,6 +99,11 @@ const MaintReqList = props => {
         (admin === true && !props.open) ? (
           <div>
             <h2>Open Requests:</h2>
+            <div className='row'>
+              <div className='list-item list-title'>Date Submitted</div>
+              <div className='list-item list-title'>Subject</div>
+              {admin === true ? <div className='list-item list-title'>Property ID</div> : null}
+            </div>
             {mapIt(openList)}
           </div>) : null
       }
@@ -97,6 +111,11 @@ const MaintReqList = props => {
         (admin === true && !props.open) ? (
           <div>
             <h2>Closed Requests:</h2>
+            <div className='row'>
+              <div className='list-item list-title'>Date Submitted</div>
+              <div className='list-item list-title'>Subject</div>
+              {admin === true ? <div className='list-item list-title'>Property ID</div> : null}
+            </div>
             {mapIt(closedList)}
           </div>) : null
       }
@@ -104,6 +123,11 @@ const MaintReqList = props => {
         (admin === true && props.open) ? (
           <div>
             <h2>Open Requests:</h2>
+            <div className='row'>
+              <div className='list-item list-title'>Date Submitted</div>
+              <div className='list-item list-title'>Subject</div>
+              {admin === true ? <div className='list-item list-title'>Property ID</div> : null}
+            </div>
             {mapIt(openList)}
           </div>) : null
       }

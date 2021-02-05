@@ -48,7 +48,9 @@ const Properties = props => {
         <div className='page'>
             <div>
                 <div>
-                    <h1>Current Properties</h1>
+                    <div className='title-container'>
+                        <h1>Current Properties</h1>
+                    </div>
                     <PropertiesList setCurrentProperties={setCurrentProperties} currentProperties={currentProperties} />
                 </div>
                 <button className="submit btn-1" onClick={() => newProperty()}>New Property</button>

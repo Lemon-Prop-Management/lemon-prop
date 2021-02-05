@@ -57,42 +57,53 @@ const PropertiesList = props => {
   function mapIt(array) {
     return array.map((element) => {
       return (
-        <div key={element.prop_id} className='row'>
-          <button className="btn-edit" onClick={() => clickEdit(element.prop_id)}>Edit</button>
-          {editBool === false ? (
-            <div>
-              <div>{element.prop_id}</div>
-              <div>{element.address}</div>
-              <div>{`$${element.lease_amt}`}</div>
-              {element.lease_status === true ? <div>Yes</div> : <div>No</div>}
-            </div>
-          ) : (
-              element.prop_id === buttonId ? (
-                <div className='row'>
-                  <div>{element.prop_id}</div>
-                  <input defaultValue={element.address} onChange={e => setAddress(e.target.value)}></input>
-                  <input defaultValue={element.lease_amt} onChange={e => setLeaseAmt(e.target.value)}></input>
-                  <input type='checkbox' name='leaseStatus' id='leaseStatus' defaultChecked={element.lease_status} onClick={() => checkbox(document.getElementById('leaseStatus'))}></input>
-                  <label htmlFor={'leaseStatus'}>Active Lease?</label>
-                  <button className='submit btn-save' onClick={() => submit(element)}>Save</button>
-                </div>
-              ) : (
+        <div key={element.prop_id}>
+          <div>
+            {editBool === false ? (
+              <div className='row'>
+                <button className="btn-edit" onClick={() => clickEdit(element.prop_id)}>Edit</button>
+                <div className='list-item'>{element.prop_id}</div>
+                <div className='list-item'>{element.address}</div>
+                <div className='list-item'>{`$${element.lease_amt}`}</div>
+                <div className='list-item'>{element.lease_status === true ? 'Yes' : 'No'} </div>
+              </div>
+            ) : (
+                element.prop_id === buttonId ? (
                   <div className='row'>
                     <div>{element.prop_id}</div>
-                    <div>{element.address}</div>
-                    <div>{`$${element.lease_amt}`}</div>
-                    {element.lease_status === true ? <div>Yes</div> : <div>No</div>}
+                    <input className='list-item' defaultValue={element.address} onChange={e => setAddress(e.target.value)}></input>
+                    <input className='list-item' defaultValue={element.lease_amt} onChange={e => setLeaseAmt(e.target.value)}></input>
+                    <input className='list-item' type='checkbox' name='leaseStatus' id='leaseStatus' defaultChecked={element.lease_status} onClick={() => checkbox(document.getElementById('leaseStatus'))}></input>
+                    <label htmlFor={'leaseStatus'}>Active Lease?</label>
+                    <button className='submit btn-save' onClick={() => submit(element)}>Save</button>
                   </div>
-                )
-            )
-          }
+                ) : (
+                    <div >
+                      <div className='list-item'>{element.prop_id}</div>
+                      <div className='list-item'>{element.address}</div>
+                      <div className='list-item'>{`$${element.lease_amt}`}</div>
+                
+                      <div className='list-item'>{element.lease_status === true ? 'Yes' : 'No'} </div>
+
+                    </div>
+                  )
+              )
+            }
+          </div>
         </div>
       )
     })
   }
 
   return (
-    <div className='page'>
+    <div className='sub-page'>
+      <div className='row properties-titles'>
+                {/* <div className='list-item list-title'>{null}</div> */}
+                <div className='list-item list-title'>Property ID</div>
+                <div className='list-item list-title'>Address</div>
+                <div className='list-item list-title'>Lease Amount</div>
+                <div className='list-title list-item'>Occupied?</div>
+            </div>
       {mapIt(currentProperties)}
     </div>
   )
