@@ -6,9 +6,11 @@ import MakePayment from './MakePayment';
 const Payments = props => {
     return (
         <div className='page'>
-            <h1>Payments</h1>
-            <PaymentsList />
+            <div className='title-container'>
+                <h1>Payments</h1>
+            </div>
             <MakePayment />
+            <PaymentsList />
         </div>
     )
 }
