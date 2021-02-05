@@ -54,7 +54,11 @@
 }
 
 .landing .landing-page-adjust {
-  margin-left: 5vw;
+  margin-left: 4vw;
+}
+
+.landing .landing-page-adjust h1 {
+  color: #0D0630;
 }
 
 .landing .diamond-big {
@@ -82,10 +86,10 @@
 .landing .grid {
   position: relative;
   transform: rotate(45deg);
-  transform-origin: 100%;
-  padding-bottom: 45%;
-  top: 400px;
-  left: 580px;
+  transform-origin: 0;
+  padding-bottom: 55%;
+  left: 880px;
+  bottom: 1400px;
   z-index: -1;
 }
 
@@ -97,7 +101,7 @@
 
 .landing #diamond2 {
   position: absolute;
-  top: 0%;
+  top: 7%;
   left: 15%;
 }
 
@@ -105,6 +109,49 @@
   position: absolute;
   top: 20%;
   left: 37.5%;
+}
+
+.landing .rental-row {
+  display: flex;
+  padding: 0px 30px;
+}
+
+.landing .rental-row .rental-container {
+  flex: 33.33%;
+  margin: 10px 10px;
+  padding: 10px 5px 0px 0px;
+  overflow: hidden;
+  height: auto;
+}
+
+.landing .landing-middle {
+  margin-top: 15px;
+  color: #E4572E;
+  font-size: 1.5rem;
+}
+
+.landing .landing-middle h1 {
+  color: #0D0630;
+  font-size: 4rem;
+  padding-bottom: 35px;
+}
+
+.landing .landing-middle h2 {
+  color: #0D0630;
+  font-weight: normal;
+}
+
+.landing .landing-middle hr {
+  border: 2px solid #FFD333;
+  border-radius: 5px;
+  width: 750px;
+  margin: auto;
+  align-items: center;
+}
+
+.landing .landing-middle h3 {
+  font-weight: normal;
+  padding: 30px 200px;
 }
 
 .member-login {

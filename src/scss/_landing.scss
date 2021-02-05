@@ -1,3 +1,5 @@
+@import './config.scss';
+
 .landing {
   height: 100vh;
   width: 100vw;
@@ -19,8 +21,13 @@
     }
     
   .landing-page-adjust{
-    margin-left: 5vw;
+    margin-left: 4vw;
+
+    h1 {
+      color: $blue-color;
+    }
   }
+  
   .diamond-big {
     width: 25%;
     padding-bottom: 25%;
@@ -41,12 +48,13 @@
     display: inline-block;
   }
   .grid {
-   position: relative;
+    position: relative;
     transform: rotate(45deg);
-    transform-origin: 100%;
-    padding-bottom: 45%;
-    top: 400px;
-    left: 580px;
+    transform-origin: 0;
+    padding-bottom: 55%;
+    // top: 400px;
+    left: 880px;
+    bottom: 1400px;
     z-index: -1;
   }
   #diamond1 {
@@ -56,7 +64,7 @@
   }
   #diamond2 {
     position: absolute;
-    top: 0%;
+    top: 7%;
     left: 15%;
   }
   #diamond3 {
@@ -64,4 +72,49 @@
     top: 20%;
     left: 37.5%;
   }
+
+  .rental-row {
+    display: flex;
+    padding: 0px 30px;
+
+    .rental-container {
+      flex: 33.33%;
+      margin: 10px 10px;
+      padding: 10px 5px 0px 0px;
+      overflow: hidden;
+      height: auto;
+    }
+  }
+
+  .landing-middle {
+    margin-top: 15px;
+    color: $orange-color;
+    font-size: 1.5rem;
+
+    h1 {
+      color: $blue-color;
+      font-size: 4rem;
+      padding-bottom: 35px;
+    }
+
+    h2 {
+      color: $blue-color;
+      font-weight: normal;
+    }
+
+    hr {
+      border: 2px solid $yellow-color;
+      border-radius: 5px;
+      width: 750px;
+      margin: auto;
+      align-items: center;
+    }
+
+    h3 {
+      font-weight: normal;
+      padding: 30px 200px;
+    }
+  }
+
+
 }
