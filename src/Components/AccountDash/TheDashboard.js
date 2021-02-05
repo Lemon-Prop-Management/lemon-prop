@@ -57,7 +57,7 @@ const TheDashboard = props => {
 
       return (
         <div key={element.user_id}>
-          <button onClick={() => clickEdit(element.user_id)}>Edit</button>
+          <button className="btn-1" onClick={() => clickEdit(element.user_id)}>Edit</button>
           {editBool === false ? (
             <div>
               <div>{element.first_name}</div>
@@ -73,7 +73,7 @@ const TheDashboard = props => {
                   <input defaultValue={`${element.last_name}`} onChange={e => setLastName(e.target.value)}></input>
                   <input defaultValue={element.phone} onChange={e => setPhone(e.target.value)}></input>
                   <input defaultValue={element.email} onChange={e => setEmail(e.target.value)}></input>
-                  <button className='submit' onClick={() => editTenant(element)}>Save</button>
+                  <button className='submit btn-save' onClick={() => editTenant(element)}>Save</button>
                 </div>
               ) : (
                   <div>

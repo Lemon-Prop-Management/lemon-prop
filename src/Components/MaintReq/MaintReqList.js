@@ -43,7 +43,7 @@ const MaintReqList = props => {
               <div className='list-item'>{element.subject}</div>
               {admin === false ? null : <div className='list-item'>{element.prop_id}</div>}
               <div className='list-item'>{element.status}</div>
-              {admin === true && element.status === 'open' ? <button>Complete</button> : null}
+              {admin === true && element.status === 'open' ? <button className="btn-save">Complete</button> : null}
             </div>
           ) : (
               element.is_compl === false ? (
@@ -53,7 +53,7 @@ const MaintReqList = props => {
                   <div className='list-item'>{element.subject}</div>
                   {admin === false ? null : <div className='list-item'>{element.prop_id}</div>}
                   <div className='list-item'>{element.status}</div>
-                  {admin === true && element.status === 'open' ? <button>Complete</button> : null}
+                  {admin === true && element.status === 'open' ? <button className="btn-save">Complete</button> : null}
                 </div>
               ) : null)}
           {(admin === true && element.is_compl === true && !props.open) ? (
@@ -63,7 +63,7 @@ const MaintReqList = props => {
               <div className='list-item'>{element.subject}</div>
               {admin === false ? null : <div className='list-item'>{element.prop_id}</div>}
               <div className='list-item'>{element.status}</div>
-              {admin === true && element.status === 'open' ? <button>Complete</button> : null}
+              {admin === true && element.status === 'open' ? <button className="btn-save">Complete</button> : null}
             </div>
           ) : null}
         </div>
