@@ -3,6 +3,7 @@
 @import './utilities.scss';
 @import './landing.scss';
 @import './nav.scss';
+@import './popup.scss';
 
 * {
   box-sizing: border-box;
@@ -10,14 +11,11 @@
   padding: 0;
 }
 
-
-
 .App{
   display: flex;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  justify-content: space-between;
 }
 
 
