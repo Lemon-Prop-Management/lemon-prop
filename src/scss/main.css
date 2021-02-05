@@ -1,4 +1,4 @@
-.btn-1, nav .btn-1, .btn-2 {
+.btn-1, .navigation-comp nav .btn-1, .btn-2, .btn-edit {
   display: inline-block;
   border-radius: 5px;
   padding: 8px 20px;
@@ -7,7 +7,7 @@
   text-align: center;
 }
 
-.btn-1:hover, .btn-2:hover {
+.btn-1:hover, .navigation-comp nav .btn-1:hover, .btn-2:hover, .btn-edit:hover {
   -webkit-transform: scale(0.98);
           transform: scale(0.98);
   background-color: #acacab;
@@ -15,7 +15,7 @@
   color: #0D0630;
 }
 
-.btn-1, nav .btn-1 {
+.btn-1, .navigation-comp nav .btn-1 {
   background-color: #190c5d;
   color: #fff;
   color: white;
@@ -24,6 +24,16 @@
 .btn-2 {
   background-color: #ea7b5b;
   color: #fff;
+}
+
+.btn-edit {
+  background-color: #190c5d;
+  color: #fff;
+  height: 40px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin: 20px;
 }
 
 .container {
@@ -60,11 +70,7 @@
   width: 25vw;
 }
 
-.landing .landing-page-h1-adjust {
-  margin-left: 5vw;
-}
-
-.landing .landing-page-button-adjust {
+.landing .landing-page-adjust {
   margin-left: 5vw;
 }
 
@@ -120,6 +126,201 @@
   left: 37.5%;
 }
 
+.navigation-comp {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+}
+
+.navigation-comp nav {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 200px;
+  color: #0D0630;
+  border-right: 2px solid #0D0630;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  list-style-type: none;
+  padding: 15px;
+  margin-right: 70px;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.navigation-comp nav .nav-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 40px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  padding-right: 10px;
+}
+
+.navigation-comp nav .nav-header .logo {
+  height: 30px;
+  width: auto;
+}
+
+.navigation-comp nav .nav-header h1 {
+  font-size: 20px;
+}
+
+.navigation-comp nav a {
+  color: #0D0630;
+  background-color: set-background(#E4572E);
+}
+
+.navigation-comp nav a:hover {
+  color: #605F5E;
+  background-color: #D7FDEC;
+}
+
+.navigation-comp nav .links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 20px;
+  min-height: 40vh;
+  position: relative;
+  bottom: 130px;
+}
+
+.navigation-comp nav .links .nav-link {
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid #0D0630;
+}
+
+.navigation-comp nav .links .nav-link:hover {
+  color: #0D0630;
+  background-color: #ffd3338a;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.navigation-comp nav .links #home {
+  border-top: 1px solid #0D0630;
+}
+
+.page {
+  background-color: #605f5e9d;
+  min-width: 100vw;
+  margin-left: 200px;
+  padding-left: 15px;
+}
+
+.page h1 {
+  color: #E4572E;
+  font-size: 36pt;
+}
+
+.page h2 {
+  color: #0D0630;
+}
+
+.page .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.member-login {
+  padding: 5px 0 5px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.member-login input {
+  margin: 10px 0;
+  width: 200px;
+  padding: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.member-login p {
+  padding: 0 20px;
+}
+
+.login-request {
+  padding-top: 65px 0 5px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.login-request input {
+  margin: 10px 0;
+  padding: 5px;
+  width: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.login-request h2 {
+  padding-top: 10px;
+}
+
+.login-request p {
+  padding: 0 20px;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -131,8 +332,8 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   overflow: hidden;
 }
 
@@ -153,58 +354,6 @@ img {
 
 a {
   text-decoration: none;
-}
-
-nav {
-  background-color: #D7FDEC;
-  color: #333;
-  height: 100vh;
-  color: #0D0630;
-  border-right: 2px solid #0D0630;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  list-style-type: none;
-  padding: 15px;
-  -ms-flex-line-pack: center;
-      align-content: center;
-}
-
-nav a {
-  color: #0D0630;
-  background-color: set-background(#E4572E);
-}
-
-nav a:hover {
-  color: #605F5E;
-  background-color: #D7FDEC;
-}
-
-nav .links {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  font-size: 20px;
-  min-height: 40vh;
-  position: relative;
-  bottom: 130px;
 }
 
 .input {

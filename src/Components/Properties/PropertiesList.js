@@ -58,7 +58,7 @@ const PropertiesList = props => {
     return array.map((element) => {
       return (
         <div key={element.prop_id} className='row'>
-          <button onClick={() => clickEdit(element.prop_id)}>Edit</button>
+          <button className="btn-edit" onClick={() => clickEdit(element.prop_id)}>Edit</button>
           {editBool === false ? (
             <div>
               <div>{element.prop_id}</div>
@@ -74,7 +74,7 @@ const PropertiesList = props => {
                   <input defaultValue={element.lease_amt} onChange={e => setLeaseAmt(e.target.value)}></input>
                   <input type='checkbox' name='leaseStatus' id='leaseStatus' defaultChecked={element.lease_status} onClick={() => checkbox(document.getElementById('leaseStatus'))}></input>
                   <label htmlFor={'leaseStatus'}>Active Lease?</label>
-                  <button className='submit' onClick={() => submit(element)}>Save</button>
+                  <button className='submit btn-save' onClick={() => submit(element)}>Save</button>
                 </div>
               ) : (
                   <div className='row'>
