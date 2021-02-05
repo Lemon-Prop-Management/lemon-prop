@@ -4,6 +4,7 @@
 @import './landing.scss';
 @import './nav.scss';
 @import './dash_comp';
+@import './popup.scss';
 
 * {
   box-sizing: border-box;
@@ -24,16 +25,13 @@ body {
   line-height: 1.6;
 
 }
-
 h1 {
   font-size: 50px;
   line-height: 1.4;
 }
-
 img  {
   width: 100%;
 }
-
 a {
   text-decoration: none;
 }
