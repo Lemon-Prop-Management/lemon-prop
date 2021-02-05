@@ -3,4 +3,18 @@
     min-width: 100vw;
     margin-left: 200px;
     padding-left: 15px;
+    
+    h1 {
+        color: $orange-color;
+        font-size: 36pt;
+    }
+
+    h2 {
+        color: $blue-color;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+    }
 }

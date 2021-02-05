@@ -33,12 +33,13 @@ const MaintReqList = props => {
 
   function mapIt(array) {
     return array.map((element) => {
+      let date = element.date_sub.slice(0, 10)
       return (
         <div key={element.maint_req_id}>
           {(admin === false && !props.open) ? (
-            <div >
+            <div className='row'>
               <h2>{ }</h2>
-              <div>{element.date_sub}</div>
+              <div>{date}</div>
               <div>{element.subject}</div>
               {admin === false ? null : <div>{element.prop_id}</div>}
               <div>{element.status}</div>
@@ -46,9 +47,9 @@ const MaintReqList = props => {
             </div>
           ) : (
               element.is_compl === false ? (
-                <div>
+                <div className='row'>
                   <h2>{ }</h2>
-                  <div>{element.date_sub}</div>
+                  <div>{date}</div>
                   <div>{element.subject}</div>
                   {admin === false ? null : <div>{element.prop_id}</div>}
                   <div>{element.status}</div>
@@ -56,9 +57,9 @@ const MaintReqList = props => {
                 </div>
               ) : null)}
           {(admin === true && element.is_compl === true && !props.open) ? (
-            <div key={element.maint_req_id}>
+            <div key={element.maint_req_id} className='row'>
               <h2>{ }</h2>
-              <div>{element.date_sub}</div>
+              <div>{date}</div>
               <div>{element.subject}</div>
               {admin === false ? null : <div>{element.prop_id}</div>}
               <div>{element.status}</div>
