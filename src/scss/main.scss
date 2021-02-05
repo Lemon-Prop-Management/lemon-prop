@@ -9,41 +9,28 @@
   margin: 0;
   padding: 0;
 }
-
-
-
 .App{
   display: flex;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  justify-content: space-between;
 }
-
-
-
-
-
 body {
   background-color: #fff;
   font-family: $font-stack;
   line-height: 1.6;
 
 }
-
 h1 {
   font-size: 50px;
   line-height: 1.4;
 }
-
 img  {
   width: 100%;
 }
-
 a {
   text-decoration: none;
 }
-
 
   nav {
   @include set-background($light-blue-color);

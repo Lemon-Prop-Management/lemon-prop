@@ -1,5 +1,6 @@
 .landing {
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
   padding-top: 0 auto;
   overflow: hidden;
   align-items: center;
@@ -10,7 +11,6 @@
   .header {
     background-color: transparent;    
     display: flex;
-    justify-content: center;
     align-items: center;
   }
   
@@ -18,9 +18,11 @@
     width: 25vw;
     }
     
+  .landing-page-adjust{
+    margin-left: 5vw;
+  }
   .diamond-big {
     width: 25%;
-    // height: 25%;
     padding-bottom: 25%;
     background-color: rgba(13, 6, 48, 0.4);
     display: inline-block;
@@ -42,25 +44,24 @@
    position: relative;
     transform: rotate(45deg);
     transform-origin: 100%;
-    padding-bottom: 0%;
-    top: 190px;
-    left: 270px;
+    padding-bottom: 45%;
+    top: 400px;
+    left: 580px;
     z-index: -1;
   }
   #diamond1 {
     position: absolute;
-    top: 26.5%;
+    top: 47%;
     left: 21%;
-    cursor: pointer;
   }
   #diamond2 {
     position: absolute;
-    top: -46.5%;
+    top: 0%;
     left: 15%;
   }
   #diamond3 {
     position: absolute;
-
+    top: 20%;
     left: 37.5%;
   }
 }
