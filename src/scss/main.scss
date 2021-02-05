@@ -3,6 +3,7 @@
 @import './utilities.scss';
 @import './landing.scss';
 @import './nav.scss';
+@import './dash_comp';
 @import './popup.scss';
 
 * {
@@ -10,12 +11,14 @@
   margin: 0;
   padding: 0;
 }
+
 .App{
   display: flex;
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   overflow: hidden;
 }
+
 body {
   background-color: #fff;
   font-family: $font-stack;
@@ -31,47 +34,6 @@ img  {
 }
 a {
   text-decoration: none;
-}
-
-  nav {
-  @include set-background($light-blue-color);
-  height: 100vh;
-  color: $blue-color;
-  border-right: 2px solid $blue-color;
-  position: sticky;
-  top: 0;
-  
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  list-style-type: none;
-  padding: 15px;
-  align-content: center;
-
-  a {
-    color: $blue-color;
-    background-color: set-background($orange-color);
-  }
-  
-  a:hover {
-    color: $grey-color;
-    background-color: $light-blue-color;
-  }
-  
-  .links {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    font-size: 20px;
-    min-height: 40vh;
-    position: relative;
-    bottom: 130px;
-    
-  }
-
-  .btn-1{
-    @extend .btn-1
-  }
 }
 
 .input {

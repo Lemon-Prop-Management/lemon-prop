@@ -22,7 +22,7 @@ const SingleMaintReq = props => {
 
 
   return (
-    <div>
+    <div className='page'>
       <h1>Maintenance Request</h1>
       <input
         value={subject}

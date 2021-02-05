@@ -4,7 +4,6 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import MaintReqList from '../MaintReq/MaintReqList'
 
-
 const TheDashboard = props => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -93,8 +92,8 @@ const TheDashboard = props => {
   }
 
   return (
-    <div>
-      <p>TheDashboard</p>
+    <div className='page'>
+      <h1>Dashboard</h1>
       <div>
         {admin === false ? (
           <MakePayment />

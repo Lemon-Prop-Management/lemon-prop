@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import TenantList from '../Tenants/TenantList'
 import TenantRequestList from '../Tenants/TenantRequestList'
 
@@ -18,7 +18,7 @@ const Tenants = props => {
 
     function newTenant() {
         setSubmitTenant(false)
-        setNewTenantDisplay(true)          
+        setNewTenantDisplay(true)
     }
 
     function submit() {
@@ -33,91 +33,91 @@ const Tenants = props => {
             password: password,
             due_date: dueDate
         })
-        .then(res => {
-            setSubmitTenant(true)
-            setNewTenantDisplay(false)
-            setFirstName('')
-            setLastName('')
-            setPhone('')
-            setEmail('')
-            setPetBool(null)
-            setPropId()
-            setPassword('')
-            setDueDate('')
-            axios.get('/api/manager/tenants/true')
             .then(res => {
-                setCurrentTenants(res.data)
+                setSubmitTenant(true)
+                setNewTenantDisplay(false)
+                setFirstName('')
+                setLastName('')
+                setPhone('')
+                setEmail('')
+                setPetBool(null)
+                setPropId()
+                setPassword('')
+                setDueDate('')
+                axios.get('/api/manager/tenants/true')
+                    .then(res => {
+                        setCurrentTenants(res.data)
+                    })
+                    .catch(err => console.log(err))
             })
-            .catch(err => console.log(err))
-        })
     }
 
     function checkbox(checkbox) {
         if (checkbox.checked === true) {
             setPetBool(true)
-        } else if (checkbox.checked === false){
+        } else if (checkbox.checked === false) {
             setPetBool(false)
         }
     }
 
- return (
-  <div>
-      <div>
-          <div>
-            <h1>Current Tenants</h1>
-            <TenantList setCurrentTenants={setCurrentTenants} currentTenants={currentTenants}/>
-          </div>
-          <div>
-            <h1>Tenant Requests</h1>
-            <TenantRequestList setCurrentTenants={setCurrentTenants} />
-          </div>
-          <button className="submit" onClick={newTenant}>New Tenant</button>
-      </div>
-      {newTenantDisplay === true ? (
-        <div>
+    return (
+        <div className='page'>
             <div>
                 <div>
-                    <div>First Name: </div>
-                    <input onChange={e => setFirstName(e.target.value)}></input> 
+                    <h1>Current Tenants</h1>
+                    <TenantList setCurrentTenants={setCurrentTenants} currentTenants={currentTenants} />
                 </div>
                 <div>
-                    <div>Last Name: </div>
-                    <input onChange={e => setLastName(e.target.value)}></input> 
+                    <h1>Tenant Requests</h1>
+                    <TenantRequestList setCurrentTenants={setCurrentTenants} />
                 </div>
-                <div>
-                    <div>Property ID: </div>
-                    <input onChange={e => setPropId(e.target.value)}></input> 
-                </div>
+                <button className="submit" onClick={newTenant}>New Tenant</button>
             </div>
-            <div>
+            {newTenantDisplay === true ? (
                 <div>
-                    <div>Phone: </div>
-                    <input onChange={e => setPhone(e.target.value)}></input> 
-                </div>
-                <div>
-                    <div>Email: </div>
-                    <input onChange={e => setEmail(e.target.value)}></input> 
-                </div>
-                <div>
-                    <div>Password: </div>
-                    <input onChange={e => setPassword(e.target.value)}></input> 
-                </div>
-            </div>
-            <div>
-                <div>
-                    <div>Due Date: </div>
-                    <input onChange={e => setDueDate(e.target.value)}></input> 
-                </div>
-                <div>
-                    <input type='checkbox' name='pets' id='pets' onClick={() => checkbox(document.getElementById('pets'))}></input>
-                    <label htmlFor={'pets'}>Pets?</label>
-                </div>
-                <div>
-                    <button className='Submit' onClick={submit}>Submit</button> 
-                </div>
-            </div>
-        </div>) : null}
-  </div>
- )
+                    <div>
+                        <div>
+                            <div>First Name: </div>
+                            <input onChange={e => setFirstName(e.target.value)}></input>
+                        </div>
+                        <div>
+                            <div>Last Name: </div>
+                            <input onChange={e => setLastName(e.target.value)}></input>
+                        </div>
+                        <div>
+                            <div>Property ID: </div>
+                            <input onChange={e => setPropId(e.target.value)}></input>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div>Phone: </div>
+                            <input onChange={e => setPhone(e.target.value)}></input>
+                        </div>
+                        <div>
+                            <div>Email: </div>
+                            <input onChange={e => setEmail(e.target.value)}></input>
+                        </div>
+                        <div>
+                            <div>Password: </div>
+                            <input onChange={e => setPassword(e.target.value)}></input>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div>Due Date: </div>
+                            <input onChange={e => setDueDate(e.target.value)}></input>
+                        </div>
+                        <div>
+                            <input type='checkbox' name='pets' id='pets' onClick={() => checkbox(document.getElementById('pets'))}></input>
+                            <label htmlFor={'pets'}>Pets?</label>
+                        </div>
+                        <div>
+                            <button className='Submit' onClick={submit}>Submit</button>
+                        </div>
+                    </div>
+                </div>) : null}
+        </div>
+    )
 }
 export default Tenants

@@ -57,7 +57,7 @@ const PropertiesList = props => {
   function mapIt(array) {
     return array.map((element) => {
       return (
-        <div key={element.prop_id}>
+        <div key={element.prop_id} className='row'>
           <button onClick={() => clickEdit(element.prop_id)}>Edit</button>
           {editBool === false ? (
             <div>
@@ -68,7 +68,7 @@ const PropertiesList = props => {
             </div>
           ) : (
               element.prop_id === buttonId ? (
-                <div>
+                <div className='row'>
                   <div>{element.prop_id}</div>
                   <input defaultValue={element.address} onChange={e => setAddress(e.target.value)}></input>
                   <input defaultValue={element.lease_amt} onChange={e => setLeaseAmt(e.target.value)}></input>
@@ -77,7 +77,7 @@ const PropertiesList = props => {
                   <button className='submit' onClick={() => submit(element)}>Save</button>
                 </div>
               ) : (
-                  <div>
+                  <div className='row'>
                     <div>{element.prop_id}</div>
                     <div>{element.address}</div>
                     <div>{`$${element.lease_amt}`}</div>
@@ -92,7 +92,7 @@ const PropertiesList = props => {
   }
 
   return (
-    <div className='maint-req'>
+    <div className='page'>
       {mapIt(currentProperties)}
     </div>
   )
