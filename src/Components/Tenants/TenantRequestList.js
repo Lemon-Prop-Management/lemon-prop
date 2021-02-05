@@ -47,24 +47,26 @@ const TenantRequestList = props => {
 
   function mapIt(array) {
     return array.map((element) => {
+      let date = element.due_date.slice(0, 10)
       return (
-        <div key={element.user_id}>
-          <div>{element.user_id}</div>
-          <div>{`${element.first_name} ${element.last_name}`}</div>
-          <div>{element.email}</div>
-          <div>{element.phone}</div>
-          {element.pets === true ? <div>Yes</div> : <div>No</div>}
-          <div>{element.due_date}</div>
+        <div key={element.user_id} className='row tenant-row'>
           {admin === true && element.approved === false ? <button
-            className='submit'
+            className='btn-save'
             onClick={() => approve(element)}>Approve</button> : null}
+          <div className='list-item tenant-item'>{element.user_id}</div>
+          <div className='list-item tenant-item'>{`${element.first_name} ${element.last_name}`}</div>
+          <div className='list-item tenant-item'>No Address Available</div>
+          <div className='list-item tenant-item'>{element.email}</div>
+          <div className='list-item tenant-item'>{element.phone}</div>
+          {element.pets === true ? <div>Yes</div> : <div>No</div>}
+          <div>{date}</div>
         </div>
       )
     })
   }
 
   return (
-    <div>
+    <div className='sub-page'>
       {mapIt(tenantRequests)}
     </div>
   )

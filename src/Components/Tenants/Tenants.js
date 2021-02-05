@@ -64,14 +64,16 @@ const Tenants = props => {
         <div className='page'>
             <div>
                 <div>
-                    <h1>Current Tenants</h1>
+                    <div className='title-container'>
+                        <h1>Current Tenants</h1>
+                    </div>
                     <TenantList setCurrentTenants={setCurrentTenants} currentTenants={currentTenants} />
                 </div>
                 <div>
                     <h1>Tenant Requests</h1>
                     <TenantRequestList setCurrentTenants={setCurrentTenants} />
                 </div>
-                <button className="submit" onClick={newTenant}>New Tenant</button>
+                <button className="btn-edit" onClick={newTenant}>New Tenant</button>
             </div>
             {newTenantDisplay === true ? (
                 <div>
@@ -113,7 +115,7 @@ const Tenants = props => {
                             <label htmlFor={'pets'}>Pets?</label>
                         </div>
                         <div>
-                            <button className='Submit' onClick={submit}>Submit</button>
+                            <button className='btn-save' onClick={submit}>Submit</button>
                         </div>
                     </div>
                 </div>) : null}
