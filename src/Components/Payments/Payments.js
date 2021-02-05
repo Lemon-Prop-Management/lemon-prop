@@ -6,7 +6,6 @@ import MakePayment from './MakePayment';
 const Payments = props => {
     return (
         <div>
-            <p>Payments Component</p>
             <PaymentsList />
             <MakePayment />
         </div>

@@ -10,15 +10,30 @@
   padding: 0;
 }
 
+
+
+.App{
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  justify-content: space-between;
+}
+
+
+
+
+
 body {
   background-color: #fff;
   font-family: $font-stack;
   line-height: 1.6;
 
-  h1 {
-    font-size: 50px;
-    line-height: 1.4;
-  }
+}
+
+h1 {
+  font-size: 50px;
+  line-height: 1.4;
 }
 
 img  {
@@ -29,28 +44,45 @@ a {
   text-decoration: none;
 }
 
-.navigation {
-  @include set-background($light-blue-color);
-  height: 100%;
-  color: $blue-color;
 
   nav {
+  @include set-background($light-blue-color);
+  height: 100vh;
+  color: $blue-color;
+  border-right: 2px solid $blue-color;
+  position: sticky;
+  top: 0;
+  
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   flex-direction: column;
+  justify-content: space-between;
   list-style-type: none;
   padding: 15px;
-  }
+  align-content: center;
 
   a {
-    color: set-text-color($blue-color);
+    color: $blue-color;
     background-color: set-background($orange-color);
   }
-
+  
   a:hover {
     color: $grey-color;
     background-color: $light-blue-color;
+  }
+  
+  .links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 20px;
+    min-height: 40vh;
+    position: relative;
+    bottom: 130px;
+    
+  }
+
+  .btn-1{
+    @extend .btn-1
   }
 }
 

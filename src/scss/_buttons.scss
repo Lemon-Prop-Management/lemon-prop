@@ -3,10 +3,14 @@
   border-radius: 5px;
   padding: 8px 20px;
   margin: 3px;
+  color: white;
+  text-align: center;
 
   &:hover{
     transform: scale(.98);
-    @include set-background(lighten($grey-color, 30%))
+    @include set-background(lighten($grey-color, 30%));
+    color: $blue-color
+
   }
 }
 
@@ -14,6 +18,8 @@
 .btn-1 {
   @extend %btn;
   @include set-background(lighten($blue-color, 10%));
+  color: white;
+  
 }
 //Orange button
 .btn-2 {

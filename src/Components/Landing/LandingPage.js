@@ -15,11 +15,11 @@ const LandingPage = props => {
         {/* The Login that is rendered below will eventually be moved to an onClick function for a popover. We are displaying it now to test further functionality while we are still getting the popover up and running */}
         <Login {...props} />
       </div>
-          <div class="grid">
-            <div id="diamond1" class="diamond-med"></div>
-            <div id="diamond2" class="diamond-sm"></div>
-            <div id="diamond3" class="diamond-big"></div>
-          </div>
+      <div className="grid">
+        <div id="diamond1" className="diamond-med"></div>
+        <div id="diamond2" className="diamond-sm"></div>
+        <div id="diamond3" className="diamond-big"></div>
+      </div>
     </div>
 
   )

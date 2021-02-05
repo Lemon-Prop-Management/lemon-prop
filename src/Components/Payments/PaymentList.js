@@ -31,7 +31,7 @@ const PaymentList = props => {
 
     return (
         <div>
-            <p>PaymentList</p>
+            <p>Payment History</p>
             {admin === false ? mappedList(props.tnt_payments_list) : mappedList(props.mgr_payments_list)}
         </div>
     )
