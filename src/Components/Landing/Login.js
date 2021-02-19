@@ -49,7 +49,9 @@ const Login = props => {
       <button>I need access</button> */}
       <input className="btn-1" type="button"
         value="Login"
-        onClick={(e) => togglePopup} />
+        onClick={(e) => togglePopup()}
+
+      />
 
 
       {/* THIS IS THE POPUP THAT APPEARS WHEN "LOGIN" IS CLICKED ON THE LANDING PAGE */}
