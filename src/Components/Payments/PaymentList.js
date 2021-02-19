@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios'
 import { connect } from 'react-redux';
 import { updatePaymentsTnt, updatePaymentsMgr } from '../../redux/paymentReducer';
 
@@ -6,13 +7,28 @@ import { updatePaymentsTnt, updatePaymentsMgr } from '../../redux/paymentReducer
 const PaymentList = props => {
     let { properties, changeProperties } = useState([])
     const { admin, user_id } = props
+    const [addresses, setAddresses] = useState([]);
+    const [currentAddress, setCurrentAddress] = useState()
 
     useEffect(() => {
         if (admin === false) {
             props.updatePaymentsTnt(user_id)
             // .then(res => console.log(res))
+            axios.get(`/api/tenant/${user_id}/property`)
+                .then(res => {
+                    setAddresses(res.data.address)
+                })
+                .catch(err => console.log(err))
         } else if (admin === true) {
             props.updatePaymentsMgr()
+            axios.get('/api/manager/properties')
+                .then(res => {
+                let add = res.data.map(e => e.address)
+                console.log(add)
+                setAddresses(add)
+                console.log(addresses)
+                })
+                .catch(err => console.log(err))
         }
     }, [user_id])
 
@@ -36,7 +52,7 @@ const PaymentList = props => {
             <h2>Payment History</h2>
             <div className='row'>
                 <div className='list-item list-title'>Invoice ID</div>
-                {admin === true ? <div className='list-item list-title'>Property ID</div> : null}
+                {admin === true ? <div className='list-item list-title'>User ID</div> : null}
                 <div className='list-item list-title'>Amount Paid</div>
                 <div className='list-item list-title'>Date Paid</div>
             </div>

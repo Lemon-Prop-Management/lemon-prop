@@ -54,6 +54,15 @@ module.exports = {
             })
             .catch(err => console.log(err))
     },
+    getProperty: async (req, res) => {
+        const db = await req.app.get('db')
+        const {user_id} = req.params
+        db.tnt.tnt_get_property([user_id])
+        .then(property => {
+            res.status(200).send(property)
+        })
+        .catch(err => console.log(err))
+    },
     getAllPayments: async (req, res) => {
         const db = await req.app.get('db')
         const { user_id } = req.params
