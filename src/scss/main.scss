@@ -6,43 +6,11 @@
 }
 @import './config.scss';
 @import './buttons.scss';
+@import './app';
 @import './landing.scss';
 @import './nav.scss';
 @import './dash_comp';
 @import './popup.scss';
-
-.App{
-  display: flex;
-  min-height: 100vh;
-  overflow: hidden;
-  font-family: $font-stack;
-  line-height: 1.6;
-  h1 {
-    font-size: 50px;
-    line-height: 1.4;
-  }
-  img  {
-    width: 100%;
-  }
-  .input {
-    border: 1px solid $grey-color;
-    border-radius: 4px;
-    background-color: $light-blue-color;
-    color: $blue-color;
-      //input for login
-      //input for request access
-      //input for edit tenant(tenant)
-      //input for adding new tenant(manager)
-  }
-  .container {
-    max-width: 1000px;
-    padding: 0 30px;
-    margin: 0 auto;
-    overflow: auto;
-  }
-  
-}
-  
 
 
 

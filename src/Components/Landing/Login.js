@@ -50,7 +50,6 @@ const Login = props => {
       <input className="btn-1" type="button"
         value="Login"
         onClick={(e) => togglePopup()}
-
       />
 
 
