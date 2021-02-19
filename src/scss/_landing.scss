@@ -20,7 +20,7 @@
     z-index: -1;
     width: 1000px;
     height: 1000px;
-    background-color: $light-grey-color;
+    // background-color: $light-grey-color;
     .diamond-sm {
       width: 270px;
       height: 270px;
@@ -72,7 +72,7 @@
         }        
     }
     @media(max-width: 1000px){
-      right: -320px;
+      right: -390px;
       top: 120px;
         .diamond-sm {
           width: 130px;
@@ -94,12 +94,12 @@
         }        
     }
     @media(max-width: 600px){
-      right: -400px;
+      right: -460px;
       top: 120px;
         .diamond-sm {
           width: 90px;
           height: 90px;
-          top: 26%;
+          top: 21%;
           left: 6%;
         }
         .diamond-med {
@@ -109,10 +109,10 @@
           left: 2%;
         }
         .diamond-big {
-          width: 220px;
-          height: 220px;
-          top: 11%;
-          left: 22%;
+          width: 180px;
+          height: 180px;
+          top: 15%;
+          left: 16.5%;
         }        
     }
   }
