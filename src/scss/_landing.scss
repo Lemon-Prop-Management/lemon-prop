@@ -35,12 +35,13 @@
 
     .btn-1{
       margin-right: 25px;
+      z-index: 2;
     }
       
    @media(max-width: 650px){
       min-height: 100px;
      .main-title{
-       font-size: 35px;
+       font-size: 32px;
      }
    }
   }
