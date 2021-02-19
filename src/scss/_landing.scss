@@ -2,23 +2,136 @@
 
 .landing {
   // height: 100vh;
-  // width: 100vw;
+  width: 100vw;
   // padding-top: 0;
   // background-color: white;
   overflow: hidden;
   align-items: center;
   text-align: center;
   z-index: 1;
+  position: relative;
   
+  .grid {
+    position: absolute;
+    transform: rotate(45deg);
+    // padding-bottom: 55%;
+    top: 0px;
+    right: -170px;
+    z-index: -1;
+    width: 1000px;
+    height: 1000px;
+    background-color: $light-grey-color;
+    .diamond-sm {
+      width: 270px;
+      height: 270px;
+      background-color: rgba(228, 87, 46, 0.4);
+      display: inline-block;
+      position: absolute;
+      top: 45%;
+      left: 10%;
+    }
+    .diamond-med {
+      width: 350px;
+      height: 350px;
+      background-color: rgba(255, 211, 51, 0.4);
+      display: inline-block;
+      position: absolute;
+      top: 6%;
+      left: 2%;
+    }
+    .diamond-big {
+      width: 550px;
+      height: 550px;
+      background-color: rgba(13, 6, 48, 0.4);
+      display: inline-block;
+      position: absolute;
+      top: 11%;
+      left: 40%;
+    }
+    
+    @media(max-width: 1550px){
+      right: -290px;
+      top: 90px;
+        .diamond-sm {
+          width: 180px;
+          height: 180px;
+          top: 38%;
+          left: 11%;
+        }
+        .diamond-med {
+          width: 270px;
+          height: 270px;
+          top: 6%;
+          left: 2%;
+        }
+        .diamond-big {
+          width: 400px;
+          height: 400px;
+          top: 11%;
+          left: 32%;
+        }        
+    }
+    @media(max-width: 1000px){
+      right: -320px;
+      top: 120px;
+        .diamond-sm {
+          width: 130px;
+          height: 130px;
+          top: 26%;
+          left: 6%;
+        }
+        .diamond-med {
+          width: 170px;
+          height: 170px;
+          top: 6%;
+          left: 2%;
+        }
+        .diamond-big {
+          width: 320px;
+          height: 320px;
+          top: 11%;
+          left: 22%;
+        }        
+    }
+    @media(max-width: 600px){
+      right: -400px;
+      top: 120px;
+        .diamond-sm {
+          width: 90px;
+          height: 90px;
+          top: 26%;
+          left: 6%;
+        }
+        .diamond-med {
+          width: 130px;
+          height: 130px;
+          top: 6%;
+          left: 2%;
+        }
+        .diamond-big {
+          width: 220px;
+          height: 220px;
+          top: 11%;
+          left: 22%;
+        }        
+    }
+  }
+
+
   .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     min-height: 130px;
+    position: relative;
+    top: 0px;
 
     
     .logo {
       width: 20vw;
+      max-width: 250px;
+      position: relative;
+      right: 1vw;
     }
     
     .main-title{
@@ -38,57 +151,33 @@
       z-index: 2;
     }
       
-   @media(max-width: 650px){
+   @media(max-width: 900px){
       min-height: 100px;
      .main-title{
        font-size: 32px;
      }
    }
+   @media(max-width: 700px){
+     .main-title{
+       font-size: 20px;
+       margin-right: 0px;
+       margin-left: 0px;
+       padding: 0px;
+       width: auto;
+       left: 17vw;
+      }
+    }
+    @media(max-width: 430px){
+       min-height: 80px;
+      .main-title{
+        font-size: 15px;
+      }
+      .btn-1{
+        margin-right: 10px;
+      }
+    }
   }
   
-  .diamond-big {
-    width: 25%;
-    padding-bottom: 25%;
-    background-color: rgba(13, 6, 48, 0.4);
-    display: inline-block;
-  }
-  .diamond-med {
-    width: 15%;
-    height: 0px;
-    padding-bottom: 15%;
-    background-color: rgba(228, 87, 46, 0.4);
-    display: inline-block;
-  }
-  .diamond-sm {
-    width: 20%;
-    padding-bottom: 20%;
-    background-color: rgba(255, 211, 51, 0.4);
-    display: inline-block;
-  }
-  .grid {
-    position: relative;
-    transform: rotate(45deg);
-    transform-origin: 0;
-    padding-bottom: 55%;
-    left: 880px;
-    bottom: 1400px;
-    z-index: -1;
-  }
-  #diamond1 {
-    position: absolute;
-    top: 47%;
-    left: 21%;
-  }
-  #diamond2 {
-    position: absolute;
-    top: 7%;
-    left: 15%;
-  }
-  #diamond3 {
-    position: absolute;
-    top: 20%;
-    left: 37.5%;
-  }
 
   .rental-row {
     display: flex;

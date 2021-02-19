@@ -9,6 +9,11 @@ import rental7 from '../../img/rental7.png'
 const LandingPage = props => {
   return (
     <div className="landing">
+      <div className="grid">
+        <div className="diamond-sm"></div>
+        <div className="diamond-med"></div>
+        <div className="diamond-big"></div>
+      </div>
 
       <div className="header">
         <img className="logo" src={logo} ></img>
@@ -36,11 +41,6 @@ const LandingPage = props => {
         </div>
       </div>
 
-      <div className="grid">
-        <div id="diamond1" className="diamond-med"></div>
-        <div id="diamond2" className="diamond-sm"></div>
-        <div id="diamond3" className="diamond-big"></div>
-      </div>
     </div>
 
   )

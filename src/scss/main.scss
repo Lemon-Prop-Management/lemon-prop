@@ -6,6 +6,10 @@
 }
 @import './config.scss';
 @import './buttons.scss';
+@import './landing.scss';
+@import './nav.scss';
+@import './dash_comp';
+@import './popup.scss';
 
 .App{
   display: flex;
@@ -39,10 +43,6 @@
   
 }
   
-  @import './landing.scss';
-  @import './nav.scss';
-  @import './dash_comp';
-  @import './popup.scss';
 
 
 
