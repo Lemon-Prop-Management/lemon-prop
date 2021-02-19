@@ -189,9 +189,9 @@
     
     h1 {
       color: $blue-color;
-      font-size: 9rem;
+      font-size: 11rem;
       padding-top: 35px;
-      padding-bottom: 35px;
+      padding-bottom: 55px;
     }
     
     h2 {
@@ -217,7 +217,7 @@
     
     @media(max-width:1000px){
       h1 {
-        font-size: 6rem;
+        font-size: 8rem;
       }
       
       h2 {
@@ -260,7 +260,8 @@
     @media(max-width:550px){
       h1 {
         font-size: 6rem;
-        padding-bottom: 35px;
+        padding-top: 15px;
+        padding-bottom: 45px;
       }
       
       h2 {
@@ -291,8 +292,12 @@
       flex: 33.33%;
       margin: 10px 10px;
       padding: 10px 5px 0px 0px;
-      overflow: hidden;
+      // overflow: hidden;
       height: auto;
+    }
+    @media(max-width: 800px){
+      flex-direction: column;
+      padding: 0px 10vw;
     }
   }
   
