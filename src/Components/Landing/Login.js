@@ -47,10 +47,13 @@ const Login = props => {
       </input>
       <button onClick={e => submit()}>Login</button>
       <button>I need access</button> */}
-      <input className="btn-1 landing-page-adjust" type="button"
+      <input className="btn-1" type="button"
         value="Login"
         onClick={togglePopup} />
-      {isOpen && <Popup content={<>
+
+
+      {/* THIS IS THE POPUP THAT APPEARS WHEN "LOGIN" IS CLICKED ON THE LANDING PAGE */}
+      {isOpen ? <Popup content={<>
         <div className="popup-header">
           {/* <img className="logo" src={logo} ></img> */}
           <h2>Lemon Prop Mgmt</h2>
@@ -89,6 +92,8 @@ const Login = props => {
         </div>
       </>}
         handleClose={togglePopup} />
+        :
+        null
       }
 
     </div>

@@ -1,52 +1,69 @@
-@import './config.scss';
-@import './buttons.scss';
-@import './utilities.scss';
-@import './landing.scss';
-@import './nav.scss';
-@import './dash_comp';
-@import './popup.scss';
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+@import './config.scss';
+@import './buttons.scss';
 
 .App{
   display: flex;
-  min-width: 100vw;
   min-height: 100vh;
   overflow: hidden;
-}
-
-body {
-  background-color: #fff;
   font-family: $font-stack;
   line-height: 1.6;
-
+  h1 {
+    font-size: 50px;
+    line-height: 1.4;
+  }
+  img  {
+    width: 100%;
+  }
+  .input {
+    border: 1px solid $grey-color;
+    border-radius: 4px;
+    background-color: $light-blue-color;
+    color: $blue-color;
+      //input for login
+      //input for request access
+      //input for edit tenant(tenant)
+      //input for adding new tenant(manager)
+  }
+  .container {
+    max-width: 1000px;
+    padding: 0 30px;
+    margin: 0 auto;
+    overflow: auto;
+  }
 }
-h1 {
-  font-size: 50px;
-  line-height: 1.4;
-}
-img  {
-  width: 100%;
-}
-a {
-  text-decoration: none;
-}
 
-.input {
-  border: 1px solid $grey-color;
-  border-radius: 4px;
-  background-color: $light-blue-color;
-  color: $blue-color;
 
-  //input for login
+@import './landing.scss';
+@import './nav.scss';
+@import './dash_comp';
+@import './popup.scss';
 
-  //input for request access
 
-  //input for edit tenant(tenant)
 
-  //input for adding new tenant(manager)
-}
+// FOR APP-WIDE STYLING:
+//You can create set margin and padding classes. I've commented out for now until we need it.
+// $spaceamounts: (1, 2, 3, 4, 5);
+
+// @each $space in $spaceamounts{
+//   .m-#{$space} {
+//     margin: #{$space}rem;
+//   }
+
+//   .my-#{$space} {
+//     margin: #{$space}rem 0;
+//   }
+
+//   .p-#{$space} {
+//     padding: #{$space}rem;
+//   }
+
+//   .py-#{$space} {
+//     padding: #{$space}rem 0;
+//   }
+// }

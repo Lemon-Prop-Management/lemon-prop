@@ -1,32 +1,48 @@
 @import './config.scss';
 
 .landing {
-  height: 100vh;
-  width: 100vw;
-  padding-top: 0;
+  // height: 100vh;
+  // width: 100vw;
+  // padding-top: 0;
+  // background-color: white;
   overflow: hidden;
   align-items: center;
   text-align: center;
   z-index: 1;
-  background-color: white;
-  // margin-bottom: 40px;
   
   .header {
-    background-color: transparent;    
     display: flex;
     align-items: center;
-  }
-  
-  .logo {
-    width: 20vw;
+    justify-content: space-between;
+    min-height: 130px;
+
+    
+    .logo {
+      width: 20vw;
     }
     
-  .landing-page-adjust{
-    margin-left: 4vw;
-
-    h1 {
+    .main-title{
+      background-color: transparent;
+      position: absolute;
+      margin-right:auto;
+      margin-left: auto;
       color: $blue-color;
+      width: 100vw;
+      padding-left: 150px;
+      padding-right: 150px;
+      // padding-top: 10px;
     }
+
+    .btn-1{
+      margin-right: 25px;
+    }
+      
+   @media(max-width: 650px){
+      min-height: 100px;
+     .main-title{
+       font-size: 35px;
+     }
+   }
   }
   
   .diamond-big {
@@ -53,7 +69,6 @@
     transform: rotate(45deg);
     transform-origin: 0;
     padding-bottom: 55%;
-    // top: 400px;
     left: 880px;
     bottom: 1400px;
     z-index: -1;

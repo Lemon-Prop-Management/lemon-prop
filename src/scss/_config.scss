@@ -12,13 +12,13 @@ $light-grey-color: #605f5e9d;
 $light-yellow-color: #ffd3338a;
 
 //Set text color based on background
-@function set-text-color($color) {
-  @if(lightness($color) > 70) {
-    @return #333;
-  } @else {
-    @return #fff;
-  }
-}
+// @function set-text-color($color) {
+//   @if(lightness($color) > 70) {
+//     @return #333;
+//   } @else {
+//     @return #fff;
+//   }
+// }
 
 // Set background & text color
 @mixin set-background($color) {
