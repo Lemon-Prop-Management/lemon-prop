@@ -137,12 +137,13 @@
     .main-title{
       background-color: transparent;
       position: absolute;
-      margin-right:auto;
-      margin-left: auto;
+      margin-left: 15vw;
+      
+      font-size: 35px;
       color: $blue-color;
-      width: 100vw;
-      padding-left: 150px;
-      padding-right: 150px;
+      // width: 100vw;
+      // padding-left: 150px;
+      // padding-right: 150px;
       // padding-top: 10px;
     }
 
@@ -179,6 +180,108 @@
   }
   
 
+  
+  .landing-middle {
+    margin-top: 15px;
+    color: $orange-color;
+    font-size: 1.5rem;
+    // background-color: $light-grey-color;
+    
+    h1 {
+      color: $blue-color;
+      font-size: 9rem;
+      padding-top: 35px;
+      padding-bottom: 35px;
+    }
+    
+    h2 {
+      color: $blue-color;
+      font-weight: normal;
+      font-size: 4rem;
+    }
+    
+    hr {
+      border: 2px solid $yellow-color;
+      border-radius: 5px;
+      width: 750px;
+      margin: auto;
+      align-items: center;
+    }
+    
+    h3 {
+      font-weight: normal;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+    
+    @media(max-width:1000px){
+      h1 {
+        font-size: 6rem;
+      }
+      
+      h2 {
+        font-weight: normal;
+        font-size: 2.5rem;
+      }
+      
+      hr {
+        border: 2px solid $yellow-color;
+        width: 550px;
+      }
+      
+      h3 {
+        font-weight: normal;
+        font-size: 1.5rem;
+      }
+    }
+
+    @media(max-width:830px){
+      h1 {
+        font-size: 6rem;
+      }
+      
+      h2 {
+        font-weight: normal;
+        font-size: 2rem;
+      }
+      
+      hr {
+        border: 2px solid $yellow-color;
+        width: 450px;
+      }
+      
+      h3 {
+        font-weight: normal;
+        font-size: 1.2rem;
+      }
+    }
+
+    @media(max-width:550px){
+      h1 {
+        font-size: 6rem;
+        padding-bottom: 35px;
+      }
+      
+      h2 {
+        font-weight: normal;
+        font-size: 2rem;
+      }
+      
+      hr {
+        border: 2px solid $yellow-color;
+        width: 270px;
+      }
+      
+      h3 {
+        font-weight: normal;
+        font-size: 1rem;
+      }
+    }
+
+  }
+
+  
   .rental-row {
     display: flex;
     width: 100%;
@@ -192,36 +295,5 @@
       height: auto;
     }
   }
-
-  .landing-middle {
-    margin-top: 15px;
-    color: $orange-color;
-    font-size: 1.5rem;
-
-    h1 {
-      color: $blue-color;
-      font-size: 4rem;
-      padding-bottom: 35px;
-    }
-
-    h2 {
-      color: $blue-color;
-      font-weight: normal;
-    }
-
-    hr {
-      border: 2px solid $yellow-color;
-      border-radius: 5px;
-      width: 750px;
-      margin: auto;
-      align-items: center;
-    }
-
-    h3 {
-      font-weight: normal;
-      padding: 30px 200px;
-    }
-  }
-
-
+  
 }
