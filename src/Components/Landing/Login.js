@@ -47,24 +47,28 @@ const Login = props => {
       </input>
       <button onClick={e => submit()}>Login</button>
       <button>I need access</button> */}
-      <input className="btn-1 landing-page-adjust" type="button"
+      <input className="btn-1" type="button"
         value="Login"
-        onClick={togglePopup} />
-      {isOpen && <Popup content={<>
+        onClick={(e) => togglePopup()}
+      />
+
+
+      {/* THIS IS THE POPUP THAT APPEARS WHEN "LOGIN" IS CLICKED ON THE LANDING PAGE */}
+      {isOpen ? <Popup content={<>
         <div className="popup-header">
           {/* <img className="logo" src={logo} ></img> */}
-          <h2>Lemon Prop Mgmt</h2>
+          <h2>Lemon Prop Login</h2>
         </div>
         <div className="member-login">
-          <p>Please login with your email and password</p>
-          <div>
-
+          <h2>Tenant Portal Login</h2>
+          <div className='login-inputs'>
             <input
               placeholder='Email'
               type="text"
               value={email}
               onChange={e => setEmail(e.target.value)}>
             </input>
+
             <input
               placeholder='Password'
               type="password"
@@ -76,19 +80,27 @@ const Login = props => {
         </div>
         {/* Request access */}
         <div className="login-request">
-          <h2>Request access to the portal</h2>
-          <p>Need access? Fill out your information below and we'll send you an activation link via email. To best match your account, please use the same information provided to your Property Manager.</p>
+          <h2>Request Portal Access</h2>
+          {/* <p>Need access? Fill out your information below and we'll send you an activation link via email. To best match your account, please use the same information provided to your Property Manager.</p> */}
           <form onSubmit={handleSubmit(onSubmit)}>
-            <input type="text" name="first name" placeholder="First Name" ref={register({ required: true })} />
-            <input type="text" name="last name" placeholder="Last Name" ref={register({ required: true })} />
-            <input type="tel" name="phone" placeholder="Phone number" ref={register({ required: true, minLength: 6, maxLength: 12 })} />
-            <input type="text" name="email" placeholder="Email address" ref={register({ required: true, pattern: /^\S+@\S+$/i })} />
+            <div className='columns-container'>
+              <div className='input-column'>
+                <input type="text" name="first name" placeholder="First Name" ref={register({ required: true })} />
+                <input type="text" name="last name" placeholder="Last Name" ref={register({ required: true })} />
+              </div>
+              <div className='input-column'>
+                <input type="tel" name="phone" placeholder="Phone number" ref={register({ required: true, minLength: 6, maxLength: 12 })} />
+                <input type="text" name="email" placeholder="Email address" ref={register({ required: true, pattern: /^\S+@\S+$/i })} />
+              </div>
+            </div>
             {/* <input type="radio" name="pets" placeholder="Pets" ref={register} />Pets */}
             <button className="btn-1" type="button">Submit</button>
           </form>
         </div>
       </>}
         handleClose={togglePopup} />
+        :
+        null
       }
 
     </div>
