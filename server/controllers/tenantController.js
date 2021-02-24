@@ -14,7 +14,7 @@ module.exports = {
         const db = req.app.get('db')
         const { user_id } = req.params
 
-        await db.mgr.mgr_get_one_tenant_by_id([user_id])
+        await db.tenants.get_one_tenant_by_id([user_id])
             .then(tenant => {
                 res.status(200).send(tenant)
             })
@@ -28,7 +28,7 @@ module.exports = {
         let date_sub = new Date();
 
 
-        db.tnt.tnt_add_mr([user_id, prop_id, subject, date_sub, request, is_compl])
+        db.mr.add_mr([user_id, prop_id, subject, date_sub, request, is_compl])
             .then(newMaintReq => {
                 res.status(200).send(newMaintReq)
             })
@@ -56,12 +56,12 @@ module.exports = {
     },
     getProperty: async (req, res) => {
         const db = await req.app.get('db')
-        const {user_id} = req.params
+        const { user_id } = req.params
         db.tnt.tnt_get_property([user_id])
-        .then(property => {
-            res.status(200).send(property)
-        })
-        .catch(err => console.log(err))
+            .then(property => {
+                res.status(200).send(property)
+            })
+            .catch(err => console.log(err))
     },
     getAllPayments: async (req, res) => {
         const db = await req.app.get('db')
