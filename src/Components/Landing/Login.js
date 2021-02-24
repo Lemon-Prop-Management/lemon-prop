@@ -57,7 +57,7 @@ const Login = props => {
       {isOpen ? <Popup content={<>
         <div className="popup-header">
           {/* <img className="logo" src={logo} ></img> */}
-          <h2>Lemon Prop Login</h2>
+          <h2>LemonProp Login</h2>
         </div>
         <div className="member-login">
           <h2>Tenant Portal Login</h2>
