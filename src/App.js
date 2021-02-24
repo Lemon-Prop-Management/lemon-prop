@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import axios from 'axios'
 import routes from './Routes'
 import AccountNavigation from './Components/AccountNavigation'
-import './App.css';
+// import './App.css';
 import { connect } from 'react-redux';
 import { loginUser } from './redux/reducer'
 

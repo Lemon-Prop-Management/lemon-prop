@@ -6,12 +6,10 @@
   color: white;
   text-align: center;
   cursor: pointer;
-
   &:hover{
     transform: scale(.98);
     @include set-background(lighten($grey-color, 30%));
     color: $blue-color
-
   }
 }
 
@@ -20,8 +18,8 @@
   @extend %btn;
   @include set-background(lighten($blue-color, 10%));
   color: white;
-  
 }
+
 //Orange button
 .btn-2 {
   @extend %btn;

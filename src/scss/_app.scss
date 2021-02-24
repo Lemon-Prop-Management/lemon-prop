@@ -1,0 +1,90 @@
+.App{
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: $font-stack;
+  line-height: 1.6;
+  h1 {
+    font-size: 50px;
+    line-height: 1.4;
+  }
+  img  {
+    width: 100%;
+  }
+  .input {
+    border: 1px solid $grey-color;
+    border-radius: 4px;
+    background-color: $light-blue-color;
+    color: $blue-color;
+      //input for login
+      //input for request access
+      //input for edit tenant(tenant)
+      //input for adding new tenant(manager)
+  }
+  .container {
+    max-width: 1000px;
+    padding: 0 30px;
+    margin: 0 auto;
+    overflow: auto;
+  }
+  .popup-box{
+    position: fixed;
+    background: #00000050;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .box{
+    position: relative;
+    width: 750px;
+    max-width: 85vw;
+    height: 80vh;
+    max-height: 415px;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 4px;
+    padding: 0px 35px;
+    border: 1px solid #999;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    background: 
+      linear-gradient(
+        to bottom,
+        #D7FDEC,
+        #dcd8ae
+      );
+
+      @media(max-width: 600px){
+        max-height: 480px;
+      }
+
+      @media(max-width: 380px){
+        height: 90vh;
+        max-height: 460px;
+      }
+  }
+  .close-icon{
+    content: 'X';
+    cursor: pointer;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    background: #ededed;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid #999;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
