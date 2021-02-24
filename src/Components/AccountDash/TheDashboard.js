@@ -95,7 +95,7 @@ const TheDashboard = props => {
 
   return (
     <div className='page'>
-      <h1>Dashboard</h1>
+      <h1 className='title-container'>Dashboard</h1>
       <div>
         {admin === false ? (
           <MakePayment />

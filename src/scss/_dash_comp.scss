@@ -2,8 +2,8 @@
     background-color: $light-grey-color;
     position: sticky;
     right: 0;
-    min-width: 83%;
-    margin-left: 210px;
+    min-width: calc(100vw - 200px);
+    margin-left: 200px;
     // margin-right: 200px;
     // padding-left: 15px;
     // padding-right: 15px;
