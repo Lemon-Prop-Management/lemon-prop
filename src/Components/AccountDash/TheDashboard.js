@@ -19,7 +19,7 @@ const TheDashboard = props => {
       axios.get(`/api/tenant/get/${user_id}`)
         .then(res => {
           setTenantInfo(res.data)
-
+          console.log(res.data)
         })
         .catch(err => console.log(err))
     }
@@ -43,11 +43,13 @@ const TheDashboard = props => {
         setPhone('')
         setEmail('')
         setEditBool(false)
-        axios.get(`/api/tenant/${user_id}`)
-          .then(res => {
-            setTenantInfo(res.data)
-          })
-          .catch(err => console.log(err))
+        setTenantInfo(res.data)
+        console.log(res.data)
+        // axios.get(`/api/tenant/${user_id}`)
+        //   .then(res => {
+        //     setTenantInfo(res.data)
+        //   })
+        //   .catch(err => console.log(err))
       })
       .catch(err => console.log(err))
   }
