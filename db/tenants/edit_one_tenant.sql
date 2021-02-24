@@ -6,4 +6,5 @@ SET first_name = $2,
   pet = $6,
   approved = $7,
   prop_id = $8
-WHERE user_id = $1;
+WHERE user_id = $1
+returning *;

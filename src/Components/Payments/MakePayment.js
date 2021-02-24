@@ -10,7 +10,6 @@ toast.configure();
 
 const MakePayment = props => {
     const [rentAmount, setRentAmount] = useState();
-
     const { user_id, admin } = props;
 
 

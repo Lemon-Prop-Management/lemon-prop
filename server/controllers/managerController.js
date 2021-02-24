@@ -9,7 +9,7 @@ module.exports = {
     getMr: async (req, res) => {
         const db = req.app.get('db')
         const { is_complete } = req.params
-        await db.mgr.mgr_get_mr_by_type([is_complete])
+        await db.mr.get_mr_by_type([is_complete])
             .then(maintReqs => {
                 res.status(200).send(maintReqs)
             })
@@ -19,7 +19,7 @@ module.exports = {
     getOneMr: async (req, res) => {
         const db = req.app.get('db')
         const { mr_id } = req.params
-        await db.mgr.mgr_get_one_mr([mr_id])
+        await db.mr.get_one_mr([mr_id])
             .then(maintReq => {
                 res.status(200).send(maintReq)
             })
@@ -30,7 +30,7 @@ module.exports = {
         const db = req.app.get('db')
         const { mr_id } = req.params
         const { isComplete } = req.body
-        await db.mgr.mgr_edit_one_mr([mr_id, isComplete])
+        await db.mr.edit_one_mr([mr_id, isComplete])
             .then(editedMr => {
                 res.status(200).send(editedMr)
             })
@@ -41,7 +41,7 @@ module.exports = {
 
     getAllProperties: async (req, res) => {
         const db = await req.app.get('db')
-        await db.mgr.mgr_get_all_properties()
+        await db.properties.get_all_properties()
             .then(properties => {
                 res.status(200).send(properties)
             })
@@ -51,7 +51,7 @@ module.exports = {
     getOneProperty: async (req, res) => {
         const db = await req.app.get('db')
         const { prop_id } = req.params
-        await db.mgr.mgr_get_one_property([prop_id])
+        await db.properties.get_one_property([prop_id])
             .then(property => {
                 res.status(200).send(property)
             })
@@ -62,7 +62,7 @@ module.exports = {
         const db = await req.app.get('db')
         const { prop_id } = req.params
         const { address, leaseAmt, status } = req.body
-        await db.mgr.mgr_edit_one_property([prop_id, address, leaseAmt, status])
+        await db.properties.edit_one_property([prop_id, address, leaseAmt, status])
             .then(editedProp => {
                 res.status(200).send(editedProp)
             })
@@ -72,7 +72,7 @@ module.exports = {
     addOneProperty: async (req, res) => {
         const db = await req.app.get('db')
         const { address, leaseAmt, status } = req.body
-        await db.mgr.mgr_add_one_property([address, leaseAmt, status])
+        await db.properties.add_one_property([address, leaseAmt, status])
             .then(newProp => {
                 res.status(200).send(newProp)
             })
@@ -82,7 +82,7 @@ module.exports = {
     deleteOneProperty: async (req, res) => {
         const db = await req.app.get('db')
         const { prop_id } = req.params
-        await db.mgr.mgr_delete_one_property([prop_id])
+        await db.properties.delete_one_property([prop_id])
             .then(e => {
                 res.status(200).send('ok')
             })
@@ -94,7 +94,7 @@ module.exports = {
     getAllTenantsByStatus: async (req, res) => {
         const db = req.app.get('db')
         const { is_approved } = req.params
-        await db.mgr.mgr_get_all_tenants_by_type([is_approved])
+        await db.tenants.get_all_tenants_by_type([is_approved])
             .then(tenants => {
                 res.status(200).send(tenants)
             })
@@ -104,7 +104,7 @@ module.exports = {
     getOneTenant: async (req, res) => {
         const db = req.app.get('db')
         const { user_id } = req.params
-        await db.mgr.mgr_get_one_tenant_by_id([user_id])
+        await db.tenants.get_one_tenant_by_id([user_id])
             .then(tenant => {
                 res.status(200).send(tenant)
             })
@@ -115,7 +115,7 @@ module.exports = {
         const db = req.app.get('db')
         const { user_id } = req.params
         const { first_name, last_name, phone, email, pet, is_approved, prop_id } = req.body
-        await db.mgr.mgr_edit_one_tenant([user_id, first_name, last_name, phone, email, pet, is_approved, prop_id])
+        await db.tenants.edit_one_tenant([user_id, first_name, last_name, phone, email, pet, is_approved, prop_id])
             .then(updatedTenant => {
                 res.status(200).send(updatedTenant)
             })
@@ -128,13 +128,13 @@ module.exports = {
         const isAdmin = false
         const reset_password_token = null
         const reset_password_expires = null
-        const [existingUser] = await db.mgr.mgr_get_one_tenant_by_email([email])
+        const [existingUser] = await db.tenants.get_one_tenant_by_email([email])
         if (existingUser) {
             return res.status(400).send('User already exists')
         }
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
-        const [newUser] = await db.mgr.mgr_add_one_tenant([first_name, last_name, phone, email, hash, due_date, pet, is_approved, isAdmin, prop_id, reset_password_token, reset_password_expires]).catch(err => console.log(err))
+        const [newUser] = await db.tenants.add_one_tenant([first_name, last_name, phone, email, hash, due_date, pet, is_approved, isAdmin, prop_id, reset_password_token, reset_password_expires]).catch(err => console.log(err))
         let transporter = await nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -170,7 +170,7 @@ module.exports = {
     deleteOneTenant: async (req, res) => {
         const db = req.app.get('db')
         const { user_id } = req.params
-        await db.mgr.mgr_delete_one_tenant([user_id])
+        await db.tenants.delete_one_tenant([user_id])
             .then(() => {
                 res.sendStatus(200)
             })
@@ -181,7 +181,7 @@ module.exports = {
     getAllPayments: async (req, res) => {
         const db = req.app.get('db')
 
-        await db.mgr.mgr_get_all_payments()
+        await db.payments.get_all_payments()
             .then(payments => {
                 res.status(200).send(payments)
             })

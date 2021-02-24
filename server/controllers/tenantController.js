@@ -3,8 +3,14 @@ module.exports = {
         const db = await req.app.get('db')
         const { user_id } = req.params
         const { first_name, last_name, phone, email } = req.body
+        console.log(`1: ${req.session}`)
+        console.log(`2: ${req.session.user}`)
+        console.log(`3: ${req.session.user.pet}`)
+        console.log(`4: ${req.session.user.approved}`)
+        console.log(`5: ${req.session.user.prop_id}`)
+        let { pet, approved, prop_id } = req.session.user;
 
-        db.tnt.tnt_edit_one_tenant([user_id, first_name, last_name, phone, email])
+        db.tenants.edit_one_tenant([user_id, first_name, last_name, phone, email, pet, approved, prop_id])
             .then(updatedTenant => {
                 res.status(200).send(updatedTenant)
             })
@@ -14,7 +20,7 @@ module.exports = {
         const db = req.app.get('db')
         const { user_id } = req.params
 
-        await db.mgr.mgr_get_one_tenant_by_id([user_id])
+        await db.tenants.get_one_tenant_by_id([user_id])
             .then(tenant => {
                 res.status(200).send(tenant)
             })
@@ -28,7 +34,7 @@ module.exports = {
         let date_sub = new Date();
 
 
-        db.tnt.tnt_add_mr([user_id, prop_id, subject, date_sub, request, is_compl])
+        db.mr.add_mr([user_id, prop_id, subject, date_sub, request, is_compl])
             .then(newMaintReq => {
                 res.status(200).send(newMaintReq)
             })
@@ -38,7 +44,7 @@ module.exports = {
         const db = await req.app.get('db')
         const { user_id } = req.params
 
-        db.tnt.tnt_get_all_mrs([user_id])
+        db.mr.get_all_mrs([user_id])
             .then(allMaintReqs => {
                 res.status(200).send(allMaintReqs)
             })
@@ -48,9 +54,18 @@ module.exports = {
         const db = await req.app.get('db')
         const { mr_id } = req.params
 
-        db.tnt.tnt_get_one_mr([mr_id])
+        db.mr.get_one_mr([mr_id])
             .then(maintReq => {
                 res.status(200).send(maintReq)
+            })
+            .catch(err => console.log(err))
+    },
+    getProperty: async (req, res) => {
+        const db = await req.app.get('db')
+        const { user_id } = req.params
+        db.properties.get_property_by_user_id([user_id])
+            .then(property => {
+                res.status(200).send(property)
             })
             .catch(err => console.log(err))
     },
@@ -58,7 +73,7 @@ module.exports = {
         const db = await req.app.get('db')
         const { user_id } = req.params
 
-        db.tnt.tnt_get_all_payments([user_id])
+        db.tenants.get_all_payments_by_id([user_id])
             .then(payments => {
                 res.status(200).send(payments)
             })
@@ -69,7 +84,7 @@ module.exports = {
         const db = await req.app.get('db')
         const { user_id } = req.params
 
-        db.tnt.tnt_get_next_due_date([user_id])
+        db.payments.get_next_due_date([user_id])
             .then(date => {
                 res.status(200).send(date)
             })
@@ -79,12 +94,12 @@ module.exports = {
     getRentAmount: async (req, res) => {
         const db = await req.app.get('db')
         const { user_id } = req.params
-        const [response] = await db.tnt.tnt_get_one_tenant_by_id([user_id])
+        const [response] = await db.tenants.get_one_tenant_by_id([user_id])
             .catch(err => console.log(err))
 
         const { prop_id } = response
 
-        db.tnt.tnt_get_rent_amount([prop_id])
+        db.properties.get_lease_amount_by_prop_id([prop_id])
             .then(leaseAmount => {
                 res.status(200).send(leaseAmount)
             })
@@ -97,7 +112,7 @@ module.exports = {
         const { rentAmount } = req.body
         const date_paid = new Date();
 
-        db.tnt.tnt_add_payment([user_id, rentAmount, date_paid])
+        db.payments.add_payment([user_id, rentAmount, date_paid])
             .then(newPayment => {
                 res.status(200).send(newPayment)
             })
