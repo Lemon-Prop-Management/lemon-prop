@@ -16,3 +16,7 @@ React | HTML | CSS | Javascript | Axios | NodeJs | Express | Massive | PostgreSQ
 ### Application notes
 
 The foundational structure of this project was planned, designed and built from January 19, 2021 - February 4, 2021.
+
+## Wireframing and planning
+
+(https://user-images.githubusercontent.com/63270278/111403795-3c01d680-8693-11eb-9c20-5eef0606de95.png)
